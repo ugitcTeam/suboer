@@ -1,0 +1,94 @@
+input {border-width: 0px;outline: none;background: none;border-bottom: 0px;border-style: solid;}
+label {white-space: nowrap;cursor: pointer;}
+td {border: 1px solid green;padding: 0;}
+input{font-size: 14px;}
+
+/*全局样式*/
+.bfc{overflow: hidden;}
+.right{float: right;}
+.left{float: left;}
+.w200{width: 200px;}
+.w60{width: 60px;}
+.p5c{padding: 5px; cursor: pointer;}
+.text-right{text-align: right;}
+/**/
+.sd-rc {width: 1000px;margin: auto;}
+.sd-rc .content{width: 980px;margin: auto;}
+.sd-rc h2.title {text-align: center;}
+.attr {width: 200px;height: 30px;text-align: center;}
+.attr>div {padding-right: 10px;}
+.flags:after {content: " : ";}
+.tzw {}
+table{border-collapse: collapse; margin: auto; width: 100%;}
+.rc-table {width: 980px;}
+
+/*弹性盒样式 start*/
+/*.box{display: flex}*/
+.flex-1{flex-grow: 1;}
+.flex-2{flex-grow: 2;}
+.flex-3{flex-grow: 3;}
+/*弹性盒样式 end*/
+
+.mr-10{margin-right: 10px;}
+.w5{width: 50%;}
+.w33{width: 33%; float: left; padding-left: 10px;box-sizing: border-box;}
+.line-left{border-left: 1px solid}
+.header>div{width:49%; display: inline-block;}
+.right-block{text-align: right;}
+.clear:after{content:""; clear: both; display: block;}
+/*.clear:before{content:""; clear: both;display: block;}*/
+
+.item{overflow: hidden; padding-left: 10px; box-sizing: border-box;}
+.bottom{border-bottom: 2px solid #5e865e; margin-bottom: 5px;}
+.opinion>div{width: 33%; display: inline-block; border-right: 2px solid green;box-sizing: border-box;} 
+.opinion>div:nth-last-child(1) {border: none;}
+.record {display: inline-block;vertical-align: top;padding-left: 10px;}
+.record>p { margin: 0;}
+
+.sd-rc p{margin: 0px;}
+textarea{width: 300px;height: 50px; vertical-align: middle; resize: none;box-sizing: border-box;}
+.textarea{ padding: 5px;}
+
+.cell{display: table-cell;}
+
+/*根据权限设计样式*/
+.role textarea{display: none;}
+.role pre{display: block;}
+.role.edit pre{display: none;}
+.role.edit textarea{display: block;}
+
+/*只读内容*/
+.read{display: none;}
+/*写入内容*/
+.write{display: block;}
+/*添加小括号*/
+.ns:before{content:"（ ";}
+.ns:after{content:" ）";}
+
+.line-top{border-top: 1px solid;}
+
+.sw150{width: 150px; display: inline-block;}
+.right-content{border-left: 1px solid}
+.right-content:before{content:"";display: inline-block;vertical-align: middle;}
+
+.item+.item{border-top: 1px solid; box-sizing: border-box;}
+
+input.number{width: 50px;}
+
+
+/*表格中嵌套表格，左，右，下，td不要边框*/
+
+.table-sub th{font-weight:400; border-width: 1px 0 0 1px; border-style: solid;border-color: green;}
+.table-sub th:first-child{border-left-width: 0px;}
+.table-sub td{border-width: 1px 1px 0 0;}
+.table-sub tr.remove{background-color: #ccc;}
+.table-sub tr.remove [field=number]{background: red;}
+.table-sub tr.remove [field=number]:before{content:"X"; color:green;display: inline-block; }
+/*快速变更时，会签意见只显示财务部*/
+.isFlow .item{display: none;}
+.isFlow .acc-dep{display: block;}
+
+/*div 可编辑添加边框*/
+[contenteditable]{border:1px solid #ddd; padding:5px 10px;}
+/*所有文本框添加下边框*/
+input[type='text']{border-bottom:1px solid #ccc;padding-left: 5px;}
