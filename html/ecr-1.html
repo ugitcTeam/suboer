@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>工程变更申请单</title>
+	<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/app.js"></script>
+    <style type="text/css">
+		.sd-rc p{margin: 0px;}
+		.right-block{margin-right: 0px;margin-left: auto; display: inline-block;}
+		textarea{width: 99%;height: 100%; resize: none;box-sizing: border-box;}
+	</style>
+</head>
+<body>
+	<div class="sd-rc">
+		<h2 class="title">工程变更申请单</h2>
+		<div class="content">
+			<div class="header box">
+				<div>ECR:<input type="text" name="ecr"></div>
+            	<div class="right-block">编号：SPE R02-047</div>
+			</div>
+		</div>
+		<div>
+			<table class="rc-table">
+				<tr>.
+					<td class="attr">提出部门</td>
+					<td class="odd">
+						<select name="tcbm" class="tcbm">
+						</select>
+					</td>
+					<td class="attr">提出人</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td class="attr">接收部门</td>
+					<td class="odd">
+						<label>
+							<input type="radio" name="jsbm" value="" />
+							<select class="jsbm" id=""></select>
+						</label>
+						<label> 
+							<input type="radio" name="jsbm" value="工艺部" />工艺部
+						</label>
+					</td>
+					<td class="attr">接收人</td>
+					<td>
+						<input class="jsr" type="text" name="jsr" />
+					</td>
+				</tr>
+				<tr>
+					<td class="attr">产品型号</td>
+					<td class="odd"><input class="cpxh" type="text" name="cpxh" /></td>
+					<td class="attr">销售渠道</td>
+					<td>
+						<label><input type="radio" name="xsqd" value="SEB" />SEB</label>
+						<label><input type="radio" name="xsqd" value="外贸" />外贸</label>
+						<label><input type="radio" name="xsqd" value="内销" />内销</label>
+					</td>
+				</tr>
+				<tr>
+					<td class="attr">变更申请描述</td>
+					<td colspan="3">
+						<div class="textarea">
+							<textarea name="bgsqms" maxlength="300" len=15></textarea>
+							<!-- <div class="editDiv1" contenteditable="true" style="min-height: 40px; background-color: #ccc;"></div> -->
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="attr">变更评估</td>
+					<td colspan="3">
+						<div class="textarea">
+							<textarea name="bgpg" maxlength="20"></textarea>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4">
+						修改模评估：
+						是否改模
+						<label><input type="radio" name="sfxgm" value="否" />否</label>	
+						<label><input type="radio" name="sfxgm" value="是" />是</label>	
+						<span class="ns">如选择否，以下内容不填写</span>
+					</td>
+				</tr>
+				<tr class="isMu">
+					<td class="subT" colspan="4">
+						<div class="box clear">
+							<div class="w5 left">
+								<span>是否有备模</span>
+								<label> <input type="radio" name="bm" value="否" />否</label>
+								<label> <input type="radio" name="bm" value="是" />是</label>
+								<label>备模数量：<input class="number" type="number" name="bmsl" /></label>
+							</div>
+							<div class="w5 right">
+								<span>是否共模</span>
+								<label><input type="radio" name="gom" value="否" />否</label>
+								<label><input type="radio" name="gom" value="是" />是</label>
+							</div>
+						</div>
+						<div class="box clear">
+							<div class="w5 left">
+								<span>是否共用件</span>
+								<label><input type="radio" name="gyj" value="否" />否</label>
+								<label><input type="radio" name="gyj" value="是" />是</label>
+							</div>
+							<div class="w5 right">
+								<label>共用件型号/名称：<input type="text" name="gyjxh" /></label>
+							</div>
+						</div>
+						
+					</td>
+				</tr>
+				<tr class="isMu">
+					<td class="attr">
+						模具类别
+					</td>
+					<td>
+						<label><input type="radio" name="mjlb" value="塑胶" />塑胶</label>
+						<label><input type="radio" name="mjlb" value="五金" />五金</label>
+					</td>
+					<td class="attr">零件名称</td>
+					<td><input type="text" name="ljmc" /></td>
+				</tr>
+				<tr class="isMu">
+					<td class="attr">零件图号</td>
+					<td><input type="text" name="ljth"/></td>
+					<td class="attr">模具编号</td>
+					<td><input type="text" name="mjbh" /></td>
+				</tr>
+				<tr class="isMu">
+					<td class="attr">内部订单号</td>
+					<td><input type="text" name="nbddh" /></td>
+					<td class="attr">成本中心</td>
+					<td><input type="text" name="cbzx" /></td>
+				</tr>
+				<tr class="isMu">
+					<td class="attr">改模前</td>
+					<td colspan="3">
+						<div contenteditable=true>
+							这里放编辑框，可添加图片
+						</div>
+						<textarea name="gmq"></textarea>
+					</td>
+				</tr>
+				<tr class="isMu">
+					<td class="attr">改模后</td>
+					<td colspan="3">
+						<div>
+							这里放编辑框，可添加图片
+						</div>
+					</td>
+				</tr>
+				<tr class="isMu">
+					<td class="attr">物控意见</td>
+					<td colspan="2">
+						<div class="textarea"><textarea name="wkyj"></textarea></div>
+					</td>
+					<td>
+						签名：<input type="text" name="wkqm" />
+					</td>
+				</tr>
+				<tr class="isMu">
+					<td class="attr">注塑工艺意见</td>
+					<td colspan="2">
+						<div class="textarea"><textarea name=""></textarea></div>
+					</td>
+					<td>
+						签名：<input type="text" name="GYQM" />
+					</td>
+				</tr>
+				<tr class="isMu">
+					<td class="attr">模具工具意见</td>
+					<td colspan="2">
+						<div class="textarea"><textarea name=""></textarea></div>
+					</td>
+					<td>
+						签名：<input type="text" name="qm" />
+					</td>
+				</tr>
+				<tr>
+					<td class="attr">
+						接收部门意见
+					</td>
+					<td colspan="2">
+						<div>是否同意变更申请</div>
+						<div>
+							<label><input type="radio" name="sftybgsq" value="否" />否</label>
+							<label><input type="radio" name="sftybgsq" value="是" />是</label>
+						</div>
+							<div contenteditable="true"></div>
+					</td>
+					<td>签名：<input type="text" name="qm" /><span class="qm"></span></td>
+				</tr>
+			</table>	
+		</div>
+		
+	</div>
+</body>
+<script type="text/javascript">
+	var role=2;
+	var tcbmData=[
+	"电压力锅研发部","电炸锅研发部","SEB料理机研发部","破壁料理机研发部","电磁炉研发部","电水壶研发部","咖啡机多士炉研发部","工艺部","质量部","采购部","制造部"
+	];
+	var jsbmData=["电压力锅研发部","电炸锅研发部","SEB料理机研发部","破壁料理机研发部","电磁炉研发部","电水壶研发部","咖啡机多士炉研发部"];
+	var $tcbmSelect=$(".tcbm");
+	var $jsbmSelect=$(".jsbm");
+	//提出部门下拉框数据填充
+	$(tcbmData).each(function(index,element){
+		$tcbmSelect.append("<option value='"+element+"'>"+element+"</option>");
+	});
+	// 接收部门下拉框数据填充
+	$(jsbmData).each(function(index,element){
+		$jsbmSelect.append("<option value='"+element+"'>"+element+"</option>");
+	});
+	// $jsbmSelect.change(function(){
+	// 	$(this).prev().val(this.value);
+	// });
+	$("input:radio").click(function(){
+		// 如果相邻节点是select下拉框，则去下拉框值
+		if($(this).next()[0]&&$(this).next()[0].nodeName=="SELECT"){
+			this.value=$(this).next()[0].value;
+		}
+		// 当前按钮如果是改模，进行特殊处理
+		if(this.name=="sfxgm"){
+			this.value=="否"?$(".isMu").hide():$(".isMu").show();
+		}
+	});
+	// 下拉框是改变时，有特殊处理
+	$("select").change(function(){
+
+		if($(this).prev()[0]&&$(this).prev()[0].nodeName=="INPUT"){
+			$(this).prev()[0].value=this.value;
+			console.log("复选框改变，单选框值改变");
+		}
+	});
+	// 下拉框点击时，有特殊处理
+	$("select").click(function(){
+		if($(this).prev()[0]&&$(this).prev()[0].nodeName=="INPUT"){
+			$($(this).prev()).click();
+			console.log("复选框点击，单选框触发选中");
+		}
+	})
+	$("div[contenteditable]").keyup(function(){
+		// debugger;
+		var text=event.data;
+		if(text!==this.innerText){
+			event.data=this.innerText;
+		}
+	});
+	$("input[name='qm']").each(function(){
+		this.value=app.getNowFormatDate();
+	});
+	//获取当前时间 格式YY-MM-DD
+	$(".qm").each(function(){
+		this.textContent=app.getNowFormatDate();
+	});
+	
+
+	//创建申请单获取参数方法
+	/**
+	 * [getRole2 description] 创建变更申请单
+	 * @return {[type]} [description] 返回创建数据对象
+	 */
+	function getApplyData(){
+		var list=[
+			{type:"select",name:"tcbm",title:"提出部门"}
+			,{type:"radio",name:"jsbm",title:"接收部门"}
+			,{type:"text",name:"jsr",title:"接收人"}
+			,{type:"text",name:"cpxh",title:"产品型号"}
+			,{type:"radio",name:"xsqd",title:"销售渠道"}
+			,{type:"textarea",name:"bgsqms",title:"变更申请描述"}
+			,{type:"textarea",name:"bgpg",title:"变更评估"}
+			,{type:"radio",name:"sfxgm",title:"是否改模"}
+		]
+		var obj=app.getObj(list);
+		obj.ID=1;
+		obj.SE_NO="SPE R02-047";
+		if(obj.sfxgm=="是"){
+			$.extend(obj,isGm());
+		}		
+		return obj;
+	}
+	//如果是改模，调用此方法获取改模数据
+	function isGm(){
+		var list=[
+			{type:"radio",name:"bm",title:"是否有备模"}
+			,{type:"radio",name:"gom",title:"是否共模"}
+			,{type:"radio",name:"gyj",title:"是否共用件"}
+			,{type:"text",name:"gyjxh",title:"共用件型号/名称"}
+			,{type:"radio",name:"mjlb",title:"模具类别"}
+			,{type:"text",name:"ljmc",title:"零件名称"}
+			,{type:"text",name:"ljth",title:"零件图号"}
+			,{type:"text",name:"mjbh",title:"模具编号"}
+			,{type:"text",name:"nbddh",title:"内部订单号"}
+			,{type:"text",name:"cbzx",title:"成本中心"}
+			,{type:"textarea",name:"gmq",title:"改模前描述"}
+			,{type:"textarea",name:"gmh",title:"改模后描述"}
+		]
+		var obj={};
+		$(list).each(function(){
+			obj[this.name]=$().getInputValue(this);
+		});
+		return obj;
+	}
+	/**
+	 * [getSign description] 根据角色获取意见和签名
+	 * @param  {[type]} key [description] 当前角色标识
+	 * @return {[type]}     [description] 返回当前角色输入的数据对象
+	 */
+	function getSign(key){
+		var list={
+			"wk":[
+				{type:"textarea",name:"wkyj",title:"物控意见"}
+				,{type:"text",name:"WKQM",title:"物控签名"}
+				,{type:"NowDate",name:"wkqmrq",title:"物控签名日期"}
+			]
+			,"gy":[
+				{type:"textarea",name:"ZSGYYJ",title:"注塑工艺意见"}
+				,{type:"text",name:"GYQM",title:"工艺签名"}
+				,{type:"NowDate",name:"gyqmrq",title:"工艺签名日期"}
+			],
+			"mj":[
+				{type:"textarea",name:"MJGYYJ",title:"模具工艺意见"}
+				,{type:"text",name:"MJQM",title:"模具签名"}
+				,{type:"NowDate",name:"mjqmrq",title:"模具签名日期"}
+			],
+			"js":[
+				{type:"textarea",name:"JSBMYJ",title:"接收部门意见"}
+				,{type:"text",name:"JSBMQM",title:"接收部门签名"}
+				,{type:"NowDate",name:"jsbmqmrq",title:"接收部门签名日期"}
+			]
+		};
+		// var obj={};
+		// $(list[key]).each(function(){
+		// 	obj[this.name]=$().getInputValue(this);
+		// })
+		return app.getObj(list[key]);	
+	}
+	function setSign(){
+		
+	}
+	//签字意见方法
+	function getQzyj(){
+		var obj={};
+		obj.WKYJ="VARCHAR2(150 CHAR)	物控意见";
+		obj.WKQM="物控签名";
+		// obj.WKQMRQ="DATE	物控签名日期";
+		obj.wkqmrq=app.getNowFormatDate();
+		obj.ZSGYYJ="VARCHAR2(150 CHAR)	注塑工艺意见";
+		obj.GYQM="工艺签名";
+		// obj.GYQMRQ="DATE	工艺签名日期";
+		obj.gyqmrq=app.getNowFormatDate();
+		obj.MJGYYJ="VARCHAR2(150 CHAR)	模具工艺意见";
+		obj.MJQM="模具签名";
+		// obj.MJQMRQ="DATE	模具签名日期";
+		obj.mjqmrq=app.getNowFormatDate();
+		obj.JSBMYJ="VARCHAR2(150 CHAR)	接收部门意见";
+		obj.JSBMQM="接收部门签名";
+		// obj.JSBMQMRQ="DATE	接收部门签名时间";
+		obj.jsbmqmrq=app.getNowFormatDate();
+		obj.REC_CRE_DTE="DATE	记录创建时间";
+		obj.REC_UPD_DTE="DATE	记录更新时间";
+	}	
+	//获取表单数据
+	function getData(){
+		if(role==1){
+			return getRole1();
+		}
+		return switchRole(role);
+	}
+	function switchRole(role){
+		var obj=null;
+		switch (role) {
+			//创建申请单
+			case 1:
+				obj= getRole1();
+				break;
+			case 2:
+				//创建
+				obj= getApplyData();
+				break;
+			case 3:
+				obj=getSign("wk");
+				break;
+			default:
+				// statements_def
+				// 获取申请单数据
+				obj=getApplyData();
+				break;
+		}
+		//解决IE8 内置JSON.stringify,中文变unicode的问题
+		eval("var str='"+JSON.stringify(obj)+"';");
+		return str;
+	}
+	function getIsMo(){
+		var obj={};
+		obj.bm=$("input[name='bm']:checked").val();
+		obj.bmsl=$("input[name='bmsl:checked']").val();
+		obj.gom=$("input[name='gom']").val();
+		obj.gyj=$("input[name='gyj']").val();
+		obj.gyjxh=$("input[name='gyjxh']").val();
+		obj.mjlb=$("input[name='mjlb']").val();
+		obj.ljmc=$("input[name='ljmc']").val();
+		obj.ljth=$("input[name='ljth']").val();
+		obj.mjbh=$("input[name='mjbh']").val();
+		obj.nbddh=$("input[name='nbddh']").val();
+		obj.cbzx=$("input[name='cbzx']").val();
+		//改模前
+		//多行文本
+		// 改模后多行文本可添加图片
+		// 
+		// 物控意见，多行文本
+		obj.wkyj=$("input[name='wkyj']").val();
+		obj.bm=$("input[name='bm']").val();
+		obj.bm=$("input[name='bm']").val();
+
+	}
+	/**
+	 * [getwkqz description] 获取流程审批信息
+	 * @param  {[type]} parent [description]要获取元素的范围
+	 * @return {[type]}        [description] 返回当前角色所需数据
+	 */
+	function getwkqz(parent){
+		var obj={};
+		obj.wkyj=$("input[name='wkyj']",parent).val();
+		obj.qz=$("input[name='qz']",parent).val();
+		return obj;
+	}
+
+	function getSave(){
+		var obj={
+			a:1,
+			b:2
+		}
+		return obj;
+	}
+
+	$(".editDiv1").on("paste",function(){
+		var items = (event.clipboardData || event.originalEvent.clipboardData).items;
+		    for (index in items) {
+		        var item = items[index];
+		        var type = item.type;
+		        if(type && type.split('/')[0] == 'image') {
+		            var suffix = type.split('/')[1];
+		            var blob = item.getAsFile();
+		            var size = blob.size;
+		            if(size / (1024 * 1024) < 2) {
+		                var reader = new FileReader();
+		                reader.onload = function (event) {
+		                    //var base64Str = event.target.result;
+		                    var form = document.createElement("form").setAttribute("enctype", "multipart/form-data");
+		                    var formData = new FormData(form);
+		                    formData.append("image", blob, "image." + suffix);
+		                    //获取base64编码图片
+		                    var src=event.target.result;
+		                    var sel = window.getSelection();
+		                    if (sel && sel.rangeCount === 1 && sel.isCollapsed) {
+		                        //有选区，且选区数量是一个，且选区的起始点和终点在同一位置
+		                        var range = sel.getRangeAt(0);
+		                        var img = new Image();
+		                        img.src=src;
+		                        range.insertNode(img);
+		                        range.collapse(false);//对于IE来说，参数不可省略
+		                        sel.removeAllRanges();
+		                        sel.addRange(range);
+		                    }
+		                };
+		                reader.readAsDataURL(blob);
+		            }
+		        }
+		    }
+		});
+</script>
+</html>
