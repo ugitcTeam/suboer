@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>工程变更确认单</title>
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/app.js"></script>
+</head>
+<body>
+	<div class="sd-rc">
+		<h2 class="title">工程变更确认单</h2>
+		<div class="content">
+			<div class="header box">
+				<div>ECR:<input type="text" name="ecr"></div>
+				<div class="right-block">编号:SPE R02-047<!-- <input type="text" name="" /> --></div>
+			</div>
+		</div>
+		<div>
+			<table class="rc-table">
+				<tr>
+					<td class="attr">提出部门</td>
+					<td class="odd"><span class="tcbm">显示读取文本</span></td>
+					<td class="attr">提出人员</td>
+					<td class="odd"><span class="tcry">显示读取文本</span></td>
+				</tr>
+				<tr>
+					<td class="attr">对接部门</td>
+					<td><span class="djbm">显示读取文本</span></td>
+					<td class="attr">对接人员</td>
+					<td><span class="djry">显示读取文本</span></td>
+				</tr>
+				<tr>
+					<td class="attr">销售渠道</td>
+					<td>
+						<label><input form="role1" type="radio" name="ssqd" value="SEB" />SEB</label>
+						<label><input form="role1" type="radio" name="ssqd" value="外贸" />外贸</label>
+						<label><input form="role1" type="radio" name="ssqd" value="内销" />内销</label>
+					</td>
+					<td class="attr">产品型号</td>
+					<td><span class="cpxh">显示读取信息</span></td>
+				</tr>
+				<tr>
+					<td class="attr">变更种类</td>
+					<td colspan="3">
+						<div class="types">
+							<div>
+								<label><input type="radio" name="bgzl" value="尺寸规格变更" />尺寸规格变更</label>
+								<label><input type="radio" name="bgzl" value="结构变更" />结构变更</label>
+								<label><input type="radio" name="bgzl" value="材料变更" />材料变更</label>
+								<label><input type="radio" name="bgzl" value="供应商变更" />供应商变更</label>
+								<label><input type="radio" name="bgzl" value="电控变更" />电控变更</label>
+							</div>
+							<div>
+								<label><input type="radio" name="bgzl" value="业务模式变更" />业务模式变更</label>
+								<label><input type="radio" name="bgzl" value="图物不符" />图物不符</label>
+								<label><input type="radio" name="bgzl" value="BOM变更" />BOM变更</label>
+								<label><input type="radio" name="bgzl" value="TS变更" />TS变更</label>
+								<label><input type="radio" name="bgzl" value="认证标准变更" />认证标准变更</label>
+							</div>
+						</div>
+						<div class="types line-top">
+							<label><input type="radio" name="bgzl" value="制程工艺" />制程工艺</label>
+							<label><input type="radio" name="bgzl" value="再生材料" />再生材料</label>
+							<label><input type="radio" name="bgzl" value="工装、设备" />工装、设备</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4" style="padding: 0;">
+						变更描述:
+						<div class="right">
+							<span class="addRowTr p5c">添加</span>
+							<span class="removeRowTr p5c">删除</span>
+						</div>
+						<div class="table" >
+							<table class="table-sub">
+								<tr class="header">
+									<th style="width: 40px;">序号</th>
+									<th style="width: 60px;">名称</th>
+									<th style="width: 50px;">SAP编码</th>
+									<th style="width: 50px;">图号</th>
+									<th>变更前描述</th>
+									<th>变更后描述</th>
+								</tr>
+								<tr>
+									<td field="number">1</td>
+									<td field="name">
+										<input class="w60" type="text" name="names" /></td>
+									<td field="SAP_NO">
+										<input class="w60" type="text" name="SAP_NO" />
+									</td>
+									<td field="PHO_NO">
+										<input class="w60" type="text" name="PHO_NO" />
+									</td>
+									<td>
+										<textarea class="editDiv" autoHeight="true" name="PRE_CHAG" style="overflow:hidden;"></textarea>
+									</td>
+									<td>
+										<textarea autoHeight="true" name="POST_CHAG" style="overflow:hidden;"></textarea>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4">
+						<p><span>变更行动计划:</span><span class="ns">质量经理确认</span></p>
+						<div class="">
+							<p class="flowClass">
+								<span class="sw150">流程分类</span>
+								<label><input type="radio" name="lcfl" value="快速变更" />快速变更</label>
+								<label><input type="radio" name="lcfl" value="重大变更" />重大变更</label>
+							</p>
+							<p>
+								<span class="sw150">是否需要改模</span>
+								<label><input type="radio" name="xygm" value="否" />否</label>
+								<label><input type="radio" name="xygm" value="是" />是</label>
+								<span>改模部件：这里读取申请单中的零件名称</span>
+							</p>
+							<p>
+								<span class="sw150">是否共模</span>
+								<label><input type="radio" name="sfgm" value="否" />否</label>
+								<label><input type="radio" name="sfgm" value="是" />是</label>
+							</p>
+							<p>
+								<span class="sw150">是否共用件</span>
+								<label><input type="radio" name="sfgyj" value="否" />否</label>
+								<label><input type="radio" name="sfgyj" value="是" />是</label>
+								<span>共用件型号/名称</span>
+							</p>
+							<p>
+								<span class="sw150">是否影响售后BOM</span>
+								<label><input type="radio" name="sfyxsh" value="否" />否</label>
+								<label><input type="radio" name="sfyxsh" value="是" />是</label>
+							</p>
+							<p>
+								<span class="sw150">是否需要组装样机</span>
+								<label><input type="radio" name="sfxyzzyj" value="否" />否</label>
+								<label><input type="radio" name="sfxyzzyj" value="是" />是</label>
+							</p>
+							<p>
+								<span class="sw150">是否需要试产</span>
+								<label><input type="radio" name="sfxysc" value="否" />否</label>
+								<label><input type="radio" name="sfxysc" value="是" />是</label>
+							</p>
+							<div class="box">
+								<div class="left">
+									<span class="sw150">是否需要验证</span>
+								</div>
+								<div class="left reld">
+									<label><input type="radio" name="sfyz" value="否" />否</label>
+									<label><input type="radio" name="sfyz" value="是" />是</label>
+								</div>
+								<div class="left isdisabled" style="padding-left: 10px; width: 600px;">
+									<span class="ns">
+										<label><input type="checkbox" name="xyyz" value="HSF检测" />HSF检测</label>
+										<label><input type="checkbox" name="xyyz" value="食品卫生检测" />食品卫生检测</label>
+										<label><input type="checkbox" name="xyyz" value="功能检测" />功能检测</label>
+										<label><input type="checkbox" name="xyyz" value="性能检测" />性能检测</label>
+										<label><input type="checkbox" name="xyyz" value="安规检测" />安规检测</label>
+										<label><input type="checkbox" name="xyyz" value="尺寸检测" />尺寸检测</label>
+										<label><input type="checkbox" name="xyyz" value="表面处理检测" />表面处理检测</label>
+										<label><input type="checkbox" name="xyyz" value="其它" />其它</label>
+									</span>
+								</div>
+							</div>
+							<p>
+								<div class="left">
+									<span class="sw150">是否需要客户确认:</span>
+								</div>
+								<div class="left reld">
+									<label><input type="radio" name="xykhqr" value="否" />否</label>
+									<label><input type="radio" name="xykhqr" value="是" />是</label>
+								</div>
+								<div class="left isdisabled">
+									<span class="ns">
+										<label><input type="checkbox" name="xykhqr1" value="返工方案" />返工方案</label>
+										<label><input type="checkbox" name="xykhqr1" value="控制计划" />控制计划</label>
+										<label><input type="checkbox" name="xykhqr1" value="控制标准" />控制标准</label>
+										<label><input type="checkbox" name="xykhqr1" value="关键元器件清单" />关键元器件清单</label>
+										<label><input type="checkbox" name="xykhqr1" value="认证证书" />认证证书</label>
+										<label><input type="checkbox" name="xykhqr1" value="" />其它</label>
+									</span>
+								</div>
+							</p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4">
+						<p>验证结果（此表单后须随附验证报告）:</p>
+						<div>
+							<label><input type="radio" name="yzjg" value="合格" />合格</label>
+							<label><input type="radio" name="yzjg" value="不合格" />不合格</label>
+							<span>测试报告编码:<input type="text" name="csbgbm" /></span>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4">
+						<div class="clear">
+							<div class="attr left" style="width: 200px;">会签意见</div>
+							<div class="right-content" style="margin-left: 200px;">
+								<div class="item">
+									<div class="title">研发部</div>
+									<div class="box">
+										<div class="mr-10">
+											<span>更新产品图:</span>
+											<label><input type="radio" name="gxcpt" value="需要" />需要</label>
+											<label><input type="radio" name="gxcpt" value="不需要" />不需要</label>
+										</div>
+										<div>
+											<span>更新BOM:</span>
+											<label><input type="radio" name="gxbom" value="需要" />需要</label>
+											<label><input type="radio" name="gxbom" value="不需要" />不需要</label>
+										</div>
+									</div>
+									<div class="box">
+										<div class="cell" style="display: table-cell;"><span>其他:</span></div>
+										<div class="textarea cell flex-1"><textarea name="qt"></textarea></div>
+									</div>
+									<div class="">
+										<div class="w200 right"><span class="w200 right">签字:</span></div>
+									</div>
+								</div>
+								<div class="item">
+									<div class="title">工艺部</div>
+									<div class="box">
+										<div class="mr-10">
+											<span>更新作业指导书:</span>
+											<label><input type="radio" name="gxzyzds" value="需要" />需要</label>
+											<label><input type="radio" name="gxzyzds" value="不需要" />不需要</label>
+										</div>
+										<div>
+											<span>更新工装夹具:</span>
+											<label><input type="radio" name="gxzzjj" value="需要" />需要</label>
+											<label><input type="radio" name="gxzzjj" value="不需要" />不需要</label>
+										</div>
+									</div>
+									<div class="box">
+										<div class="cell"><span>其他:</span></div>
+										<div class="textarea cell flex-1"><textarea name=""></textarea></div>
+									</div>
+									<div class="">
+										<div><span class="w200 right">签字:</span></div>
+									</div>
+								</div>
+								<div class="item">
+									<div class="title">物控部</div>
+									<div class="box">
+										<div class="mr-10 cell">
+											<span class="sw150">更新物料计划:</span>
+											<label><input type="radio" name="gxwljh" value="需要" />需要</label>
+											<label><input type="radio" name="gxwljh" value="不需要" />不需要</label>
+										</div>
+										<div class="cell">
+											<span class="cell">其他:</span>
+											<div class="textarea cell flex-1"><textarea name=""></textarea></div>
+										</div>
+									</div>
+									<div class="box">
+										<div class="mr-10 cell">
+											<span class="sw150">库存确认:</span>
+											<label><input type="radio" name="kcqr" value="需要" />需要</label>
+											<label><input type="radio" name="kcqr" value="不需要" />不需要</label>
+										</div>
+										<div class="cell mr-10">
+											<span class="cell">其他:</span>
+											<div class="textarea cell flex-1"><textarea name=""></textarea></div>
+										</div>
+									</div>
+									<div class="">
+										<div><span class="w200 right">签字:</span></div>
+									</div>
+								</div>
+								<div class="item">
+									<div class="title">品管部</div>
+									<div class="box">
+										<div class="mr-10">
+											<span>更新检验指导书:</span>
+											<label><input type="radio" name="gxjyzds" value="需要" />需要</label>
+											<label><input type="radio" name="gxjyzds" value="不需要" />不需要</label>
+										</div>
+										<div class="box flex-1">
+											<span class="cell">其他:</span>
+											<div class="textarea cell flex-1"><textarea name=""></textarea></div>
+										</div>
+									</div>
+									<div class="">
+										<div><span class="w200 right">签字:</span></div>
+									</div>
+								</div>
+								<div class="item">
+									<div class="title">采购部</div>
+									<div class="">
+										<div class="textarea"><textarea name="">多行文本框</textarea></div>
+									</div>
+									<div class="">
+										<div><span class="w200 right">签字:</span></div>
+									</div>
+								</div>
+								<div class="item acc-dep">
+									<div class="title">财务部</div>
+									<div class="">
+										<div class="textarea"><textarea name="">多行文本框</textarea></div>
+									</div>
+									<div class="">
+										<div><span class="w200 right">签字:</span></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4">
+						<div class="clear">
+							<div class="w33">
+								<p>研发意见:</p>
+								<label><input type="radio" name="yfyj" value="同意" />同意</label>
+								<label><input type="radio" name="yfyj" value="不同意" />不同意</label>
+								<textarea name="" id="" cols="1" rows="2" style="height: auto;border:none;"></textarea>
+								<p>签字:<input type="text" name="yfqz" /></p>
+							</div>
+							<div class="w33 line-left">
+								<p>质量意见:</p>
+								<label><input type="radio" name="zlyj" value="同意" />同意</label>
+								<label><input type="radio" name="zlyj" value="不同意" />不同意</label>
+								<textarea name="" id="" cols="1" rows="2" style="height: auto;border:none;"></textarea>
+								<p>签字:<input type="text" name="zlyjqz" /></p>
+							</div>
+							<div class="w33 line-left">
+								<p>工艺意见<span class="ns">仅变更工艺</span>:</p>
+								<label><input type="radio" name="jbggy" value="同意" />同意</label>
+								<label><input type="radio" name="jbggy" value="不同意" />不同意</label>
+								<textarea name="" id="" cols="1" rows="2" style="height: auto;border:none;"></textarea>
+								<p>签字:<input type="text" name="jbggyqz" /></p>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<form action="" id="role1"></form>
+</body>
+<script type="text/javascript">
+	$(function(){
+		var params=app.parseParams(location.search);
+		if(params.types){
+			if(params.types=="1"){
+				$(".types").eq(1).hide();
+			}else{
+				$(".types").eq(0).hide();
+			}
+		}
+		var role=1;
+		// 获取变更行动计划
+		function getFlow(){
+			var list=[
+				{type:"radio",name:"lcfl",title:"流程分类"}
+				,{type:"radio",name:"xygm",title:"是否需要改模"}
+				,{type:"radio",name:"sfgm",title:"是否共模"}
+				,{type:"radio",name:"sfgyj",title:"是否共用件"}
+				,{type:"radio",name:"sfyxsh",title:"是否影响售后BOM"}
+				,{type:"radio",name:"sfxyzzyj",title:"是否需要组装样机"}
+				,{type:"radio",name:"sfxysc",title:"是否需要试产"}
+				,{type:"radio",name:"sfyz",title:"是否需要验证"}
+				,{type:"radio",name:"xykhqr",title:"是否需要客户确认"}
+				,{type:"radio",name:"yzjg",title:"验证结果"}
+				,{type:"radio",name:"csbgbm",title:"测试报告编码"}
+			];
+			var obj={};
+			$(list).each(function(){
+				obj[this.name]=$().getInputValue(this);
+			});
+			if(obj.sfyz=="是"){
+				obj.xyyz=getInputValue({type:"checkbox",name:"xyyz"});
+			}
+			if(obj.xykhqr=="是"){
+				obj.xykhqr1=getInputValue({type:"checkbox",name:"xykhqr1"});
+			}
+			return obj;
+		}
+		window.getFlow=getFlow;
+		function getSign(key){
+			var list={
+				"yf":[
+					{type:"radio",name:"hqyfbgxcpt",title:"更新产品图"}
+					,{type:"radio",name:"hqyfbgxbom",title:"更新BOM"}
+					,{type:"textarea",name:"hqyfbqt",title:"其他"}
+					,{type:"text",name:"hqyfbqz",title:"签字"}
+					,{type:"NowDate",name:"hqyfbqzrq",title:"研发部签字日期"}
+				],
+				"gy":[
+					{type:"radio",name:"hqgybgxzyzds",title:"工艺部更新作业指导书"}
+					,{type:"radio",name:"hqgybgxgzjj",title:"工艺部更新工装夹具"}
+					,{type:"textarea",name:"hqgybqt",title:"工艺部其他"}
+					,{type:"text",name:"hqgybqz",title:"工艺部签字"}
+					,{type:"NowDate",name:"hqgybqzrq",title:"工艺部签字日期"}
+				],
+				"wk":[
+					{type:"radio",name:"hqwkbgxwljh",title:"物控部更新物料计划"}
+					,{type:"textarea",name:"hqwkbqt1",title:"物控部其他1"}
+					,{type:"radio",name:"hqwkbkcqr",title:"物控部库存确认"}
+					,{type:"textarea",name:"hqwkbqt2",title:"物控部其他2"}
+					,{type:"text",name:"hqwkbqz",title:"物控部签字"}
+					,{type:"NowDate",name:"hqwkbqzrq",title:"物控部签字日期"}
+				],
+				"pg":[
+					{type:"radio",name:"hqpgbgxjyzds",title:"品管部更新检验指导书"}
+					,{type:"textarea",name:"hqpgbqt",title:"品管部其他"}
+					,{type:"text",name:"hqpgbqz",title:"品管部签字"}
+					,{type:"NowDate",name:"hqcgbqzrq",title:"品管部签字日期"}
+				],
+				"cg":[
+					{type:"textarea",name:"hqcgbyj",title:"采购部意见"}
+					,{type:"text",name:"hqcgbqz",title:"采购部签字"}
+					,{type:"NowDate",name:"hqcgbqzrq",title:"采购部签字日期"}
+				],
+				"cw":[
+					{type:"textarea",name:"hqcwbyj",title:"财务部意见"}
+					,{type:"text",name:"hqcwbqz",title:"财务部签字"}
+					,{type:"NowDate",name:"hqcwbqzrq",title:"财务部签字日期"}
+				]
+			};
+			var obj={};
+			$(list[key]).each(function(){
+				obj[this.name]=$().getInputValue(this);
+			});
+			return obj;
+		}
+		function getSign2(key){
+			var list={
+				"yf":[
+					{type:"textarea",name:"yfbyj",title:"研发部意见"}
+					,{type:"text",name:"yfbqz",title:"研发部签字"}
+					,{type:"NowDate",name:"yfbqzrq",title:"研发部签字日期"}
+				],
+				"zl":[
+					{type:"textarea",name:"zlbyj",title:"质量部意见"}
+					,{type:"text",name:"zlbqz",title:"质量部签字"}
+					,{type:"NowDate",name:"zlbqzrq",title:"质量部签字日期"}
+					],
+				"gy":[
+					{type:"textarea",name:"gybyj",title:"工艺部意见"}
+					,{type:"text",name:"gybqz",title:"工艺部签字"}
+					,{type:"NowDate",name:"gybqzrq",title:"工艺部签字日期"}
+				]
+			};
+			// var obj={};
+			// $(list[key]).each(function(){
+			// 	obj[this.name]=$().getInputValue(this);
+			// });
+			return app.getObj(list[key]);
+		}
+
+		// 获取数据
+		function getData(){
+			var obj=null;
+			switch (role) {
+				case 1:
+					// statements_1
+					obj=getFlow();
+					break;
+				case 2:
+					obj=getSign(key)
+					break;
+				case 3:
+					obj=getSign2(key);
+					break;
+				default:
+					// statements_def
+					obj=getFlow();
+					break;
+			};
+			eval("var str='"+JSON.stringify(obj)+"';");
+			return str;
+		}
+		// hqyfbyjnr	HQYFBYJNR	VARCHAR2(150 CHAR)	研发部意见内容
+		//
+		// hqgybyjnr	HQGYBYJNR	VARCHAR2(150 CHAR)	工艺部意见内容
+		// 
+		// hqwkbyjnr	HQWKBYJNR	VARCHAR2(150 CHAR)	物控部意见内容
+		// 
+		// hqpgbyjnr	HQPGBYJNR	VARCHAR2(150 CHAR)	品管部意见内容
+
+		//权限列表
+		var role_arr=[];
+		function setData(data){
+			switch (role) {
+				case 2:
+					setSup(data);
+					break;
+				default:
+					setSup(data);
+					break;
+			}
+		}
+		function setSup(data){
+			$(".tcbm").text(data.tcbm);
+			$(".tcry").text(data.tcry);
+			$(".djbm").text(data.djbm);
+			$(".djry").text(data.djry);
+			//单选框处理--
+			$("input[name='ssqd']").setRadio(data.ssqd);
+			$(".cpxh").text(data.cpxh);
+			// 变更种类
+			$("input[name='bgzl']").setRadio(data.bgzl);
+			$(".tcry").text(data.tcry);
+			$(".tcry").text(data.tcry);
+			$(".tcry").text(data.tcry);
+		}
+		function setRadio(target,value){
+			$("input[name='ssqd']").each(function(){
+				if(this.value=="SEB"){
+					this.checked=true;
+				}
+				this.checked=true;
+			});
+		}
+	});
+</script>
+</html>
