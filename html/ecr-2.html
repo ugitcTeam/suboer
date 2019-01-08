@@ -71,7 +71,7 @@
 						变更描述:
 						<div class="right">
 							<span class="addRowTr p5c">添加</span>
-							<span class="removeRowTr p5c">删除</span>
+							<!-- <span class="removeRowTr p5c">删除</span> -->
 						</div>
 						<div class="table" >
 							<table class="table-sub">
@@ -349,6 +349,7 @@
 <script type="text/javascript">
 	$(function(){
 		var params=app.parseParams(location.search);
+		//获取参数，显示相应模块
 		if(params.types){
 			if(params.types=="1"){
 				$(".types").eq(1).hide();
@@ -385,6 +386,7 @@
 			return obj;
 		}
 		window.getFlow=getFlow;
+		//获取签字
 		function getSign(key){
 			var list={
 				"yf":[
@@ -432,6 +434,7 @@
 			});
 			return obj;
 		}
+		// 获取签字
 		function getSign2(key){
 			var list={
 				"yf":[
@@ -457,7 +460,7 @@
 			return app.getObj(list[key]);
 		}
 
-		// 获取数据
+		// 后台获取数据方法
 		function getData(){
 			var obj=null;
 			switch (role) {
@@ -479,6 +482,7 @@
 			eval("var str='"+JSON.stringify(obj)+"';");
 			return str;
 		}
+		window.getData=getData;
 		// hqyfbyjnr	HQYFBYJNR	VARCHAR2(150 CHAR)	研发部意见内容
 		//
 		// hqgybyjnr	HQGYBYJNR	VARCHAR2(150 CHAR)	工艺部意见内容

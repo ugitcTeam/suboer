@@ -252,7 +252,7 @@ $(function(){
         if(_val.length>len){
             $this.val(_val.substring(0,len));
         }
-        console.log(len-$this.val().length);
+        // console.log(len-$this.val().length);
     });
     $("input[type='text']").on("input propertychange",function(){
         var $this=$(this),

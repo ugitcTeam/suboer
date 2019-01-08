@@ -249,13 +249,13 @@
 			event.data=this.innerText;
 		}
 	});
-	$("input[name='qm']").each(function(){
-		this.value=app.getNowFormatDate();
-	});
+	// $("input[name='qm']").each(function(){
+	// 	this.value=app.getNowFormatDate();
+	// });
 	//获取当前时间 格式YY-MM-DD
-	$(".qm").each(function(){
-		this.textContent=app.getNowFormatDate();
-	});
+	// $(".qm").each(function(){
+	// 	this.textContent=app.getNowFormatDate();
+	// });
 	
 
 	//创建申请单获取参数方法
@@ -297,13 +297,10 @@
 			,{type:"text",name:"cbzx",title:"成本中心"}
 			,{type:"textarea",name:"gmq",title:"改模前描述"}
 			,{type:"textarea",name:"gmh",title:"改模后描述"}
-		]
-		var obj={};
-		$(list).each(function(){
-			obj[this.name]=$().getInputValue(this);
-		});
-		return obj;
+		];
+		return app.getObj(list);
 	}
+	var signArr=['wk','gy','mj','js'];
 	/**
 	 * [getSign description] 根据角色获取意见和签名
 	 * @param  {[type]} key [description] 当前角色标识
@@ -332,16 +329,12 @@
 				,{type:"NowDate",name:"jsbmqmrq",title:"接收部门签名日期"}
 			]
 		};
-		// var obj={};
-		// $(list[key]).each(function(){
-		// 	obj[this.name]=$().getInputValue(this);
-		// })
 		return app.getObj(list[key]);	
 	}
 	function setSign(){
 		
 	}
-	//签字意见方法
+	//签字意见方法 
 	function getQzyj(){
 		var obj={};
 		obj.WKYJ="VARCHAR2(150 CHAR)	物控意见";
@@ -382,7 +375,7 @@
 				obj= getApplyData();
 				break;
 			case 3:
-				obj=getSign("wk");
+				obj=getSign(signArr[0]);
 				break;
 			default:
 				// statements_def
@@ -394,29 +387,6 @@
 		eval("var str='"+JSON.stringify(obj)+"';");
 		return str;
 	}
-	function getIsMo(){
-		var obj={};
-		obj.bm=$("input[name='bm']:checked").val();
-		obj.bmsl=$("input[name='bmsl:checked']").val();
-		obj.gom=$("input[name='gom']").val();
-		obj.gyj=$("input[name='gyj']").val();
-		obj.gyjxh=$("input[name='gyjxh']").val();
-		obj.mjlb=$("input[name='mjlb']").val();
-		obj.ljmc=$("input[name='ljmc']").val();
-		obj.ljth=$("input[name='ljth']").val();
-		obj.mjbh=$("input[name='mjbh']").val();
-		obj.nbddh=$("input[name='nbddh']").val();
-		obj.cbzx=$("input[name='cbzx']").val();
-		//改模前
-		//多行文本
-		// 改模后多行文本可添加图片
-		// 
-		// 物控意见，多行文本
-		obj.wkyj=$("input[name='wkyj']").val();
-		obj.bm=$("input[name='bm']").val();
-		obj.bm=$("input[name='bm']").val();
-
-	}
 	/**
 	 * [getwkqz description] 获取流程审批信息
 	 * @param  {[type]} parent [description]要获取元素的范围
@@ -426,14 +396,6 @@
 		var obj={};
 		obj.wkyj=$("input[name='wkyj']",parent).val();
 		obj.qz=$("input[name='qz']",parent).val();
-		return obj;
-	}
-
-	function getSave(){
-		var obj={
-			a:1,
-			b:2
-		}
 		return obj;
 	}
 
