@@ -18,19 +18,19 @@
 		</div>
 		<div>
 			<table class="rc-table">
-				<tr>
+				<tr class="role1">
 					<td class="attr">提出部门</td>
 					<td class="odd"><span class="tcbm">显示读取文本</span></td>
 					<td class="attr">提出人员</td>
 					<td class="odd"><span class="tcry">显示读取文本</span></td>
 				</tr>
-				<tr>
+				<tr class="role1">
 					<td class="attr">对接部门</td>
 					<td><span class="djbm">显示读取文本</span></td>
 					<td class="attr">对接人员</td>
 					<td><span class="djry">显示读取文本</span></td>
 				</tr>
-				<tr>
+				<tr class="role1">
 					<td class="attr">销售渠道</td>
 					<td>
 						<label><input form="role1" type="radio" name="ssqd" value="SEB" />SEB</label>
@@ -40,7 +40,7 @@
 					<td class="attr">产品型号</td>
 					<td><span class="cpxh">显示读取信息</span></td>
 				</tr>
-				<tr>
+				<tr class="role1">
 					<td class="attr">变更种类</td>
 					<td colspan="3">
 						<div class="types">
@@ -66,7 +66,7 @@
 						</div>
 					</td>
 				</tr>
-				<tr>
+				<tr class="role2 edit">
 					<td colspan="4" style="padding: 0;">
 						变更描述:
 						<div class="right">
@@ -104,7 +104,7 @@
 						</div>
 					</td>
 				</tr>
-				<tr>
+				<tr class="role3">
 					<td colspan="4">
 						<p><span>变更行动计划:</span><span class="ns">质量经理确认</span></p>
 						<div class="">
@@ -188,13 +188,13 @@
 						</div>
 					</td>
 				</tr>
-				<tr>
+				<tr class="role3">
 					<td colspan="4">
 						<p>验证结果（此表单后须随附验证报告）:</p>
 						<div>
-							<label><input type="radio" name="yzjg" value="合格" />合格</label>
-							<label><input type="radio" name="yzjg" value="不合格" />不合格</label>
-							<span>测试报告编码:<input type="text" name="csbgbm" /></span>
+							<label style="margin-left: 50px;"><input type="radio" name="yzjg" value="合格" />合格</label>
+							<label style="margin-left: 50px;"><input type="radio" name="yzjg" value="不合格" />不合格</label>
+							<span style="margin-left: 150px;">测试报告编码:<input type="text" name="csbgbm" /></span>
 						</div>
 					</td>
 				</tr>
@@ -348,6 +348,8 @@
 </body>
 <script type="text/javascript">
 	$(function(){
+		$(".sd-rc").show();
+		var role=1;
 		var params=app.parseParams(location.search);
 		//获取参数，显示相应模块
 		if(params.types){
@@ -357,7 +359,12 @@
 				$(".types").eq(0).hide();
 			}
 		}
-		var role=1;
+		function editRole1(flag){
+			$(".role"+flag).find("input").prop("disabled","");
+			$(".role"+flag).find("select").prop("disabled","");
+			$(".role"+flag).find("textarea").prop("disabled","");
+		}
+
 		// 获取变更行动计划
 		function getFlow(){
 			var list=[
