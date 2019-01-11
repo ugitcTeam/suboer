@@ -22,7 +22,7 @@
             return params;
         },
         // 获取当前时间，格式YYYY-MM-DD
-        getNowFormatDate() {
+        getNowFormatDate:function() {
             var date = new Date();
             var seperator1 = "-";
             var year = date.getFullYear();
@@ -37,7 +37,7 @@
             var currentdate = year + seperator1 + month + seperator1 + strDate;
             return currentdate;
         },
-        getNowDatTime(){
+        getNowDatTime:function(){
             var date=new Date();
             var hours=date.getHours();
             var minutes=date.getMinutes();
@@ -48,16 +48,16 @@
 
         },
         //获取当前星期的周一日期
-        getMonDay(){
+        getMonDay:function(){
             var now=new Date();
             var strDate=now.toLocaleDateString();
             var day=now.getDay() || 7;//获取当前星期X(0-6,0代表星期天,) 
             var date=now.getDate();//获取当前日(1-31)  
             var strArr=strDate.split("/");
             strArr[2]=date-day+1;
-            console.log(strArr.join("/"));
+            return strArr.join("/");
         },
-        getObj(list){
+        getObj:function(list){
             var obj={};
             $(list).each(function(){
                 obj[this.name]=$().getInputValue(this);
@@ -124,9 +124,11 @@ $(function(){
 	});
     // 添加一行
     $(".addRowTr").click(function(){
-        var index = $(this).parent().next().find("tr").length;//序号
-        var tr=createTr(index);
-        $(this).parent().next().children().append(tr);
+        if($(this).closest(".edit").length){
+            var index = $(this).parent().next().find("tr").length;//序号
+            var tr=createTr(index);
+            $(this).parent().next().children().append(tr);
+        }
 
     });
     $(".table-sub").mousedown(function(){
@@ -277,7 +279,24 @@ $(function(){
         }
         // console.log(len-this.innerText.length);
     });
-
+    window.disabled=function(){
+        $("input").prop("disabled","disabled");
+        $("select").prop("disabled","disabled");
+        $("textarea").prop("disabled","disabled");
+        $("input[type='file']").hide();
+    };
+    disabled();
+    $(".upImg").change(function(){
+        if($(this).prev()[0].nodeName=="IMG"&&this.value){
+            if(window.URL){
+                $(this).prev()[0].src=window.URL.createObjectURL(this.files.item(0));
+            }else{
+                $(this).prev()[0].src=this.value;//ie8可以显示图片
+            }
+        }else{
+            $(this).prev()[0].src="";
+        }
+    });
 });
 $(function(){
     $.extend({
@@ -285,6 +304,9 @@ $(function(){
         }
     });
     $.fn.extend({
+        setText:function(name,value){
+            $("input[name='"+name+"']").val(value).prop("checked",true);
+        },
         // 设置单选按钮选中，并且禁用单选框选中
         setRadio:function(name,value){
             var radio=$("input[name='"+name+"']",this.selector);
@@ -338,6 +360,9 @@ $(function(){
         getNowDate:function(){
             return app.getNowFormatDate();
         },
+        getFile:function(name){
+            return $("input[name='"+name+"']").val();
+        },
         getInputValue:function(entity){
             var obj="";
             switch(entity.type){
@@ -352,6 +377,9 @@ $(function(){
                     break;
                 case "checkbox":
                     obj=$().getCheckbox(entity.name);
+                    break;
+                case "file":
+                    obj=$().getFile(entity.name);
                     break;
                 case "select":
                     obj=$().getSelect(entity.name);
