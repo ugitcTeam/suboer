@@ -9,7 +9,6 @@
     <style type="text/css">
 		.sd-rc p{margin: 0px;}
 		.right-block{margin-right: 0px;margin-left: auto; display: inline-block;}
-		textarea{width: 99%;height: 100%; resize: none;box-sizing: border-box;}
 	</style>
 </head>
 <body>
@@ -23,16 +22,16 @@
 		</div>
 		<div>
 			<table class="rc-table">
-				<tr>.
+				<tr class="role1">
 					<td class="attr">提出部门</td>
 					<td class="odd">
 						<select name="tcbm" class="tcbm">
 						</select>
 					</td>
 					<td class="attr">提出人</td>
-					<td></td>
+					<td><span class="tcr"></span></td>
 				</tr>
-				<tr>
+				<tr class="role1">
 					<td class="attr">接收部门</td>
 					<td class="odd">
 						<label>
@@ -48,7 +47,7 @@
 						<input class="jsr" type="text" name="jsr" />
 					</td>
 				</tr>
-				<tr>
+				<tr class="role1">
 					<td class="attr">产品型号</td>
 					<td class="odd"><input class="cpxh" type="text" name="cpxh" /></td>
 					<td class="attr">销售渠道</td>
@@ -58,24 +57,27 @@
 						<label><input type="radio" name="xsqd" value="内销" />内销</label>
 					</td>
 				</tr>
-				<tr>
+				<tr class="role1">
 					<td class="attr">变更申请描述</td>
 					<td colspan="3">
 						<div class="textarea">
-							<textarea name="bgsqms" maxlength="300" len=15></textarea>
-							<!-- <div class="editDiv1" contenteditable="true" style="min-height: 40px; background-color: #ccc;"></div> -->
+							<textarea class="w560" name="bgsqms" maxlength="300" len=15 disabled="disabled"></textarea>
+							<img alt="" style="width: 200px;height: 200px; vertical-align: middle;">
+							<input type="file" name="bgsqmstp" class="upImg">
 						</div>
 					</td>
 				</tr>
-				<tr>
+				<tr class="role1">
 					<td class="attr">变更评估</td>
 					<td colspan="3">
 						<div class="textarea">
-							<textarea name="bgpg" maxlength="20"></textarea>
+							<textarea class="w560" name="bgpg" maxlength="20"></textarea>
+							<img src="" alt="" style="width: 200px;height: 200px; vertical-align: middle;">
+							<input type="file" name="bgpgtp" class="upImg">
 						</div>
 					</td>
 				</tr>
-				<tr>
+				<tr class="role1">
 					<td colspan="4">
 						修改模评估：
 						是否改模
@@ -138,24 +140,25 @@
 				<tr class="isMu">
 					<td class="attr">改模前</td>
 					<td colspan="3">
-						<div contenteditable=true>
-							这里放编辑框，可添加图片
-						</div>
-						<textarea name="gmq"></textarea>
+						<textarea class="w560" name="gmq"></textarea>
+						<img src="" alt="" style="width: 200px;height: 200px; vertical-align: middle;">
+							<input type="file" name="" class="upImg">
 					</td>
 				</tr>
 				<tr class="isMu">
 					<td class="attr">改模后</td>
 					<td colspan="3">
-						<div>
-							这里放编辑框，可添加图片
-						</div>
+						<textarea class="w560" name="gmq"></textarea>
+						<img src="" alt="" style="width: 200px;height: 200px; vertical-align: middle;">
+							<input type="file" name="" class="upImg">
 					</td>
 				</tr>
 				<tr class="isMu">
 					<td class="attr">物控意见</td>
 					<td colspan="2">
-						<div class="textarea"><textarea name="wkyj"></textarea></div>
+						<div class="textarea">
+							<textarea class="h100" name="wkyj"></textarea>
+						</div>
 					</td>
 					<td>
 						签名：<input type="text" name="wkqm" />
@@ -164,7 +167,9 @@
 				<tr class="isMu">
 					<td class="attr">注塑工艺意见</td>
 					<td colspan="2">
-						<div class="textarea"><textarea name=""></textarea></div>
+						<div class="textarea">
+							<textarea class="h100" name="zsgyyj"></textarea>
+						</div>
 					</td>
 					<td>
 						签名：<input type="text" name="GYQM" />
@@ -173,7 +178,9 @@
 				<tr class="isMu">
 					<td class="attr">模具工具意见</td>
 					<td colspan="2">
-						<div class="textarea"><textarea name=""></textarea></div>
+						<div class="textarea">
+							<textarea class="h100" name="mjgyyj"></textarea>
+						</div>
 					</td>
 					<td>
 						签名：<input type="text" name="qm" />
@@ -189,7 +196,7 @@
 							<label><input type="radio" name="sftybgsq" value="否" />否</label>
 							<label><input type="radio" name="sftybgsq" value="是" />是</label>
 						</div>
-							<div contenteditable="true"></div>
+						<div contenteditable="true"></div>
 					</td>
 					<td>签名：<input type="text" name="qm" /><span class="qm"></span></td>
 				</tr>
@@ -199,6 +206,9 @@
 	</div>
 </body>
 <script type="text/javascript">
+	$(function(){
+		$(".sd-rc").show();
+
 	var role=2;
 	var tcbmData=[
 	"电压力锅研发部","电炸锅研发部","SEB料理机研发部","破壁料理机研发部","电磁炉研发部","电水壶研发部","咖啡机多士炉研发部","工艺部","质量部","采购部","制造部"
@@ -224,9 +234,15 @@
 		}
 		// 当前按钮如果是改模，进行特殊处理
 		if(this.name=="sfxgm"){
-			this.value=="否"?$(".isMu").hide():$(".isMu").show();
+			this.value=="否"?$(".isMu").hide():editMu();
 		}
 	});
+	function editMu(){
+		$(".isMu").show()
+		$(".isMu").find("input").prop("disabled","");
+		$(".isMu").find("textarea").prop("disabled","");
+		$(".isMu").find("input[type='file']").show();
+	}
 	// 下拉框是改变时，有特殊处理
 	$("select").change(function(){
 
@@ -249,13 +265,13 @@
 			event.data=this.innerText;
 		}
 	});
-	// $("input[name='qm']").each(function(){
-	// 	this.value=app.getNowFormatDate();
-	// });
-	//获取当前时间 格式YY-MM-DD
-	// $(".qm").each(function(){
-	// 	this.textContent=app.getNowFormatDate();
-	// });
+	function showRole(flat){
+		$(".role"+flat).find("input").prop("disabled","");
+		$(".role"+flat).find("select").prop("disabled","");
+		$(".role"+flat).find("textarea").prop("disabled","");
+		$(".role"+flat).find("input[type='file']").show();
+	}
+	showRole(1);
 	
 
 	//创建申请单获取参数方法
@@ -271,7 +287,9 @@
 			,{type:"text",name:"cpxh",title:"产品型号"}
 			,{type:"radio",name:"xsqd",title:"销售渠道"}
 			,{type:"textarea",name:"bgsqms",title:"变更申请描述"}
+			,{type:"file",name:"bgsqmstp",title:"变更申请描述图片"}
 			,{type:"textarea",name:"bgpg",title:"变更评估"}
+			,{type:"file",name:"bgpgtp",title:"变更评估图片"}
 			,{type:"radio",name:"sfxgm",title:"是否改模"}
 		]
 		var obj=app.getObj(list);
@@ -314,18 +332,18 @@
 				,{type:"NowDate",name:"wkqmrq",title:"物控签名日期"}
 			]
 			,"gy":[
-				{type:"textarea",name:"ZSGYYJ",title:"注塑工艺意见"}
-				,{type:"text",name:"GYQM",title:"工艺签名"}
+				{type:"textarea",name:"zsgyyj",title:"注塑工艺意见"}
+				,{type:"text",name:"gyqm",title:"工艺签名"}
 				,{type:"NowDate",name:"gyqmrq",title:"工艺签名日期"}
 			],
 			"mj":[
-				{type:"textarea",name:"MJGYYJ",title:"模具工艺意见"}
-				,{type:"text",name:"MJQM",title:"模具签名"}
+				{type:"textarea",name:"mjgyyj",title:"模具工艺意见"}
+				,{type:"text",name:"mjqm",title:"模具签名"}
 				,{type:"NowDate",name:"mjqmrq",title:"模具签名日期"}
 			],
 			"js":[
-				{type:"textarea",name:"JSBMYJ",title:"接收部门意见"}
-				,{type:"text",name:"JSBMQM",title:"接收部门签名"}
+				{type:"textarea",name:"jsbmyj",title:"接收部门意见"}
+				,{type:"text",name:"jsbmqm",title:"接收部门签名"}
 				,{type:"NowDate",name:"jsbmqmrq",title:"接收部门签名日期"}
 			]
 		};
@@ -363,15 +381,16 @@
 		}
 		return switchRole(role);
 	}
+	window.getData=getData();
 	function switchRole(role){
 		var obj=null;
 		switch (role) {
 			//创建申请单
 			case 1:
-				obj= getRole1();
+			 	obj= getRole1();
 				break;
 			case 2:
-				//创建
+				//                  
 				obj= getApplyData();
 				break;
 			case 3:
@@ -387,6 +406,34 @@
 		eval("var str='"+JSON.stringify(obj)+"';");
 		return str;
 	}
+	function setData(data){
+		// var role=data.role;
+		var role=2;
+		switch (role){
+			case 1:
+				console.log(1);
+			case 2:
+				console.log(2);
+			case 3:
+				console.log(3);
+			default:
+
+		}
+	}
+	function setRole1(data){
+		// $(".tcbm").val(data.tcbm);
+		// $(".tcr").text(data.tcr);
+		if(0&&data.jsbm=="工艺部"){
+			$().setRadio("jsbm",data.jsbm);
+		}else{
+			// $(".jsbm").val().prev("input").val().prop("checked",true);
+			
+		}
+		$(".jsr").val("接收人");
+		$().setText("jsr","电水壶研发部");
+	}
+	window.setData=setData;
+	window.setRole1=setRole1;
 	/**
 	 * [getwkqz description] 获取流程审批信息
 	 * @param  {[type]} parent [description]要获取元素的范围
@@ -434,5 +481,6 @@
 		        }
 		    }
 		});
+	});
 </script>
 </html>
