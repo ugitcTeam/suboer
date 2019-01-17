@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>技术文件更改通知</title>
+	<link rel="stylesheet" type="text/css" href="../css/style.css" />
+	<script src="../js/jquery.min.js" type="text/javascript" charset="utf-8" ></script>
+	<script type="text/javascript" src="../js/app.js" charset="utf-8"></script>
+</head>
+<body>
+	<div class="sd-rc">
+		<h2 class="title">技术文件更改通知</h2>
+		<div>
+			<table class="tc-table">
+				<tr>
+					<td>ECN号</td>
+					<td></td>
+					<td>产品型号</td>
+					<td> </td>
+					<td>渠道</td>
+					<td><div style="min-width: 50px;"></div></td>
+					<td>变更种类</td>
+					<td><div style="width: 50px;"></div></td>
+					<td colspan="2"></td>
+					<td>表单版本：C</td>
+					<td>编号：SPE R02-014</td>
+				</tr>
+				<tr>
+					<td>序号</td>
+					<td>名称</td>
+					<td>图号</td>
+					<td>SAP编码</td>
+					<td colspan="2">更改前</td>
+					<td colspan="2">更改后</td>
+					<td>更改标记</td>
+					<td>更改处数</td>
+					<td colspan="2">物控部门意见</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+					<td colspan="2">1</td>
+					<td colspan="2">1</td>
+					<td>创建者编写</td>
+					<td>创建者编写</td>
+					<td colspan="2">
+						<div>
+							<div>制品处理意见</div>
+							<div>
+								<label><input type="radio" name="zpclyj" value="自然消耗" />自然消耗</label>
+								<label><input type="radio" name="zpclyj" value="立即切换" />立即切换</label>
+								<label><input type="radio" name="zpclyj" value="按单消耗" />按单消耗</label>
+							</div>
+							<div>订单号：</div>
+							<div>
+								<span>其他：</span>
+							</div>
+							<div>库存数量：<input type="number" name="" /></div>
+							<div>公司库存数量：<input type="number" name="" /></div>
+							<div>供应商库存数量：<input type="number" name="" /></div>
+						</div>
+					</td>
+				</tr>
+				<tr class="lastRow">
+					<td>编制</td>
+					<td>1</td>
+					<td>1</td>
+					<td>SAP审核</td>
+					<td colspan="2">1</td>
+					<td colspan="2">批准</td>
+					<td>1</td>
+					<td>1</td>
+					<td colspan="2">物控</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+</body>
+<script type="text/javascript">
+	$(function(){
+		$(".sd-rc").show();
+		var data=['1',2,3,4,5,6,7,8,9];
+		function setData(data){
+			$(data).each(function(index,value){
+				addTr(this,index);
+			});
+		}
+		function addTr(data,index){
+			var $tr=$("<tr>");
+			var _index=index;
+			$(data).each(function(index,value){
+				var $td=$("<td></td>");
+				var $div=$("<div></div>");
+				var arr=[4,5,8]
+				if(arr.indexOf(index)>=0){
+					$td.attr("colspan",2);
+				}
+				$div.text(value);
+				if(index==$(data).length-1){
+					$div.html(bmyj(_index))
+				}
+				$td.append($div);
+				$tr.append($td);
+			});
+			$(".lastRow").before($tr);
+		}
+		function bmyj(linenum){
+			var div="<div>制品处理意见</div>";
+			var $div=$("<div></div>");
+			var label=addLabel("立即切换",linenum);
+			var div2="<div>订单号：</div>";
+			var div3="<div><span>其他：</span></div>";
+			div3+='<div>库存数量：<input type="number" name="" /></div>';
+			div3+='<div>公司库存数量：<input type="number" name="" /></div>';
+			div3+='<div>供应商库存数量：<input type="number" name="" /></div>';
+			return div+label+div2+div3;
+		}
+		function addLabel(flag,linenum){
+			var $label="";
+			var list=["自然消耗","立即切换","按单消耗"];
+			$(list).each(function(index,value){
+				$label+="<label><input type='radio'";
+				$label+=flag==value?"checked":"";
+				$label+=" name='zpclyj"+linenum+"' value='"+value+"'>"+value+"</label>";
+			});
+			return $label;
+		}
+		window.addTr=addTr;
+	});
+</script>
+</html>
