@@ -186,7 +186,7 @@
 						签名：<input type="text" name="qm" />
 					</td>
 				</tr>
-				<tr>
+				<tr class="role2">
 					<td class="attr">
 						接收部门意见
 					</td>
@@ -196,7 +196,8 @@
 							<label><input type="radio" name="sftybgsq" value="否" />否</label>
 							<label><input type="radio" name="sftybgsq" value="是" />是</label>
 						</div>
-						<div contenteditable="true"></div>
+						<!-- <div contenteditable="true"></div> -->
+						<textarea name="jsbmyj" style="height: 30px;"></textarea>
 					</td>
 					<td>签名：<input type="text" name="qm" /><span class="qm"></span></td>
 				</tr>
@@ -291,7 +292,7 @@
 			,{type:"textarea",name:"bgpg",title:"变更评估"}
 			,{type:"file",name:"bgpgtp",title:"变更评估图片"}
 			,{type:"radio",name:"sfxgm",title:"是否改模"}
-		]
+		];
 		var obj=app.getObj(list);
 		obj.ID=1;
 		obj.SE_NO="SPE R02-047";

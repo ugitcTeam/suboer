@@ -66,12 +66,12 @@
 						</div>
 					</td>
 				</tr>
-				<tr class="role2 edit">
+				<tr class="role2">
 					<td colspan="4" style="padding: 0;">
 						变更描述:
 						<div class="right">
 							<span class="addRowTr p5c">添加</span>
-							<!-- <span class="removeRowTr p5c">删除</span> -->
+							<span class="removeRowTr p5c">删除</span>
 						</div>
 						<div class="table" >
 							<table class="table-sub">
@@ -94,10 +94,10 @@
 										<input class="w60" type="text" name="PHO_NO" />
 									</td>
 									<td>
-										<textarea class="editDiv" autoHeight="true" name="PRE_CHAG" style="overflow:hidden;"></textarea>
+										<textarea class="mText" name="PRE_CHAG" style="overflow:hidden;"></textarea>
 									</td>
 									<td>
-										<textarea autoHeight="true" name="POST_CHAG" style="overflow:hidden;"></textarea>
+										<textarea class="mText" name="POST_CHAG" style="overflow:hidden;"></textarea>
 									</td>
 								</tr>
 							</table>
@@ -203,7 +203,7 @@
 						<div class="clear">
 							<div class="attr left" style="width: 200px;">会签意见</div>
 							<div class="right-content" style="margin-left: 200px;">
-								<div class="item">
+								<div class="item role4">
 									<div class="title">研发部</div>
 									<div class="box">
 										<div class="mr-10">
@@ -225,7 +225,7 @@
 										<div class="w200 right"><span class="w200 right">签字:</span></div>
 									</div>
 								</div>
-								<div class="item">
+								<div class="item role5">
 									<div class="title">工艺部</div>
 									<div class="box">
 										<div class="mr-10">
@@ -247,7 +247,7 @@
 										<div><span class="w200 right">签字:</span></div>
 									</div>
 								</div>
-								<div class="item">
+								<div class="item role6">
 									<div class="title">物控部</div>
 									<div class="box">
 										<div class="mr-10 cell">
@@ -275,7 +275,7 @@
 										<div><span class="w200 right">签字:</span></div>
 									</div>
 								</div>
-								<div class="item">
+								<div class="item role7">
 									<div class="title">品管部</div>
 									<div class="box">
 										<div class="mr-10">
@@ -292,7 +292,7 @@
 										<div><span class="w200 right">签字:</span></div>
 									</div>
 								</div>
-								<div class="item">
+								<div class="item role8">
 									<div class="title">采购部</div>
 									<div class="">
 										<div class="textarea"><textarea name="">多行文本框</textarea></div>
@@ -301,7 +301,7 @@
 										<div><span class="w200 right">签字:</span></div>
 									</div>
 								</div>
-								<div class="item acc-dep">
+								<div class="item acc-dep role9">
 									<div class="title">财务部</div>
 									<div class="">
 										<div class="textarea"><textarea name="">多行文本框</textarea></div>
@@ -363,8 +363,9 @@
 			$(".role"+flag).find("input").prop("disabled","");
 			$(".role"+flag).find("select").prop("disabled","");
 			$(".role"+flag).find("textarea").prop("disabled","");
+			$(".role"+flag).addClass("edit").find(".p5c").show();
 		}
-
+		window.editRole1=editRole1;
 		// 获取变更行动计划
 		function getFlow(){
 			var list=[
@@ -476,7 +477,7 @@
 					obj=getFlow();
 					break;
 				case 2:
-					obj=getSign(key)
+					obj=getSign(key);
 					break;
 				case 3:
 					obj=getSign2(key);
@@ -510,6 +511,7 @@
 					break;
 			}
 		}
+		// 设置申请单的值
 		function setSup(data){
 			$(".tcbm").text(data.tcbm);
 			$(".tcry").text(data.tcry);
@@ -520,9 +522,9 @@
 			$(".cpxh").text(data.cpxh);
 			// 变更种类
 			$("input[name='bgzl']").setRadio(data.bgzl);
-			$(".tcry").text(data.tcry);
-			$(".tcry").text(data.tcry);
-			$(".tcry").text(data.tcry);
+			// $(".tcry").text(data.tcry);
+			// $(".tcry").text(data.tcry);
+			// $(".tcry").text(data.tcry);
 		}
 		function setRadio(target,value){
 			$("input[name='ssqd']").each(function(){

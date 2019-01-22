@@ -14,13 +14,13 @@
 			<table class="tc-table">
 				<tr>
 					<td>ECN号</td>
-					<td></td>
+					<td><div class="ecn"></div></td>
 					<td>产品型号</td>
-					<td> </td>
+					<td><div class="cpxh"></div></td>
 					<td>渠道</td>
-					<td><div style="min-width: 50px;"></div></td>
+					<td><div class="qd" style="min-width: 50px;"></div></td>
 					<td>变更种类</td>
-					<td><div style="width: 50px;"></div></td>
+					<td><div class="bgzl" style="width: 50px;"></div></td>
 					<td colspan="2"></td>
 					<td>表单版本：C</td>
 					<td>编号：SPE R02-014</td>
@@ -82,7 +82,7 @@
 <script type="text/javascript">
 	$(function(){
 		$(".sd-rc").show();
-		var data=['1',2,3,4,5,6,7,8,9];
+		var data=[1,2,3,4,5,6,7,8,9];
 		function setData(data){
 			$(data).each(function(index,value){
 				addTr(this,index);
@@ -91,23 +91,24 @@
 		function addTr(data,index){
 			var $tr=$("<tr>");
 			var _index=index;
+			var data=data || [1,2,3,4,5,6,7,8,9];
 			$(data).each(function(index,value){
 				var $td=$("<td></td>");
 				var $div=$("<div></div>");
-				var arr=[4,5,8]
+				var arr=[4,5,8];
 				if(arr.indexOf(index)>=0){
 					$td.attr("colspan",2);
 				}
 				$div.text(value);
 				if(index==$(data).length-1){
-					$div.html(bmyj(_index))
+					$div.html(bmyj(_index,this));
 				}
 				$td.append($div);
 				$tr.append($td);
 			});
 			$(".lastRow").before($tr);
 		}
-		function bmyj(linenum){
+		function bmyj(linenum,data){
 			var div="<div>制品处理意见</div>";
 			var $div=$("<div></div>");
 			var label=addLabel("立即切换",linenum);
