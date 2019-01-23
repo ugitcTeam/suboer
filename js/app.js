@@ -99,6 +99,19 @@ $(function(){
             }
         }
     }
+    if(!Array.prototype.indexOf){
+        Array.prototype.indexOf=function(val){
+            var index=-1;
+            var len=this.length;
+            var _than=this;
+            for(var i=0;i<len;i++){
+                if(_than[i]==val){
+                    index=i;
+                }
+            }
+            return index;
+        }
+    }
 	$(".reld input").click(function(){
 		if(this.value=="0"||this.value=="否"){
 			$(this).closest("div").next("div").addClass("isdisabled").find("input").attr("checked",false);
@@ -130,6 +143,13 @@ $(function(){
             $(this).parent().next().children().append(tr);
         }
 
+    });
+    $(".removeRowTr").click(function(){
+        var trs=$(".remove").remove();
+        var tagTr=$(".table-sub").find("tr").not(".header");
+        $(tagTr).each(function(index,node){
+            this.children[0].innerText=index+1;
+        });
     });
     $(".table-sub").mousedown(function(){
         if(event.which==3){
