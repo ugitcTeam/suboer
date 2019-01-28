@@ -360,13 +360,20 @@
 			}
 		}
 		function editRole1(flag){
-			$(".role"+flag).find("input").prop("disabled","");
-			$(".role"+flag).find("select").prop("disabled","");
-			$(".role"+flag).find("textarea").prop("disabled","");
-			$(".role"+flag).addClass("edit").find(".p5c").show();
+			var $role=$(".role"+flag);
+			$role.find("input").prop("disabled","");
+			$role.find("select").prop("disabled","");
+			$role.find("textarea").prop("disabled","");
+			$role.addClass("edit").find(".p5c").show();
 		}
 		window.editRole1=editRole1;
 		// 获取变更行动计划
+		/**
+		 * 获取变更行动计划
+		 * @Author   Jackie
+		 * @DateTime 2019-01-28
+		 * @return   {[type]}   [description]
+		 */
 		function getFlow(){
 			var list=[
 				{type:"radio",name:"lcfl",title:"流程分类"}
@@ -381,20 +388,26 @@
 				,{type:"radio",name:"yzjg",title:"验证结果"}
 				,{type:"radio",name:"csbgbm",title:"测试报告编码"}
 			];
-			var obj={};
-			$(list).each(function(){
-				obj[this.name]=$().getInputValue(this);
-			});
-			if(obj.sfyz=="是"){
-				obj.xyyz=getInputValue({type:"checkbox",name:"xyyz"});
+			var obj=app.getObj(list);
+			if(obj.SFYZ=="是"){
+				obj.XYYZ=getInputValue({type:"checkbox",name:"xyyz"});
 			}
-			if(obj.xykhqr=="是"){
-				obj.xykhqr1=getInputValue({type:"checkbox",name:"xykhqr1"});
+			if(obj.XYKHQR=="是"){
+				obj.XYKHQR1=getInputValue({type:"checkbox",name:"xykhqr1"});
 			}
 			return obj;
 		}
 		window.getFlow=getFlow;
 		//获取签字
+		/**
+		 * @Author    Jackie
+		 * @DateTime  2019-01-28
+		 * @copyright [copyright]
+		 * @license   [license]
+		 * @version   [version]
+		 * @param     {[type]}    key [description]
+		 * @return    {[type]}        [description]
+		 */
 		function getSign(key){
 			var list={
 				"yf":[
@@ -436,11 +449,7 @@
 					,{type:"NowDate",name:"hqcwbqzrq",title:"财务部签字日期"}
 				]
 			};
-			var obj={};
-			$(list[key]).each(function(){
-				obj[this.name]=$().getInputValue(this);
-			});
-			return obj;
+			return app.getObj(list[key]);
 		}
 		// 获取签字
 		function getSign2(key){
@@ -461,10 +470,6 @@
 					,{type:"NowDate",name:"gybqzrq",title:"工艺部签字日期"}
 				]
 			};
-			// var obj={};
-			// $(list[key]).each(function(){
-			// 	obj[this.name]=$().getInputValue(this);
-			// });
 			return app.getObj(list[key]);
 		}
 
@@ -525,14 +530,6 @@
 			// $(".tcry").text(data.tcry);
 			// $(".tcry").text(data.tcry);
 			// $(".tcry").text(data.tcry);
-		}
-		function setRadio(target,value){
-			$("input[name='ssqd']").each(function(){
-				if(this.value=="SEB"){
-					this.checked=true;
-				}
-				this.checked=true;
-			});
 		}
 	});
 </script>
