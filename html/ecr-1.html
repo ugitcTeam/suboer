@@ -285,7 +285,7 @@
 			{type:"select",name:"tcbm",title:"提出部门"}
 			,{type:"radio",name:"jsbm",title:"接收部门"}
 			,{type:"text",name:"jsr",title:"接收人"}
-			,{type:"text",name:"cpxh",title:"产品型号"}
+			,{type:"text",name:"cpxh",title:"产品型号"} 
 			,{type:"radio",name:"xsqd",title:"销售渠道"}
 			,{type:"textarea",name:"bgsqms",title:"变更申请描述"}
 			,{type:"file",name:"bgsqmstp",title:"变更申请描述图片"}
@@ -296,7 +296,7 @@
 		var obj=app.getObj(list);
 		obj.ID=1;
 		obj.SE_NO="SPE R02-047";
-		if(obj.sfxgm=="是"){
+		if(obj.SFXGM=="是"){
 			$.extend(obj,isGm());
 		}		
 		return obj;
