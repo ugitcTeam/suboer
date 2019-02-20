@@ -142,6 +142,19 @@ $(function() {
             }
         }
     });
+    $("input.inputNumber").on('keyup blur change',function(){
+        var _val=this.value.slice(0,8);
+        this.value=_val.replace(/[^\d]/g,'');
+        if(event.keyCode==40&&_val!=0){
+            this.value--;
+        }
+        if(event.keyCode==38){
+            this.value++
+        }
+    }).on('keydown',function(){
+       var pattl=/[0-9]+/;
+        return (event.keyCode==8 || event.key.match(pattl)!=null); 
+    });
     // 添加一行
     $(".addRowTr").click(function() {
         if ($(this).closest(".edit").length) {
@@ -378,6 +391,9 @@ $(function() {
             var span = $("<span class='" + this.class + "'></span>").text(value);
             this.after(span);
             this.remove();
+        },
+        setSpan:function(value){
+            this.text(value);
         },
         // 设置单选按钮选中，并且禁用单选框选中
         setRadio: function(name, value) {
