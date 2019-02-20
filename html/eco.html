@@ -139,11 +139,13 @@
 								<span class="sw150">是否需要组装样机</span>
 								<label><input type="radio" name="sfxyzzyj" value="否" />否</label>
 								<label><input type="radio" name="sfxyzzyj" value="是" />是</label>
+								<span>样机数量：<input class="inputNumber" type="text" name="yjsl" /></span>
 							</p>
 							<p>
 								<span class="sw150">是否需要试产</span>
 								<label><input type="radio" name="sfxysc" value="否" />否</label>
 								<label><input type="radio" name="sfxysc" value="是" />是</label>
+								<span>试产数量：<input class="inputNumber" type="text" name="scsl" /></span>
 							</p>
 							<div class="box">
 								<div class="left">
@@ -315,28 +317,22 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="4">
-						<div class="clear">
-							<div class="w33">
-								<p>研发意见:</p>
-								<label><input type="radio" name="yfyj" value="同意" />同意</label>
-								<label><input type="radio" name="yfyj" value="不同意" />不同意</label>
-								<textarea name="" id="" cols="1" rows="2" style="height: auto;border:none;"></textarea>
-								<p>签字:<input type="text" name="yfqz" /></p>
+					<td colspan="4" class=" v-line">
+						<div class="parent-fix">
+							<div class="divToCell">
+									<p>质量意见:</p>
+									<div class="opinion">
+										<pre>
+										</pre>
+									</div>
+									<p class="pos-last">签字:<input type="text" name="zlyjqz" /></p>
 							</div>
-							<div class="w33 line-left">
-								<p>质量意见:</p>
-								<label><input type="radio" name="zlyj" value="同意" />同意</label>
-								<label><input type="radio" name="zlyj" value="不同意" />不同意</label>
-								<textarea name="" id="" cols="1" rows="2" style="height: auto;border:none;"></textarea>
-								<p>签字:<input type="text" name="zlyjqz" /></p>
-							</div>
-							<div class="w33 line-left">
-								<p>工艺意见<span class="ns">仅变更工艺</span>:</p>
-								<label><input type="radio" name="jbggy" value="同意" />同意</label>
-								<label><input type="radio" name="jbggy" value="不同意" />不同意</label>
-								<textarea name="" id="" cols="1" rows="2" style="height: auto;border:none;"></textarea>
-								<p>签字:<input type="text" name="jbggyqz" /></p>
+							<div class="divToCell">
+								<p>接收部门意见</p>
+								<div class="opinion">
+									<pre></pre>
+								</div>
+								<p class="pos-last">签字：<input type="text" name="jsbmyjqz" /></p>
 							</div>
 						</div>
 					</td>
@@ -382,7 +378,9 @@
 				,{type:"radio",name:"sfgyj",title:"是否共用件"}
 				,{type:"radio",name:"sfyxsh",title:"是否影响售后BOM"}
 				,{type:"radio",name:"sfxyzzyj",title:"是否需要组装样机"}
+				,{type:"number",name:"yjsl",title:"样机数量"}
 				,{type:"radio",name:"sfxysc",title:"是否需要试产"}
+				,{type:"number",name:"scsl",title:"试产数量"}
 				,{type:"radio",name:"sfyz",title:"是否需要验证"}
 				,{type:"radio",name:"xykhqr",title:"是否需要客户确认"}
 				,{type:"radio",name:"yzjg",title:"验证结果"}
@@ -492,6 +490,7 @@
 					obj=getFlow();
 					break;
 			};
+			$.extend(obj,constant_obj);
 			eval("var str='"+JSON.stringify(obj)+"';");
 			return str;
 		}
@@ -506,7 +505,20 @@
 
 		//权限列表
 		var role_arr=[];
+		var constant_obj={};
+		function setEcr(data){
+			$(".tcbm").setSpan(data.tcbm);
+			$(".tcry").setSpan(data.tcry);
+			$(".djbm").setSpan(data.djbm);
+			$(".djry").setSpan(data.djry);
+			$(".cpxh").setSpan(data.cpxh);
+			$(".ssqd").setRadio(data.ssqd);
+
+		}
 		function setData(data){
+			setEcr(data);//设置ecr申请单值
+			//常量存储，提交数据时用
+			$.extend(constant_obj,{jsbmsftybgsq:data.jsbmsftybgsq,itemId:data.itemId});
 			switch (role) {
 				case 2:
 					setSup(data);
