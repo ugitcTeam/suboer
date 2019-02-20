@@ -60,7 +60,7 @@
         getObj: function(list) {
             var obj = {};
             $(list).each(function() {
-                obj[this.name.toLocaleUpperCase()] = $().getInputValue(this);
+                obj[this.name] = $().getInputValue(this);
             });
             return obj;
         },
