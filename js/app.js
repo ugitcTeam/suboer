@@ -64,9 +64,9 @@
             });
             return obj;
         },
-        getSign：function(key){
-            app.getObj()
-        }
+        getSign: function(list){
+            app.getObj(list)
+        },
         showRole: function(flat) {
             $(".role" + flat).find("input").prop("disabled", "");
             $(".role" + flat).find("select").prop("disabled", "");
@@ -141,8 +141,6 @@ $(function() {
                 $(".acc-dep").parent().removeClass("isFlow")
             }
         }
-
-        // return false;
     });
     // 添加一行
     $(".addRowTr").click(function() {
