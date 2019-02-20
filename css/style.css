@@ -101,3 +101,9 @@ input[type='text']:disabled{border:none;}
 .role2.edit .p5c{display: inline;}
 
 .mText{min-height: 60px; max-height: 120px;}
+
+.parent-fix{display: table;width:100%;table-layout: fixed;}
+.divToCell{display: table-cell; padding-left: 10px; position: relative;}
+.divToCell+.divToCell{border-left: 1px solid green;}
+.opinion pre{white-space: pre-wrap;}
+.pos-last{position: absolute;bottom: 0px;}
