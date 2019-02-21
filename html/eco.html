@@ -94,7 +94,9 @@
 										<input class="w60" type="text" name="PHO_NO" />
 									</td>
 									<td>
-										<textarea class="mText" name="PRE_CHAG" style="overflow:hidden;"></textarea>
+										<div class="textarea">
+											<textarea class="mText" name="PRE_CHAG" style="overflow:hidden;"></textarea>
+										</div>
 									</td>
 									<td>
 										<textarea class="mText" name="POST_CHAG" style="overflow:hidden;"></textarea>
@@ -355,14 +357,6 @@
 				$(".types").eq(0).hide();
 			}
 		}
-		function editRole1(flag){
-			var $role=$(".role"+flag);
-			$role.find("input").prop("disabled","");
-			$role.find("select").prop("disabled","");
-			$role.find("textarea").prop("disabled","");
-			$role.addClass("edit").find(".p5c").show();
-		}
-		window.editRole1=editRole1;
 		// 获取变更行动计划
 		/**
 		 * 获取变更行动计划
@@ -476,7 +470,6 @@
 			var obj=null;
 			switch (role) {
 				case 1:
-					// statements_1
 					obj=getFlow();
 					break;
 				case 2:
@@ -486,7 +479,6 @@
 					obj=getSign2(key);
 					break;
 				default:
-					// statements_def
 					obj=getFlow();
 					break;
 			};
@@ -516,32 +508,16 @@
 
 		}
 		function setData(data){
+			role=data.role;
 			setEcr(data);//设置ecr申请单值
 			//常量存储，提交数据时用
 			$.extend(constant_obj,{jsbmsftybgsq:data.jsbmsftybgsq,itemId:data.itemId});
 			switch (role) {
 				case 2:
-					setSup(data);
 					break;
 				default:
-					setSup(data);
 					break;
 			}
-		}
-		// 设置申请单的值
-		function setSup(data){
-			$(".tcbm").text(data.tcbm);
-			$(".tcry").text(data.tcry);
-			$(".djbm").text(data.djbm);
-			$(".djry").text(data.djry);
-			//单选框处理--
-			$("input[name='ssqd']").setRadio(data.ssqd);
-			$(".cpxh").text(data.cpxh);
-			// 变更种类
-			$("input[name='bgzl']").setRadio(data.bgzl);
-			// $(".tcry").text(data.tcry);
-			// $(".tcry").text(data.tcry);
-			// $(".tcry").text(data.tcry);
 		}
 	});
 </script>
