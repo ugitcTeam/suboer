@@ -68,10 +68,12 @@
             app.getObj(list)
         },
         showRole: function(flat) {
-            $(".role" + flat).find("input").prop("disabled", "");
-            $(".role" + flat).find("select").prop("disabled", "");
-            $(".role" + flat).find("textarea").prop("disabled", "");
-            $(".role" + flat).find("input[type='file']").show();
+            var $role=$(".role" + flat);
+            $role.find("input").prop("disabled", "");
+            $role.find("select").prop("disabled", "");
+            $role.find("textarea").prop("disabled", "");
+            $role.find("input[type='file']").show();
+            $role.addClass("edit").find(".p5c").show();
         }
     }
     window.app = app;
@@ -145,7 +147,7 @@ $(function() {
     $("input.inputNumber").on('keyup blur change',function(){
         var _val=this.value.slice(0,8);
         this.value=_val.replace(/[^\d]/g,'');
-        if(event.keyCode==40&&_val!=0){
+        if(event.keyCode ==40&&_val!=0){
             this.value--;
         }
         if(event.keyCode==38){
@@ -373,6 +375,36 @@ $(function() {
         setTime: function(name, value) {
             $('.' + name).text(value);
         },
+        getInputValue: function(entity) {
+            var obj = "";
+            switch (entity.type) {
+                case "text":
+                    obj = $().getText(entity.name);
+                    break;
+                case "textarea":
+                    obj = $().getTextarea(entity.name);
+                    break;
+                case "radio":
+                    obj = $().getRadio(entity.name);
+                    break;
+                case "checkbox":
+                    obj = $().getCheckbox(entity.name);
+                    break;
+                case "file":
+                    obj = $().getFile(entity.name);
+                    break;
+                case "select":
+                    obj = $().getSelect(entity.name);
+                    break;
+                case "NowDate":
+                    obj = $().getNowDate(entity.name);
+                    break;
+                default:
+                    // alert("不存在的属性："+entity.msg);
+                    break;
+            }
+            return obj;
+        },
         objSetValue: {
             textArea: function(name, value) {
                 $("." + name).setPre(value);
@@ -386,11 +418,23 @@ $(function() {
         }
     });
     $.fn.extend({
+        class:function(){
+            console.log(this.nodeName());
+            return this.attr("class");
+        },
+        nodeName:function(){
+            return this[0].nodeName;
+        },
         setText: function(value) {
             // $("input[name='" + name + "']").val(value).prop("checked", true);
-            var span = $("<span class='" + this.class + "'></span>").text(value);
-            this.after(span);
-            this.remove();
+            if(this.nodeName=="input"){
+                var span = $("<span class='" + this.class() + "'></span>").text(value);
+                this.after(span);
+                this.remove();
+            }else{
+                this.text(value);
+            }
+
         },
         setSpan:function(value){
             this.text(value);
@@ -448,7 +492,6 @@ $(function() {
                 if (this.checked) {
                     _val = this.value;
                 }
-                // this.disabled=true;
             });
             return _val;
         },
