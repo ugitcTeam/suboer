@@ -7,7 +7,6 @@
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/app.js"></script>
     <style type="text/css">
-		.sd-rc p{margin: 0px;}
 		.right-block{margin-right: 0px;margin-left: auto; display: inline-block;}
 	</style>
 </head>
@@ -62,12 +61,12 @@
 					<td colspan="3">
 						<div class="textarea bgsqms">
 							<textarea class="w560" name="bgsqms" maxlength="300" len=15 disabled="disabled"></textarea>
-							<img alt="" style="width: 200px;height: 200px; vertical-align: middle;">
+							<img class="bgsqmstp" alt="" style="width: 200px;height: 200px; vertical-align: middle;">
 							<input type="file" name="bgsqmstp" class="upImg">
 						</div>
 					</td>
 				</tr>
-				<tr class="role1">
+				<tr class="role2">
 					<td class="attr">变更评估</td>
 					<td colspan="3">
 						<div class="textarea bgpg">
@@ -77,7 +76,7 @@
 						</div>
 					</td>
 				</tr>
-				<tr class="role1">
+				<tr class="role2">
 					<td colspan="4">
 						修改模评估：
 						是否改模
@@ -86,7 +85,7 @@
 						<span class="ns">如选择否，以下内容不填写</span>
 					</td>
 				</tr>
-				<tr class="role1 isMu">
+				<tr class="role2 isMu">
 					<td class="subT" colspan="4">
 						<div class="box clear">
 							<div class="w5 left">
@@ -114,7 +113,7 @@
 						
 					</td>
 				</tr>
-				<tr class="role1 isMu">
+				<tr class="role2 isMu">
 					<td class="attr">
 						模具类别
 					</td>
@@ -125,19 +124,19 @@
 					<td class="attr">零件名称</td>
 					<td><input type="text" name="ljmc" /></td>
 				</tr>
-				<tr class="role1 isMu">
+				<tr class="role2 isMu">
 					<td class="attr">零件图号</td>
 					<td><input type="text" name="ljth"/></td>
 					<td class="attr">模具编号</td>
 					<td><input type="text" name="mjbh" /></td>
 				</tr>
-				<tr class="role1 isMu">
+				<tr class="role2 isMu">
 					<td class="attr">内部订单号</td>
 					<td><input type="text" name="nbddh" /></td>
 					<td class="attr">成本中心</td>
 					<td><input type="text" name="cbzx" /></td>
 				</tr>
-				<tr class="role1 isMu">
+				<tr class="role2 isMu">
 					<td class="attr">改模前</td>
 					<td colspan="3">
 						<div class="textarea gmq">
@@ -147,7 +146,7 @@
 						</div>
 					</td>
 				</tr>
-				<tr class="role1 isMu">
+				<tr class="role2 isMu">
 					<td class="attr">改模后</td>
 					<td colspan="3">
 						<div class="textarea qmh">
@@ -157,7 +156,7 @@
 						</div>
 					</td>
 				</tr>
-				<tr class="role2 isMu">
+				<tr class="role3 isMu">
 					<td class="attr">物控意见</td>
 					<td colspan="2">
 						<div class="textarea wkyj">
@@ -170,7 +169,7 @@
 						签名：<input type="text" name="wkqm" /><span class="wkqmrq"></span>
 					</td>
 				</tr>
-				<tr class="role3 isMu">
+				<tr class="role4 isMu">
 					<td class="attr">注塑工艺意见</td>
 					<td colspan="2">
 						<div class="textarea">
@@ -181,7 +180,7 @@
 						签名：<input type="text" name="gyqm" /><span class="gyqmrq"></span>
 					</td>
 				</tr>
-				<tr class="role4 isMu">
+				<tr class="role5 isMu">
 					<td class="attr">模具工具意见</td>
 					<td colspan="2">
 						<div class="textarea">
@@ -194,7 +193,7 @@
 						签名：<input type="text" name="mjqm" /><span class="mjqmrq"></span>
 					</td>
 				</tr>
-				<tr class="role5">
+				<tr class="role6">
 					<td class="attr">
 						接收部门意见
 					</td>
@@ -204,7 +203,6 @@
 							<label><input type="radio" name="sftybgsq" value="否" />否</label>
 							<label><input type="radio" name="sftybgsq" value="是" />是</label>
 						</div>
-						<!-- <div contenteditable="true"></div> -->
 						<textarea name="jsbmyj" style="height: 30px;"></textarea>
 					</td>
 					<td>签名：<input type="text" name="jsbmqm" /><span class="jsbmqmrq"></span></td>
@@ -230,12 +228,13 @@
 				,{type:"radio",name:"xsqd",title:"销售渠道"}
 				,{type:"textarea",name:"bgsqms",title:"变更申请描述"}
 				,{type:"file",name:"bgsqmstp",title:"变更申请描述图片"}
-				,{type:"textarea",name:"bgpg",title:"变更评估"}
-				,{type:"file",name:"bgpgtp",title:"变更评估图片"}
-				,{type:"radio",name:"sfxgm",title:"是否改模"}
+				// ,{type:"textarea",name:"bgpg",title:"变更评估"}
+				// ,{type:"file",name:"bgpgtp",title:"变更评估图片"}
+				// ,{type:"radio",name:"sfxgm",title:"是否改模"}
 			];
 		var $tcbmSelect=$(".tcbm");
 		var $jsbmSelect=$(".jsbm");
+		window.app=window.app;
 		//提出部门下拉框数据填充
 		$(tcbmData).each(function(index,element){
 			$tcbmSelect.append("<option value='"+element+"'>"+element+"</option>");
@@ -282,7 +281,7 @@
 			}
 		});
 		// 显示当前权限编辑区
-		app.showRole(1);
+		
 		//创建申请单获取参数方法
 		/**
 		 * [getRole2 description] 创建变更申请单
@@ -355,7 +354,7 @@
 			var obj=null;
 			switch (role) {
 				//创建申请单
-				case 2:
+				case 1:
 					obj= getApplyData();
 					break;
 				case 3:
@@ -380,39 +379,40 @@
 			return str;
 		}
 		function setData(data){
-			role=data.role;
+			role=data.role || 1;
+			app.showRole(role);
 			switch (role){
-				case 4:
+				case 6:
 					setSign(data,signArr[3],true);
-				case 3:
+				case 5:
 					setSign(data,signArr[2]);
-				case 2:
+				case 4:
 					setSign(data,signArr[1]);
-				case 2:
+				case 3:
 					setSign(data,signArr[0]);
-				case 1:
+				case 2:
 					setRole1(data);
 					break;
 				default:
-					setRole1(data);
+					$(".tcr").setSpan(data.tcr);
+
 			}
 		}
 		// 申请单数据填充
 		function setRole1(data){
-			$(".tcbm").val(data.tcbm||"电炸锅研发部").attr("disabled","disabled");
-			$(".tcr").text(data.tcr||"提出人");
-			$.setRadio("jsbm",data.jsbm||"电炸锅研发部");
-			$(".jsr").val("接收人").disabled();
-			// $.setText("jsr","jsr-电水壶研发部");
-			// $(".jsr").setText("jsr-jsr");
-			$(".cpxh").setText("产品型号");
-			$.setRadio("xsqd","外贸");
-			$(".bgsqms").setPre("value");
-			$(".bgpg").setPre("value");
-			$.setRadio("sfxgm",data.sfxgm||"是");
-			if(data.sfxgm=="是"){
-				setIsmu(data.mu);
-			}
+			$(".tcbm").val(data.tcbm).attr("disabled","disabled");
+			$(".tcr").text(data.tcr);
+			$.setRadio("jsbm",data.jsbm);
+			$(".jsr").val(data.tcr).disabled();
+			$(".cpxh").setText(data.cpxh);
+			$.setRadio("xsqd",data.xsqd);
+			$(".bgsqms").setPre(data.bgsqms);
+			$(".bgsqmstp").setImg(data.bgsqmstp);
+			// $(".bgpg").setPre(data.bgpg);
+			// $.setRadio("sfxgm",data.sfxgm);
+			// if(data.sfxgm=="是"){
+			// 	setIsmu(data.mu);
+			// }
 		}
 		 function setIsmu(data){
 		 	$.setRadio("bm",data.bm);
