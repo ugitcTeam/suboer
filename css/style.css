@@ -107,3 +107,10 @@ input[type='text']:disabled{border:none;}
 .divToCell+.divToCell{border-left: 1px solid green;}
 .opinion pre{white-space: pre-wrap;}
 .pos-last{position: absolute;bottom: 0px;}
+
+.qm{margin-left: 10px;}
+/*弹框样式*/
+.pop{width: 100%;height: 100%;display: none;background:#cccccc; position: absolute; left:0;top:0;}
+.pop.show{display:block;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#19ffffff,endColorstr=#19ffffff);}
+.pop .preview{width: 800px;height: 100%; overflow:hidden;  position: absolute; left: 0;right:0;top:0;bottom: 0;margin: auto; text-align:center}
+.pop .preview img{max-width:800px; width:auto;height:auto; max-height:420px; margin:auto;}
