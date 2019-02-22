@@ -347,7 +347,7 @@ $(function() {
         var $pop=$("#pop");
         if(!$pop.length){
             $pop=$("<div class='pop' id='pop'><div class='preview'><img></div></div>");
-            $(body).append($pop);
+            $("body").append($pop);
         }
         if(imgSrc!=""){
             document.body.parentNode.style.overflow="hidden";
