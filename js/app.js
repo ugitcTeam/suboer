@@ -342,6 +342,23 @@ $(function() {
             $(this).prev()[0].src = "";
         }
     });
+    $(".rc-table").on("click",'img',function(){
+        var imgSrc=this.src;
+        var $pop=$("#pop");
+        if(!$pop.length){
+            $pop=$("<div class='pop' id='pop'><div class='preview'><img></div></div>");
+            $(body).append($pop);
+        }
+        if(imgSrc!=""){
+            document.body.parentNode.style.overflow="hidden";
+            $pop.addClass("show");
+            $(".preview",$pop).find("img").attr("src",imgSrc).click(function(){
+                this.src="";
+                $pop.removeClass("show");
+                document.body.parentNode.style.overflow="auto";
+            });
+        }
+    });
 });
 $(function() {
     $.extend({
@@ -418,8 +435,7 @@ $(function() {
         }
     });
     $.fn.extend({
-        class:function(){
-            console.log(this.nodeName());
+        className:function(){
             return this.attr("class");
         },
         nodeName:function(){
@@ -428,7 +444,7 @@ $(function() {
         setText: function(value) {
             // $("input[name='" + name + "']").val(value).prop("checked", true);
             if(this.nodeName=="input"){
-                var span = $("<span class='" + this.class() + "'></span>").text(value);
+                var span = $("<span class='" + this.className() + "'></span>").text(value);
                 this.after(span);
                 this.remove();
             }else{
