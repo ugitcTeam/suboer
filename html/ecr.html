@@ -11,6 +11,11 @@
 	</style>
 </head>
 <body>
+	<div class="pop" id="pop">
+		<div class="preview">
+			<img src="" alt="" />
+		</div>
+	</div><iframe src=""></iframe>
 	<div class="sd-rc">
 		<h2 class="title">工程变更申请单</h2>
 		<div class="content">
@@ -71,7 +76,7 @@
 					<td colspan="3">
 						<div class="textarea bgpg">
 							<textarea class="w560" name="bgpg" maxlength="20"></textarea>
-							<img src="" alt="" style="width: 200px;height: 200px; vertical-align: middle;">
+							<img class="bgpgtp" src="" alt="" style="width: 200px;height: 200px; vertical-align: middle;">
 							<input type="file" name="bgpgtp" class="upImg">
 						</div>
 					</td>
@@ -160,37 +165,30 @@
 					<td class="attr">物控意见</td>
 					<td colspan="2">
 						<div class="textarea wkyj">
-							<textarea class="h100" name="wkyj"></textarea>
-							<img src="" alt="" style="width: 200px;height: 200px; vertical-align: middle;">
-							<input type="file" name="" class="upImg">
 						</div>
 					</td>
 					<td>
-						签名：<input type="text" name="wkqm" /><span class="wkqmrq"></span>
+						<span class="qm">签名：</span><span class="wkqm"></span><span class="wkqmrq"></span>
 					</td>
 				</tr>
 				<tr class="role4 isMu">
 					<td class="attr">注塑工艺意见</td>
 					<td colspan="2">
-						<div class="textarea">
-							<textarea class="h100" name="zsgyyj"></textarea>
+						<div class="textarea zsgyyj">
 						</div>
 					</td>
 					<td>
-						签名：<input type="text" name="gyqm" /><span class="gyqmrq"></span>
+						<span class="qm">签名：</span><span class="gyqm"></span><span class="gyqmrq"></span>
 					</td>
 				</tr>
 				<tr class="role5 isMu">
-					<td class="attr">模具工具意见</td>
+					<td class="attr">模具工艺意见</td>
 					<td colspan="2">
-						<div class="textarea">
-							<textarea class="h100" name="mjgyyj"></textarea>
-							<img src="" alt="" style="width: 200px;height: 200px; vertical-align: middle;">
-							<input type="file" name="mjgyytp" class="upImg">
+						<div class="textarea mjgyyj">
 						</div>
 					</td>
 					<td>
-						签名：<input type="text" name="mjqm" /><span class="mjqmrq"></span>
+						<span class="qm">签名：</span><span class="mjqm"></span><span class="mjqmrq"></span>
 					</td>
 				</tr>
 				<tr class="role6">
@@ -198,14 +196,11 @@
 						接收部门意见
 					</td>
 					<td colspan="2">
-						<div>是否同意变更申请</div>
-						<div>
-							<label><input type="radio" name="sftybgsq" value="否" />否</label>
-							<label><input type="radio" name="sftybgsq" value="是" />是</label>
-						</div>
-						<textarea name="jsbmyj" style="height: 30px;"></textarea>
+						<div class="jsbmyj"></div>
 					</td>
-					<td>签名：<input type="text" name="jsbmqm" /><span class="jsbmqmrq"></span></td>
+					<td>
+						<span class="qm">签名：</span><span class="jsbmqm"></span><span class="jsbmqmrq"></span>
+					</td>
 				</tr>
 			</table>	
 		</div>
@@ -215,7 +210,8 @@
 <script type="text/javascript">
 	$(function(){
 		$(".sd-rc").show();
-		var role=2;
+		var flows=["新建","变更评估","物控评估","注塑工艺","模具工艺","ECR批准"];
+		var role=0;
 		var tcbmData=[
 		"电压力锅研发部","电炸锅研发部","SEB料理机研发部","破壁料理机研发部","电磁炉研发部","电水壶研发部","咖啡机多士炉研发部","工艺部","质量部","采购部","制造部"
 		];
@@ -232,8 +228,14 @@
 				// ,{type:"file",name:"bgpgtp",title:"变更评估图片"}
 				// ,{type:"radio",name:"sfxgm",title:"是否改模"}
 			];
+		var EceList=[
+			{type:"textarea",name:"bgpg",title:"变更评估"}
+			,{type:"file",name:"bgpgtp",title:"变更评估图片"}
+			,{type:"radio",name:"sfxgm",title:"是否改模"}
+		]
 		var $tcbmSelect=$(".tcbm");
 		var $jsbmSelect=$(".jsbm");
+		var constant_obj={};//常量，接收数据和发送数据
 		window.app=window.app;
 		//提出部门下拉框数据填充
 		$(tcbmData).each(function(index,element){
@@ -289,11 +291,14 @@
 		 */
 		function getApplyData(){
 			var obj=app.getObj(qpplyList);
-			obj.id=1;
-			obj.seNO="SPE R02-047";
-			if(obj.SFXGM=="是"){
+			obj.seNo="SPE R02-047";		
+			return obj;
+		}
+		function getEce(){
+			var obj=app.getObj(EceList);
+			if(obj.sfgm=="是"){
 				$.extend(obj,isGm());
-			}		
+			}
 			return obj;
 		}
 		//如果是改模，调用此方法获取改模数据
@@ -350,13 +355,16 @@
 			return switchRole(role);
 		}
 		window.getData=getData;
+		
 		function switchRole(role){
 			var obj=null;
 			switch (role) {
 				//创建申请单
 				case 1:
-					obj= getApplyData();
+					obj = getApplyData();
 					break;
+				case 2:
+					obj = getEce();
 				case 3:
 					obj=getSign(signArr[0]);
 					break;
@@ -374,13 +382,15 @@
 					obj=getApplyData();
 					break;
 			}
+			$.extend(obj,constant_obj);
 			//解决IE8 内置JSON.stringify,中文变unicode的问题
 			eval("var str='"+JSON.stringify(obj)+"';");
 			return str;
 		}
 		function setData(data){
-			role=data.role || 1;
+			role=flows.indexof(data.flow)+1;
 			app.showRole(role);
+			$.extend(constant_obj,{jsbmsftybgsq:data.jsbmsftybgsq,itemId:data.itemId,id:data.id});
 			switch (role){
 				case 6:
 					setSign(data,signArr[3],true);
@@ -433,7 +443,8 @@
 		 function setSign(data,key,flog){
 		 	if(data.sfxgm=="否" || flog){
 			 	$(signList[key]).each(function(){
-			 		$.objSetValue[this.type](this.name,data[this.name]);
+			 		// $.objSetValue[this.type](this.name,data[this.name]);
+			 		$("."+name).text(data[this.name]);
 			 	});
 		 	}
 		 }
