@@ -13,7 +13,7 @@
 		<div class="content">
 			<div class="header box">
 				<div>ECR:<input type="text" name="ecr"></div>
-				<div class="right-block">编号:SPE R02-037<!-- <input type="text" name="" /> --></div>
+				<div class="right-block">编号:SPE R02-037</div>
 			</div>
 		</div>
 		<div>
@@ -83,25 +83,7 @@
 									<th>变更前描述</th>
 									<th>变更后描述</th>
 								</tr>
-								<tr>
-									<td field="number">1</td>
-									<td field="name">
-										<input class="w60" type="text" name="names" /></td>
-									<td field="SAP_NO">
-										<input class="w60" type="text" name="SAP_NO" />
-									</td>
-									<td field="PHO_NO">
-										<input class="w60" type="text" name="PHO_NO" />
-									</td>
-									<td>
-										<div class="textarea">
-											<textarea class="mText" name="PRE_CHAG" style="overflow:hidden;"></textarea>
-										</div>
-									</td>
-									<td>
-										<textarea class="mText" name="POST_CHAG" style="overflow:hidden;"></textarea>
-									</td>
-								</tr>
+								
 							</table>
 						</div>
 					</td>
@@ -342,7 +324,6 @@
 			</table>
 		</div>
 	</div>
-	<form action="" id="role1"></form>
 </body>
 <script type="text/javascript">
 	$(function(){
@@ -511,7 +492,7 @@
 			role=data.role;
 			setEcr(data);//设置ecr申请单值
 			//常量存储，提交数据时用
-			$.extend(constant_obj,{jsbmsftybgsq:data.jsbmsftybgsq,itemId:data.itemId});
+			$.extend(constant_obj,{ecrId:data.ecrId,itemId:data.itemId});
 			switch (role) {
 				case 2:
 					break;
