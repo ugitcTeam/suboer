@@ -159,11 +159,7 @@ $(function() {
     });
     // 添加一行
     $(".addRowTr").click(function() {
-        if ($(this).closest(".edit").length) {
-            var index = $(this).parent().next().find("tr").length; //序号
-            var tr = createTr(index);
-            $(this).parent().next().children().append(tr);
-        }
+        addTr(this);
 
     });
     $(".removeRowTr").click(function() {
@@ -183,7 +179,6 @@ $(function() {
     });
     // 点击行序号时，选中
     $(".table-sub").on('click', 'tr', function() {
-        console.log("点击了行");
         var _target = $(event.target).closest("td[field='number']")
         var len = _target.length;
         if (len) {
@@ -191,48 +186,80 @@ $(function() {
         }
     });
     var columnsRow = [{ field: "index", name: "序号" }]
-
-    function createTr(index) {
+    var columns=['rowNo','name','sap_no','pho_no','pre_chag','post_chag'];
+    function createTr(index,data) {
         var tr = "<tr>";
-        tr += "<td field='number'>" + index + "</td>";
-        for (var i = 1; i < 6; i++) {
-            tr += addTo(i);
-        }
+         columns.forEach(function(value,i){
+            tr+=createTrObj[value](index,data);
+            console.log(tr);
+         });
         tr += "</tr>";
         return tr;
     }
-
-    function addTo(index) {
-        var str = "";
-        switch (index) {
-            case 1:
-                // statements_1
-                str = "<td field='name'><input class='w60' type='text' name='names'></td>";
-                break;
-            case 2:
-                str = "<td field='SAP_NO'><input class='w60' type='text' name='SAP_NO'></td>";
-                break;
-            case 3:
-                str = "<td field='PHO_NO'><input class='w60' type='text' name='PHO_NO'></td>";
-                break;
-            case 4:
-                str = "<td field='PRE_CHAG'><textarea class='editDiv' type='text' name='PRE_CHAG'></textarea></td>";
-                break;
-            case 5:
-                str = "<td field='POST_CHAG'><textarea class='editDiv' type='text' name='POST_CHAG'></textarea></td>";
-                break;
-            default:
-                // statements_def
-                break;
+    function addTr(_this,data){
+        if ($(_this).closest(".edit").length) {
+            var $table=$(_this).parent().next();
+            var index = $table.find("tr").length; //序号
+            var tr = createTr(index,data);
+            $table.children().append(tr);
+            $(tr).data("opts",data);
         }
-        return str;
+    }
+    function setText(field,data){
+        var nodeStr="<span class='w60>"+data.field+"</span>";
+        return td;
+    }
+    function createInput(field){
+        return "<input class='w60' type='text' name='"+field+"'>";
+    }
+    function addTd1(field,data){
+        var content=data?setText(field,data):createInput(field);
+        return "<td field='"+field+"'>"+content+"</td>"
+    }
+    function setPreAndImg(field,data,img){
+        var content="<div class='textarea'>";
+        content+="<pre>"+data.field+"</pre>";
+        content+="<img src='"+data.img+"'>";
+        content+="</div>";
+        return content;
+    }
+    function createAreaAndImgNode(field,imgName){
+        var nodeStr="<textarea class='mText' name='"+field+"'></textarea>";
+        nodeStr+="<img/>";
+        nodeStr+="<input class='upImg' type='file' name='"+imgName+"'>";
+        return nodeStr;
+    }
+    function addTd2(columns,index,data){
+        var content=data?setPreAndImg(columns.mText,data,columns.upImgName):createAreaAndImgNode(columns.mText,columns.upImgName);
+        return "<td field='"+columns.mText+"'>"+content+"</td>";
+    }
+
+    var createTrObj={
+        rowNo:function(index){
+            return "<td field='rowNo'>"+index+"</td>";
+        },
+        name:function(index,data){
+            return addTd1("name",data);
+        },
+        sap_no:function(index,data){
+            return addTd1("sap_no",data);
+        },
+        pho_no:function(index,data){
+            return addTd1("pho_no",data);
+        },
+        pre_chag:function(index,data){
+            return addTd2({mText:"pre_chag",upImgName:"bgqmsfj"},index,data);
+        },
+        post_chag:function(index,data){
+            return addTd2({mText:"post_chag",upImgName:"bghmsfj"},index,data);
+        }
     }
     //获取表格row数据
     window.getRows = function getRows() {
         var rows = $(".table-sub").find("tr").not(".header");
         var rowData = [];
-        $(rows).each(function() {
-            var obj = {};
+        $(rows).each(function(i,node) {
+            var obj = {rowNo:i+1};
             $(this.children).each(function(index, note) {
                 var $inputs = $(this).find("input");
                 var $textareas = $(this).find("textarea");
@@ -331,16 +358,22 @@ $(function() {
         $("input[type='file']").hide();
     };
     disabled();
-    $(".upImg").change(function() {
-        if ($(this).prev()[0].nodeName == "IMG" && this.value) {
+    $(".table").on('change','.upImg',function(){
+        upImgChange(this);
+    });
+    function upImgChange(than){
+        if ($(than).prev()[0].nodeName == "IMG" && than.value) {
             if (window.URL) {
-                $(this).prev()[0].src = window.URL.createObjectURL(this.files.item(0));
+                $(than).prev()[0].src = window.URL.createObjectURL(than.files.item(0));
             } else {
-                $(this).prev()[0].src = this.value; //ie8可以显示图片
+                $(than).prev()[0].src = than.value; //ie8可以显示图片
             }
         } else {
-            $(this).prev()[0].src = "";
+            $(than).prev()[0].src = "";
         }
+    }
+    $(".upImg").change(function() {
+        upImgChange(this);
     });
     $(".rc-table").on("click",'img',function(){
         var imgSrc=this.src;
