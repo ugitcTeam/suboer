@@ -100,7 +100,8 @@ input[type='text']:disabled{border:none;}
 .role2 .p5c{display: none;}
 .role2.edit .p5c{display: inline;}
 
-.mText{min-height: 60px; max-height: 120px;}
+.mText{min-height: 60px; max-height: 120px; width: 200px;overflow: hidden;}
+.mText+img{width:120px;height:120px;vertical-align: middle;}
 
 .parent-fix{display: table;width:100%;table-layout: fixed;}
 .divToCell{display: table-cell; padding-left: 10px; position: relative;}
