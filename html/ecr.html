@@ -11,11 +11,6 @@
 	</style>
 </head>
 <body>
-	<div class="pop" id="pop">
-		<div class="preview">
-			<img src="" alt="" />
-		</div>
-	</div><iframe src=""></iframe>
 	<div class="sd-rc">
 		<h2 class="title">工程变更申请单</h2>
 		<div class="content">
@@ -444,7 +439,7 @@
 		 	if(data.sfxgm=="否" || flog){
 			 	$(signList[key]).each(function(){
 			 		// $.objSetValue[this.type](this.name,data[this.name]);
-			 		$("."+name).text(data[this.name]);
+			 		$("."+this.name).text(data[this.name]);
 			 	});
 		 	}
 		 }
