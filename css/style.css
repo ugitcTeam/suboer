@@ -106,6 +106,7 @@ input[type='text']:disabled{border:none;}
 .parent-fix{display: table;width:100%;table-layout: fixed;}
 .divToCell{display: table-cell; padding-left: 10px; position: relative;}
 .divToCell+.divToCell{border-left: 1px solid green;}
+.opinion{margin-bottom: 30px;}
 .opinion pre{white-space: pre-wrap;}
 .pos-last{position: absolute;bottom: 0px;}
 
