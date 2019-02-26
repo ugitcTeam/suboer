@@ -160,7 +160,10 @@ $(function() {
     // 添加一行
     $(".addRowTr").click(function() {
         addTr(this);
-
+        var $parent=$(this).closest(".edit");
+        if($parent.length){
+            addTr($parent.find(".table-sub"));
+        }
     });
     $(".removeRowTr").click(function() {
         var trs = $(".remove").remove();
@@ -191,19 +194,15 @@ $(function() {
         var tr = "<tr>";
          columns.forEach(function(value,i){
             tr+=createTrObj[value](index,data);
-            console.log(tr);
          });
         tr += "</tr>";
         return tr;
     }
     function addTr(_this,data){
-        if ($(_this).closest(".edit").length) {
-            var $table=$(_this).parent().next();
-            var index = $table.find("tr").length; //序号
-            var tr = createTr(index,data);
-            $table.children().append(tr);
-            $(tr).data("opts",data);
-        }
+        var index = _this.find("tr").length; //序号
+        var tr = createTr(index,data);
+        _this.append(tr);
+        $(tr).data("opts",data);
     }
     function setText(field,data){
         var nodeStr="<span class='w60>"+data.field+"</span>";
@@ -278,7 +277,9 @@ $(function() {
         });
         return rowData;
     }
-    getRows();
+    window.setRows=function(data){
+        addTr($(".table-sub"),data);
+    }
     /*表格单元格点击事件*/
     $(".table-sub td").click(function() {
         var attr = this.getAttribute("field");
@@ -459,11 +460,17 @@ $(function() {
             textArea: function(name, value) {
                 $("." + name).setPre(value);
             },
-            text: function(name, value) {
-                $.setText(name, value);
+            text: function(name,value) {
+                $("."+name).setText(value);
+            },
+            span: function(name,value){
+                $("."+name).setSpan(value);
             },
             NowDate: function(name, value) {
                 $.setTime(name, value);
+            },
+            radio:function(name,value){
+                $.setRadio(name,value);
             }
         }
     });
@@ -476,7 +483,7 @@ $(function() {
         },
         setText: function(value) {
             // $("input[name='" + name + "']").val(value).prop("checked", true);
-            if(this.nodeName=="input"){
+            if(this.nodeName()=="input"){
                 var span = $("<span class='" + this.className() + "'></span>").text(value);
                 this.after(span);
                 this.remove();
@@ -523,7 +530,11 @@ $(function() {
             });
         },
         setPre: function(value) {
-            var $pre = $("<pre class='w560' style='background:red;display:inline-block;vertical-align:top;'></pre>");
+            if(this.nodeName()=="PRE"){
+                this.html(value);
+                return false;
+            }
+            var $pre = $("<pre class='"+this.className()+"' style='background:red;display:inline-block;vertical-align:top;'></pre>");
             $pre.html(value);
             $(this).find("textarea").after($pre).remove();
             $(this).find(".upImg").remove();
