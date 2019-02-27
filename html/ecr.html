@@ -383,7 +383,7 @@
 			return str;
 		}
 		function setData(data){
-			role=flows.indexof(data.flow)+1;
+			role=flows.indexOf(data.flow)+1;
 			app.showRole(role);
 			$.extend(constant_obj,{jsbmsftybgsq:data.jsbmsftybgsq,itemId:data.itemId,id:data.id});
 			switch (role){
@@ -400,7 +400,6 @@
 					break;
 				default:
 					$(".tcr").setSpan(data.tcr);
-
 			}
 		}
 		// 申请单数据填充
