@@ -6,24 +6,29 @@
 	<link rel="stylesheet" type="text/css" href="../css/style.css" />
 	<script src="../js/jquery.min.js" type="text/javascript" charset="utf-8" ></script>
 	<script type="text/javascript" src="../js/app.js" charset="utf-8"></script>
+	<style type="text/css" media="screen">
+		.inputNumber{width:60px; border:1px;}
+		td{overflow:hidden;}
+		.orderNo{width: 100px;}
+	</style>
 </head>
 <body>
 	<div class="sd-rc">
 		<h2 class="title">技术文件更改通知</h2>
 		<div>
-			<table class="tc-table">
+			<table class="rc-table" style="table-layout: fixed;">
 				<tr>
-					<td>ECN号</td>
-					<td><div class="ecn"></div></td>
-					<td>产品型号</td>
-					<td><div class="cpxh"></div></td>
-					<td>渠道</td>
-					<td><div class="qd" style="min-width: 50px;"></div></td>
-					<td>变更种类</td>
-					<td><div class="bgzl" style="width: 50px;"></div></td>
-					<td colspan="2"></td>
-					<td>表单版本：C</td>
-					<td>编号：SPE R02-014</td>
+					<td style="width:50px;">ECN号</td>
+					<td style="width:50px;"><div class="ecn"></div></td>
+					<td style="width:70px;">产品型号</td>
+					<td style="width:80px;"><div class="prodNo"></div></td>
+					<td style="width:60px;">渠道</td>
+					<td style="width:50px;"><div class="saleChan" style="min-width: 50px;"></div></td>
+					<td style="width:70px;">变更种类</td>
+					<td style="width:50px;"><div class="chgType" style="width: 50px;"></div></td>
+					<td style="width:150px;" colspan="2"></td>
+					<td style="width:120px;">表单版本：<span class="formVer"></span></td>
+					<td style="">编号：SPE R02-014</td>
 				</tr>
 				<tr>
 					<td>序号</td>
@@ -35,33 +40,6 @@
 					<td>更改标记</td>
 					<td>更改处数</td>
 					<td colspan="2">物控部门意见</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>1</td>
-					<td>1</td>
-					<td>1</td>
-					<td colspan="2">1</td>
-					<td colspan="2">1</td>
-					<td>创建者编写</td>
-					<td>创建者编写</td>
-					<td colspan="2">
-						<div>
-							<div>制品处理意见</div>
-							<div>
-								<label><input type="radio" name="zpclyj" value="自然消耗" />自然消耗</label>
-								<label><input type="radio" name="zpclyj" value="立即切换" />立即切换</label>
-								<label><input type="radio" name="zpclyj" value="按单消耗" />按单消耗</label>
-							</div>
-							<div>订单号：</div>
-							<div>
-								<span>其他：</span>
-							</div>
-							<div>库存数量：<input type="number" name="" /></div>
-							<div>公司库存数量：<input type="number" name="" /></div>
-							<div>供应商库存数量：<input type="number" name="" /></div>
-						</div>
-					</td>
 				</tr>
 				<tr class="lastRow">
 					<td>编制</td>
@@ -82,42 +60,165 @@
 <script type="text/javascript">
 	$(function(){
 		$(".sd-rc").show();
-		var data=[1,2,3,4,5,6,7,8,9];
+		var flows=["新建","物控审核"];
+		var constant_obj={seNo:"SPE R02-014"};
+		var role=0;
+		var columns=[
+			{field:"rowNo",name:"序号",col:1,fun:"setText"}
+			,{field:"name",name:"名称",col:1,fun:"setText"}
+			,{field:"no",name:"图号",col:1,fun:"setText"}
+			,{field:"sapId",name:"SAP编码",col:1,fun:"setText"}
+			,{field:"changePre",name:"更改前",col:2,flag:"img",img:"ggq",fun:"preAndImg"}
+			,{field:"chgNext",name:"更改后",col:2,flag:"img",img:"ggh",fun:"preAndImg"}
+			,{field:"chgFlag",name:"更改标记",col:1,fun:"roleText"}
+			,{field:"chgNum",name:"更改处数",col:1,fun:"roleText"}
+			,{field:"dep",name:"物控部门意见",col:2,flag:"html",fun:"bmyj"}
+		];
 		function setData(data){
-			$(data).each(function(index,value){
-				addTr(this,index);
-			});
+			role=flows.indexOf(data.flow);
+			setEco(data);
+			addTr(data)；
 		}
-		function addTr(data,index){
-			var $tr=$("<tr>");
-			var _index=index;
-			var data=data || [1,2,3,4,5,6,7,8,9];
-			$(data).each(function(index,value){
-				var $td=$("<td></td>");
+		function getData(){
+			var obj=[];
+			switch (role) {
+				case 0:
+					obj=getChg();
+					break;
+				case 1:
+					obj=getDep();
+					break;
+				default:
+					break;
+			}
+			eval("var str='"+JSON.stringify(obj)+"';");
+			return str;
+		}
+		//测试数据
+		var dataArr=[
+			{
+				rowNo:"1",
+				name:"名称",
+				no:"图号",
+				sapId:"SAP编码",
+				changePre:"更改前",
+				chgNext:"更改后",
+				ggq:"C:/Users/ren90/Desktop/微信截图_20190221161814.png",
+				ggh:"C:/Users/ren90/Desktop/微信截图_20190221161814.png",
+				supInvAmo:12
+			},
+			{
+				rowNo:"2",
+				name:"名称2",
+				no:"图号2",
+				sapId:"SAP编码2",
+				changePre:"更改前2",
+				chgNext:"更改后2",
+				ggq:"C:/Users/ren90/Desktop/微信截图_20190221161814.png",
+				ggh:"C:/Users/ren90/Desktop/微信截图_20190221161814.png",
+				supInvAmo:13
+			}
+		];
+		function setEco(data){
+			$(".ecnId").text(data.ecoId);
+			$(".prodNo").text(data.prodNo);
+			$(".saleChan").text(data.saleChan);
+			$(".chgType").text(data.chgType);
+			$(".chgType").text(data.chgType);
+			$(".formVer").text(data.formVer);
+		}
+		function setText(data,obj){
+			var span="<span>"+data[obj.field]+"</span>";
+			return span;
+		}
+		function preAndImg(data,obj,_i){
+			var pre="<pre>"+data[obj.field]+"</pre>";
+			pre+="<img style='width:100px;height:100px;' src="+data[obj.img]+">";
+			return pre;
+		}
+		//流程中输入和显示
+		function roleText(data,obj,_i,role){
+			var  value=data[obj.field]||"";
+			var str="<span>"+value+"</span>";
+			if(role==0){
+				str="<input type='text' name='"+obj.field+"-"+_i+"'>";
+			}
+			return str;
+		}
+		var funs={
+			setText:function(data,obj){
+				return setText(data,obj);
+			},
+			preAndImg:function(data,obj,_i){
+				return preAndImg(data,obj,_i);
+			},
+			roleText:function(data,obj,_i){
+				return roleText(data,obj,_i,role);
+			},
+			bmyj:function(data,obj,_i){
+				return bmyj(data,obj,_i);
+			}
+		}
+		//创建时需要存放当前数据id，和后面提交时匹配
+		function setRow(data,_i){
+			var $tr=$("<tr></tr>");
+			$tr.attr("id",data.rowNo);
+			$tr.data("oldData",data);//把数据放到当前行
+			$(columns).each(function(index,value){
+				var colspan=this.col;
+				var $td=$("<td></td>").attr({"colspan":colspan,field:this.field});
 				var $div=$("<div></div>");
-				var arr=[4,5,8];
-				if(arr.indexOf(index)>=0){
-					$td.attr("colspan",2);
-				}
-				$div.text(value);
-				if(index==$(data).length-1){
-					$div.html(bmyj(_index,this));
-				}
+				var subHtml=funs[this.fun](data,this,_i);
+				$div.append(subHtml);
 				$td.append($div);
 				$tr.append($td);
 			});
-			$(".lastRow").before($tr);
+			return $tr;
 		}
-		function bmyj(linenum,data){
+		
+		function addTr(data){
+			var $lastRow=$(".lastRow");
+			$(dataArr).each(function(i){
+				$lastRow.before(setRow(this,i));
+			});
+			if(role!=1){
+				$("input[type='radio']").prop("disabled","disabled");
+			}
+		}
+		var bmyjArr=[
+			{type:"text",name:"orderNo",text:"订单号："}
+			,{type:"text",name:"other",text:"其他："}
+			,{type:"number",name:"invAmo",text:"库存数量："}
+			,{type:"number",name:"compInvAmo",text:"公司库存数量："}
+			,{type:"number",name:"supInvAmo",text:"供应商库存数量："}
+		];
+
+		function createNode(data,flog){
+			var str="";
+			$(bmyjArr).each(function(index,value){
+				var className=this.name;
+				var content=flog?createInput(this):createSpan(this.name,data[this.name]);
+				str+="<div>"+this.text+content+"</div>";
+			});
+			return str;
+		}
+		function createInput(obj){
+			var className=obj.name;
+			if(obj.type=="number"){
+				className+=" inputNumber";
+			}
+			return "<input class='"+className+"' type='"+obj.type+"' name='"+this.name+"'>";
+		}
+		function createSpan(className,text){
+			return "<span class='"+className+"'>"+(text || "")+"</span>"
+		}
+		function bmyj(data,obj,_i){
 			var div="<div>制品处理意见</div>";
 			var $div=$("<div></div>");
-			var label=addLabel("立即切换",linenum);
-			var div2="<div>订单号：</div>";
-			var div3="<div><span>其他：</span></div>";
-			div3+='<div>库存数量：<input type="number" name="" /></div>';
-			div3+='<div>公司库存数量：<input type="number" name="" /></div>';
-			div3+='<div>供应商库存数量：<input type="number" name="" /></div>';
-			return div+label+div2+div3;
+			var label=addLabel("立即切换",_i);
+			var flag = role == 1;
+			var div2=createNode(data,flag);
+			return div+label+div2;
 		}
 		function addLabel(flag,linenum){
 			var $label="";
@@ -125,10 +226,51 @@
 			$(list).each(function(index,value){
 				$label+="<label><input type='radio'";
 				$label+=flag==value?"checked":"";
-				$label+=" name='zpclyj"+linenum+"' value='"+value+"'>"+value+"</label>";
+				$label+=" name='billAdv-"+linenum+"' value='"+value+"'>"+value+"</label>";
 			});
 			return $label;
 		}
+			var clArr=["orderNo",'other','invAmo','compInvAmo','supInvAmo'];	
+		function getDep(){
+			// $("td[field='dep']").siblings();
+			var list=[];
+			var _this=$("td[field='dep']");
+			var $radios=$("td[field='dep']").find("[type='radio']");
+			$(_this).each(function(){
+				list.push(loop(this))
+			});
+			return list;
+		}
+		function loop(than){
+			var $than=$(than);
+			var $tr=$than.closest("tr");
+			var data=$tr.data("oldData");
+			var billAdv=$than.find("[type='radio']").getRadio1();
+			var obj={};
+			$(clArr).each(function(){
+				obj[this]=$than.find("."+this).val()
+			});
+			obj.billAdv=billAdv;
+			obj.id=data.id;
+			return obj;
+		}
+		function getChg(){
+			var list=[];
+			var rows=$("td[field='chgFlag']").closest("tr");
+			rows.each(function(){
+				list.push(loopChg(this));
+			});
+			return list;
+		}
+		function loopChg(trNode){
+			var $than=$(trNode);
+			var data=$than.data("oldData");
+			var chgFlag=$than.find("[name^='chgFlag']").val();
+			var chgNum=$than.find("[name^='chgNum']").val();
+			var obj={chgFlag:chgFlag,chgNum:chgNum,id:data.id};
+			return obj;
+		}
+		window.getDep=getDep;
 		window.addTr=addTr;
 	});
 </script>
