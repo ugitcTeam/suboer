@@ -144,18 +144,20 @@ $(function() {
             }
         }
     });
-    $("input.inputNumber").on('keyup blur change',function(){
+    $(document).on('keyup blur change',"input.inputNumber",function(e){
         var _val=this.value.slice(0,8);
         this.value=_val.replace(/[^\d]/g,'');
+        var event=e||window.event;
         if(event.keyCode ==40&&_val!=0){
             this.value--;
         }
         if(event.keyCode==38){
             this.value++
         }
-    }).on('keydown',function(){
+    }).on('keydown',"input.inputNumber",function(e){
        var pattl=/[0-9]+/;
-        return (event.keyCode==8 || event.key.match(pattl)!=null); 
+       //ie8下无法获取键盘按下的值
+        // return (event.keyCode==8 || event.key.match(pattl)!=null); 
     });
     // 添加一行
     $(".addRowTr").click(function() {
@@ -551,6 +553,15 @@ $(function() {
             $(radio).each(function() {
                 if (this.checked) {
                     _val = this.value;
+                }
+            });
+            return _val;
+        },
+        getRadio1:function(){
+            var _val="";
+            this.each(function(){
+                if(this.checked){
+                    _val=this.value;
                 }
             });
             return _val;
