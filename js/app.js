@@ -189,7 +189,7 @@ $(function() {
         }
     });
     var columnsRow = [{ field: "index", name: "序号" }]
-    var columns=['rowNo','name','sap_no','pho_no','pre_chag','post_chag'];
+    var columns=['rowNo','name','sapNo','phoNo','preChag','postChag'];
     function createTr(index,data) {
         var tr = "<tr>";
          columns.forEach(function(value,i){
@@ -240,17 +240,17 @@ $(function() {
         name:function(index,data){
             return addTd1("name",data);
         },
-        sap_no:function(index,data){
-            return addTd1("sap_no",data);
+        sapNo:function(index,data){
+            return addTd1("sapNo",data);
         },
-        pho_no:function(index,data){
-            return addTd1("pho_no",data);
+        phoNo:function(index,data){
+            return addTd1("phoNo",data);
         },
-        pre_chag:function(index,data){
-            return addTd2({mText:"pre_chag",upImgName:"bgqmsfj"},index,data);
+        preChag:function(index,data){
+            return addTd2({mText:"preChag",upImgName:"bgqmsfj"},index,data);
         },
-        post_chag:function(index,data){
-            return addTd2({mText:"post_chag",upImgName:"bghmsfj"},index,data);
+        postChag:function(index,data){
+            return addTd2({mText:"postChag",upImgName:"bghmsfj"},index,data);
         }
     }
     //获取表格row数据

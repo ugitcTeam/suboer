@@ -33,36 +33,36 @@
 				<tr class="role1">
 					<td class="attr">销售渠道</td>
 					<td>
-						<label><input form="role1" type="radio" name="ssqd" value="SEB" />SEB</label>
-						<label><input form="role1" type="radio" name="ssqd" value="外贸" />外贸</label>
-						<label><input form="role1" type="radio" name="ssqd" value="内销" />内销</label>
+						<label><input form="role1" type="radio" name="saleChan" value="SEB" />SEB</label>
+						<label><input form="role1" type="radio" name="saleChan" value="外贸" />外贸</label>
+						<label><input form="role1" type="radio" name="saleChan" value="内销" />内销</label>
 					</td>
 					<td class="attr">产品型号</td>
-					<td><span class="cpxh">显示读取信息</span></td>
+					<td><span class="prodNo">显示读取信息</span></td>
 				</tr>
 				<tr class="role2">
 					<td class="attr">变更种类</td>
 					<td colspan="3">
 						<div class="types">
 							<div>
-								<label><input type="radio" name="bgzl" value="尺寸规格变更" />尺寸规格变更</label>
-								<label><input type="radio" name="bgzl" value="结构变更" />结构变更</label>
-								<label><input type="radio" name="bgzl" value="材料变更" />材料变更</label>
-								<label><input type="radio" name="bgzl" value="供应商变更" />供应商变更</label>
-								<label><input type="radio" name="bgzl" value="电控变更" />电控变更</label>
+								<label><input type="radio" name="chgType" value="尺寸规格变更" />尺寸规格变更</label>
+								<label><input type="radio" name="chgType" value="结构变更" />结构变更</label>
+								<label><input type="radio" name="chgType" value="材料变更" />材料变更</label>
+								<label><input type="radio" name="chgType" value="供应商变更" />供应商变更</label>
+								<label><input type="radio" name="chgType" value="电控变更" />电控变更</label>
 							</div>
 							<div>
-								<label><input type="radio" name="bgzl" value="业务模式变更" />业务模式变更</label>
-								<label><input type="radio" name="bgzl" value="图物不符" />图物不符</label>
-								<label><input type="radio" name="bgzl" value="BOM变更" />BOM变更</label>
-								<label><input type="radio" name="bgzl" value="TS变更" />TS变更</label>
-								<label><input type="radio" name="bgzl" value="认证标准变更" />认证标准变更</label>
+								<label><input type="radio" name="chgType" value="业务模式变更" />业务模式变更</label>
+								<label><input type="radio" name="chgType" value="图物不符" />图物不符</label>
+								<label><input type="radio" name="chgType" value="BOM变更" />BOM变更</label>
+								<label><input type="radio" name="chgType" value="TS变更" />TS变更</label>
+								<label><input type="radio" name="chgType" value="认证标准变更" />认证标准变更</label>
 							</div>
 						</div>
 						<div class="types line-top">
-							<label><input type="radio" name="bgzl" value="制程工艺" />制程工艺</label>
-							<label><input type="radio" name="bgzl" value="再生材料" />再生材料</label>
-							<label><input type="radio" name="bgzl" value="工装、设备" />工装、设备</label>
+							<label><input type="radio" name="chgType" value="制程工艺" />制程工艺</label>
+							<label><input type="radio" name="chgType" value="再生材料" />再生材料</label>
+							<label><input type="radio" name="chgType" value="工装、设备" />工装、设备</label>
 						</div>
 					</td>
 				</tr>
@@ -467,8 +467,8 @@
 		 */
 		function getChangeDesp(){
 			var rows=getRows();
-			var bgzl=$().getRadio("bgzl");
-			return {chgeDescs:rows,bgzl:bgzl};
+			var chgType=$().getRadio("chgType");
+			return {chgeDescs:rows,chgType:chgType};
 		}
 		var bgyzList=[
 			{type:"radio",name:"yzjg"}
@@ -539,7 +539,7 @@
 			$(".tcry").setSpan(data.tcry);
 			$(".djbm").setSpan(data.djbm);
 			$(".djry").setSpan(data.djry);
-			$(".cpxh").setSpan(data.cpxh);
+			$(".prodNo").setSpan(data.prodNo);
 			$(".ssqd").setRadio(data.ssqd);
 		}
 		/**
@@ -549,7 +549,7 @@
 		 * @param    {[type]}   data [description]
 		 */
 		function setChangeDesp(data){
-			$().setRadio(data.bgzl);
+			$().setRadio(data.chgType);
 			setRows(data.chgeDescs);
 		}
 		// 部门签字对象

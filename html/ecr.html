@@ -48,12 +48,12 @@
 				</tr>
 				<tr class="role1">
 					<td class="attr">产品型号</td>
-					<td class="odd"><input class="cpxh" type="text" name="cpxh" /></td>
+					<td class="odd"><input class="prodNo" type="text" name="prodNo" /></td>
 					<td class="attr">销售渠道</td>
 					<td>
-						<label><input type="radio" name="xsqd" value="SEB" />SEB</label>
-						<label><input type="radio" name="xsqd" value="外贸" />外贸</label>
-						<label><input type="radio" name="xsqd" value="内销" />内销</label>
+						<label><input type="radio" name="saleChan" value="SEB" />SEB</label>
+						<label><input type="radio" name="saleChan" value="外贸" />外贸</label>
+						<label><input type="radio" name="saleChan" value="内销" />内销</label>
 					</td>
 				</tr>
 				<tr class="role1">
@@ -215,8 +215,8 @@
 				{type:"select",name:"tcbm",title:"提出部门"}
 				,{type:"radio",name:"jsbm",title:"接收部门"}
 				,{type:"text",name:"jsr",title:"接收人"}
-				,{type:"text",name:"cpxh",title:"产品型号"} 
-				,{type:"radio",name:"xsqd",title:"销售渠道"}
+				,{type:"text",name:"prodNo",title:"产品型号"} 
+				,{type:"radio",name:"saleChan",title:"销售渠道"}
 				,{type:"textarea",name:"bgsqms",title:"变更申请描述"}
 				,{type:"file",name:"bgsqmstp",title:"变更申请描述图片"}
 				// ,{type:"textarea",name:"bgpg",title:"变更评估"}
@@ -286,6 +286,7 @@
 		 */
 		function getApplyData(){
 			var obj=app.getObj(qpplyList);
+			obj.tcr=$(".tcr").text();
 			obj.seNo="SPE R02-047";		
 			return obj;
 		}
@@ -408,8 +409,8 @@
 			$(".tcr").text(data.tcr);
 			$.setRadio("jsbm",data.jsbm);
 			$(".jsr").val(data.tcr).disabled();
-			$(".cpxh").setText(data.cpxh);
-			$.setRadio("xsqd",data.xsqd);
+			$(".prodNo").setText(data.prodNo);
+			$.setRadio("saleChan",data.saleChan);
 			$(".bgsqms").setPre(data.bgsqms);
 			$(".bgsqmstp").setImg(data.bgsqmstp);
 			// $(".bgpg").setPre(data.bgpg);
