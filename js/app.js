@@ -194,7 +194,7 @@ $(function() {
     var columns=['rowNo','name','sapNo','phoNo','preChag','postChag'];
     function createTr(index,data) {
         var tr = "<tr>";
-         columns.forEach(function(value,i){
+         $(columns).each(function(i,value){
             tr+=createTrObj[value](index,data);
          });
         tr += "</tr>";
