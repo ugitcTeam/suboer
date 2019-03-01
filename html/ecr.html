@@ -34,11 +34,11 @@
 					<td class="attr">接收部门</td>
 					<td class="odd">
 						<label>
-							<input type="radio" name="jsbm" value="" />
-							<select class="jsbm" name="jsbm" id=""></select>
+							<input class="jsbm" type="radio" name="jsbm" value="" data-next='jsbmSelect' />
+							<select name="jsbm" id="jsbmSelect"></select>
 						</label>
 						<label> 
-							<input type="radio" name="jsbm" value="工艺部" />工艺部
+							<input class="jsbm" type="radio" name="jsbm" value="工艺部" />工艺部
 						</label>
 					</td>
 					<td class="attr">接收人</td>
@@ -51,16 +51,16 @@
 					<td class="odd"><input class="prodNo" type="text" name="prodNo" /></td>
 					<td class="attr">销售渠道</td>
 					<td>
-						<label><input type="radio" name="saleChan" value="SEB" />SEB</label>
-						<label><input type="radio" name="saleChan" value="外贸" />外贸</label>
-						<label><input type="radio" name="saleChan" value="内销" />内销</label>
+						<label><input class="saleChan" type="radio" name="saleChan" value="SEB" />SEB</label>
+						<label><input class="saleChan" type="radio" name="saleChan" value="外贸" />外贸</label>
+						<label><input class="saleChan" type="radio" name="saleChan" value="内销" />内销</label>
 					</td>
 				</tr>
 				<tr class="role1">
 					<td class="attr">变更申请描述</td>
 					<td colspan="3">
 						<div class="textarea bgsqms">
-							<textarea class="w560" name="bgsqms" maxlength="300" len=15 disabled="disabled"></textarea>
+							<textarea class="bgsqms" class="w560" name="bgsqms" maxlength="300" len=15 ></textarea>
 							<img class="bgsqmstp" alt="" style="width: 200px;height: 200px; vertical-align: middle;">
 							<input type="file" name="bgsqmstp" class="upImg">
 						</div>
@@ -71,8 +71,8 @@
 					<td colspan="3">
 						<div class="textarea bgpg">
 							<textarea class="w560" name="bgpg" maxlength="20"></textarea>
-							<img class="bgpgtp" src="" alt="" style="width: 200px;height: 200px; vertical-align: middle;">
-							<input type="file" name="bgpgtp" class="upImg">
+							<!-- <img class="bgpgtp" src="" alt="" style="width: 200px;height: 200px; vertical-align: middle;">
+							<input type="file" name="bgpgtp" class="upImg"> -->
 						</div>
 					</td>
 				</tr>
@@ -205,7 +205,7 @@
 <script type="text/javascript">
 	$(function(){
 		$(".sd-rc").show();
-		var flows=["新建","变更评估","物控评估","注塑工艺","模具工艺","ECR批准"];
+		var flows=["编制","变更评估","物控评估","注塑工艺","模具工艺","ECR批准"];
 		var role=0;
 		var tcbmData=[
 		"电压力锅研发部","电炸锅研发部","SEB料理机研发部","破壁料理机研发部","电磁炉研发部","电水壶研发部","咖啡机多士炉研发部","工艺部","质量部","采购部","制造部"
@@ -229,7 +229,7 @@
 			,{type:"radio",name:"sfxgm",title:"是否改模"}
 		]
 		var $tcbmSelect=$(".tcbm");
-		var $jsbmSelect=$(".jsbm");
+		var $jsbmSelect=$("#jsbmSelect");
 		var constant_obj={};//常量，接收数据和发送数据
 		window.app=window.app;
 		//提出部门下拉框数据填充
@@ -397,27 +397,22 @@
 				case 3:
 					setSign(data,signArr[0]);
 				case 2:
-					setRole1(data);
+				case 1:
+					setRole(data);
 					break;
 				default:
 					$(".tcr").setSpan(data.tcr);
 			}
 		}
-		// 申请单数据填充
-		function setRole1(data){
-			$(".tcbm").val(data.tcbm).attr("disabled","disabled");
+		function setRole(data){
+			$(".tcbm").setSelect(data.tcbm);
 			$(".tcr").text(data.tcr);
-			$.setRadio("jsbm",data.jsbm);
-			$(".jsr").val(data.tcr).disabled();
+			$(".jsbm").setRadio(data.jsbm);
+			$(".jsr").setText(data.jcr);
 			$(".prodNo").setText(data.prodNo);
-			$.setRadio("saleChan",data.saleChan);
-			$(".bgsqms").setPre(data.bgsqms);
+			$(".saleChan").setRadio(data.saleChan);
+			$("[name='bgsqms']").text(data.bgsqms);
 			$(".bgsqmstp").setImg(data.bgsqmstp);
-			// $(".bgpg").setPre(data.bgpg);
-			// $.setRadio("sfxgm",data.sfxgm);
-			// if(data.sfxgm=="是"){
-			// 	setIsmu(data.mu);
-			// }
 		}
 		 function setIsmu(data){
 		 	$.setRadio("bm",data.bm);
@@ -438,7 +433,6 @@
 		 function setSign(data,key,flog){
 		 	if(data.sfxgm=="否" || flog){
 			 	$(signList[key]).each(function(){
-			 		// $.objSetValue[this.type](this.name,data[this.name]);
 			 		$("."+this.name).text(data[this.name]);
 			 	});
 		 	}
