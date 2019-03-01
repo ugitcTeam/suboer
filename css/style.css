@@ -48,7 +48,7 @@ table{border-collapse: collapse; margin: auto; width: 100%;}
 .record>p { margin: 0;}
 
 .sd-rc p{margin: 0px;}
-textarea{width: 300px;height: 200px; vertical-align: middle; resize: none;box-sizing: border-box;}
+textarea{width: 300px;height: 200px; vertical-align: middle; resize: none;box-sizing: border-box;overflow:auto;}
 .textarea{ padding: 5px;}
 .w560{width: 560px;}
 .h100{height:100px;}
