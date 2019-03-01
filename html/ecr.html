@@ -3,9 +3,9 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>工程变更申请单</title>
-	<link rel="stylesheet" type="text/css" href="../css/style.css"/>
-    <script type="text/javascript" src="../js/jquery.min.js"></script>
-    <script type="text/javascript" src="../js/app.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
     <style type="text/css">
 		.right-block{margin-right: 0px;margin-left: auto; display: inline-block;}
 	</style>
@@ -60,7 +60,7 @@
 					<td class="attr">变更申请描述</td>
 					<td colspan="3">
 						<div class="textarea bgsqms">
-							<textarea class="bgsqms" class="w560" name="bgsqms" maxlength="300" len=15 ></textarea>
+							<textarea class="bgsqms w560" name="bgsqms" maxlength="300" len=15 ></textarea>
 							<img class="bgsqmstp" alt="" style="width: 200px;height: 200px; vertical-align: middle;">
 							<input type="file" name="bgsqmstp" class="upImg">
 						</div>
@@ -408,7 +408,7 @@
 			$(".tcbm").setSelect(data.tcbm);
 			$(".tcr").text(data.tcr);
 			$(".jsbm").setRadio(data.jsbm);
-			$(".jsr").setText(data.jcr);
+			$(".jsr").setText(data.jsr);
 			$(".prodNo").setText(data.prodNo);
 			$(".saleChan").setRadio(data.saleChan);
 			$("[name='bgsqms']").text(data.bgsqms);
@@ -438,7 +438,6 @@
 		 	}
 		 }
 		window.setData=setData;
-		window.setRole1=setRole1;
 	});
 </script>
 </html>
