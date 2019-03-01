@@ -3,9 +3,9 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>技术文件更改通知</title>
-	<link rel="stylesheet" type="text/css" href="../css/style.css" />
-	<script src="../js/jquery.min.js" type="text/javascript" charset="utf-8" ></script>
-	<script type="text/javascript" src="../js/app.js" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8" ></script>
+	<script type="text/javascript" src="js/app.js" charset="utf-8"></script>
 	<style type="text/css" media="screen">
 		.inputNumber{width:60px; border:1px;}
 		td{overflow:hidden;}
@@ -60,7 +60,7 @@
 <script type="text/javascript">
 	$(function(){
 		$(".sd-rc").show();
-		var flows=["新建","物控审核"];
+		var flows=["编制","物控审核"];
 		var constant_obj={seNo:"SPE R02-014"};
 		var role=0;
 		var columns=[
@@ -77,7 +77,7 @@
 		function setData(data){
 			role=flows.indexOf(data.flow);
 			setEco(data);
-			addTr(data)；
+			addTr(data);
 		}
 		function getData(){
 			var obj=[];
