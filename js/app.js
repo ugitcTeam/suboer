@@ -132,7 +132,7 @@ $(function() {
     });
     $("input").click(function() {
         if ($(this).closest(".isdisabled").length) {
-            console.log("parent isdisabled");
+            // console.log("parent isdisabled");
             return false;
         }
         // 判断是否是变更种类
@@ -161,7 +161,7 @@ $(function() {
     });
     // 添加一行
     $(".addRowTr").click(function() {
-        addTr(this);
+        // addTr(this);
         var $parent=$(this).closest(".edit");
         if($parent.length){
             addTr($parent.find(".table-sub"));
@@ -178,13 +178,13 @@ $(function() {
         if (event.which == 3) {
             // 点击了右键，获取鼠标点击的行
             $(event.target).closest("tr");
-            console.log("event.which" + event.which);
+            // console.log("event.which" + event.which);
             return false;
         }
     });
     // 点击行序号时，选中
     $(".table-sub").on('click', 'tr', function() {
-        var _target = $(event.target).closest("td[field='number']")
+        var _target = $(event.target).closest("td[field='rowNo']")
         var len = _target.length;
         if (len) {
             _target.closest("tr").toggleClass("remove");
@@ -201,37 +201,43 @@ $(function() {
         return tr;
     }
     function addTr(_this,data){
+        
         var index = _this.find("tr").length; //序号
         var tr = createTr(index,data);
         _this.append(tr);
         $(tr).data("opts",data);
     }
     function setText(field,data){
-        var nodeStr="<span class='w60>"+data.field+"</span>";
-        return td;
+        var _val=data[field] || "";
+        var nodeStr="<span class='w60'>"+_val+"</span>";
+        return nodeStr;
     }
-    function createInput(field){
-        return "<input class='w60' type='text' name='"+field+"'>";
+    function createInput(field,value){
+        return "<input class='w60' type='text' name='"+field+"' value='"+(value)+"'>";
     }
     function addTd1(field,data){
-        var content=data?setText(field,data):createInput(field);
+        var _val=data&&data[field]||"";
+        var content=data&&!data.isEdit?setText(field,data):createInput(field,_val);
         return "<td field='"+field+"'>"+content+"</td>"
     }
     function setPreAndImg(field,data,img){
         var content="<div class='textarea'>";
-        content+="<pre>"+data.field+"</pre>";
-        content+="<img src='"+data.img+"'>";
+        content+="<pre>"+(data.field||"")+"</pre>";
+
+        content+="<img src='"+(data.img||"")+"'>";
         content+="</div>";
         return content;
     }
-    function createAreaAndImgNode(field,imgName){
-        var nodeStr="<textarea class='mText' name='"+field+"'></textarea>";
-        nodeStr+="<img/>";
-        nodeStr+="<input class='upImg' type='file' name='"+imgName+"'>";
+    function createAreaAndImgNode(field,imgName,data){
+        var _fieldValue=data&&data[field] || "";
+        var imgSrc=data&&data[imgName] || "";
+        var nodeStr="<textarea class='mText' name='"+field+"'>"+_fieldValue+"</textarea>";
+        nodeStr+="<img src='"+imgSrc+"'/>";
+        nodeStr+="<input class='upImg' type='file' name='"+imgName+"' value='"+imgSrc+"'>";
         return nodeStr;
     }
     function addTd2(columns,index,data){
-        var content=data?setPreAndImg(columns.mText,data,columns.upImgName):createAreaAndImgNode(columns.mText,columns.upImgName);
+        var content=data&&!data.isEdit?setPreAndImg(columns.mText,data,columns.upImgName):createAreaAndImgNode(columns.mText,columns.upImgName,data);
         return "<td field='"+columns.mText+"'>"+content+"</td>";
     }
 
@@ -280,23 +286,11 @@ $(function() {
         return rowData;
     }
     window.setRows=function(data){
-        addTr($(".table-sub"),data);
-    }
-    /*表格单元格点击事件*/
-    $(".table-sub td").click(function() {
-        var attr = this.getAttribute("field");
-        switchField(attr);
-    });
-
-    function switchField(attr) {
-        switch (attr) {
-            case "name":
-                // statements_1
-                break;
-            default:
-                // statements_def
-                break;
-        }
+        var isEdit=$(".table-sub").closest("[class*='role']").hasClass("edit");
+        $(data).each(function(){
+            this.isEdit=isEdit;
+            addTr($(".table-sub"),this);
+        });
     }
 
     // textarea 高度随内容自适应
@@ -379,14 +373,15 @@ $(function() {
         upImgChange(this);
     });
     $(".rc-table").on("click",'img',function(){
-        var imgSrc=this.src;
+        var imgSrc=$(this).attr("src");
         var $pop=$("#pop");
         if(!$pop.length){
             $pop=$("<div class='pop' id='pop'><div class='preview'><img></div></div>");
             $("body").append($pop);
         }
-        if(imgSrc!=""){
+        if(imgSrc&&imgSrc!=""){
             document.body.parentNode.style.overflow="hidden";
+            alert(imgSrc);
             $pop.addClass("show");
             $(".preview",$pop).find("img").attr("src",imgSrc).click(function(){
                 this.src="";
@@ -413,13 +408,22 @@ $(function() {
                 this.disabled = true;
             });
         },
+        setCheckbox: function(name, value) {
+            var radio = $("input[name='" + name + "']", this.selector);
+            var isEdit=this.closest("[class*='role']").hasClass("edit");
+            $(radio).each(function() {
+                if (this.value == value) {
+                    this.checked = true;
+                }
+                this.disabled = !isEdit;
+            });
+        },
         setSelect: function(name, value) {
             var $select = $("." + name);
             var $options = $select.find("option");
             $options.each(function() {
                 if (this.value == value) {
                     this.selected = true;
-                    console.log("-------")
                     $select.change();
                 }
                 this.disabled = true;
@@ -484,11 +488,13 @@ $(function() {
             return this[0].nodeName;
         },
         setText: function(value) {
-            // $("input[name='" + name + "']").val(value).prop("checked", true);
-            if(this.nodeName()=="input"){
-                var span = $("<span class='" + this.className() + "'></span>").text(value);
-                this.after(span);
-                this.remove();
+            var isEdit=this.closest("[class*='role']").hasClass("edit");
+            if(this.nodeName()=="INPUT"){
+                this.val(value);
+                this.prop("disabled",!isEdit);
+                // var span = $("<span class='" + this.className() + "'></span>").text(value);
+                // this.after(span);
+                // this.remove();
             }else{
                 this.text(value);
             }
@@ -498,37 +504,40 @@ $(function() {
             this.text(value);
         },
         // 设置单选按钮选中，并且禁用单选框选中
-        setRadio: function(name, value) {
-            var radio = $("input[name='" + name + "']", this.selector);
-            $(radio).each(function() {
-                if (this.value == "") {
-                    $("." + name).setSelect(name, value);
+        setRadio: function(value) {
+            var isEdit=this.closest("[class*='role']").hasClass("edit");
+            $(this).each(function() {
+                if (this.nextElementSibling&&this.nextElementSibling.nodeName=="SELECT") {
+                    $(this.nextElementSibling).setSelect(value,!isEdit);
                 }
                 if (this.value == value) {
                     this.checked = true;
                 }
-                this.disabled = true;
             });
+            ("是否可编辑："+isEdit);
+            $(this).prop("disabled",!isEdit);
         },
-        setSelect: function(name, value) {
+        setSelect: function(value) {
+            var isEdit=this.closest("[class*='role']").hasClass("edit");
             var $this = $(this);
-            var $options = $(this).find("option");
+            var $options = $this.find("option");
             $options.each(function() {
                 if (this.value == value) {
                     this.selected = true;
                     $this.change();
                 }
-                this.disabled = true;
             });
+            this.prop("disabled",!isEdit);
         },
         //设置复选框选中值，并且禁用
-        setCheckbox: function(name, value) {
-            var radio = $("input[name='" + name + "']", this.selector);
-            $(radio).each(function() {
-                if (this.value == value) {
+        setCheckbox: function(value) {
+            var isEdit=this.closest("[class*='role']").hasClass("edit");
+            var datas=value;
+            $(this.filter("[type='checkbox']")).each(function() {
+                if (value.split(",").indexOf(this.value)>-1) {
                     this.checked = true;
                 }
-                this.disabled = true;
+                this.disabled = !isEdit;
             });
         },
         setPre: function(value) {
@@ -536,10 +545,13 @@ $(function() {
                 this.html(value);
                 return false;
             }
-            var $pre = $("<pre class='"+this.className()+"' style='background:red;display:inline-block;vertical-align:top;'></pre>");
+            var $pre = $("<pre class='"+this.className()+"' style='display:inline-block;vertical-align:top;'></pre>");
             $pre.html(value);
             $(this).find("textarea").after($pre).remove();
             $(this).find(".upImg").remove();
+        },
+        setImg:function(value){
+            this.attr("src",value);
         },
         getText: function(name) {
             return $("input[name='" + name + "']").val();
