@@ -12,61 +12,61 @@
 		<h2 class="title">工程变更确认单</h2>
 		<div class="content">
 			<div class="header box">
-				<div>ECR:<input type="text" name="ecr"></div>
+				<div>ECR:<input class="ecr" type="text" name="ecr"></div>
 				<div class="right-block">编号:SPE R02-037</div>
 			</div>
 		</div>
 		<div>
 			<table class="rc-table">
-				<tr class="role1">
+				<tr class="role0">
 					<td class="attr">提出部门</td>
 					<td class="odd"><span class="tcbm">显示读取文本</span></td>
 					<td class="attr">提出人员</td>
 					<td class="odd"><span class="tcry">显示读取文本</span></td>
 				</tr>
-				<tr class="role1">
+				<tr class="role0">
 					<td class="attr">对接部门</td>
 					<td><span class="djbm">显示读取文本</span></td>
 					<td class="attr">对接人员</td>
 					<td><span class="djry">显示读取文本</span></td>
 				</tr>
-				<tr class="role1">
+				<tr class="role0">
 					<td class="attr">销售渠道</td>
 					<td>
-						<label><input form="role1" type="radio" name="saleChan" value="SEB" />SEB</label>
-						<label><input form="role1" type="radio" name="saleChan" value="外贸" />外贸</label>
-						<label><input form="role1" type="radio" name="saleChan" value="内销" />内销</label>
+						<label><input class="saleChan" type="radio" name="saleChan" value="SEB" />SEB</label>
+						<label><input class="saleChan" type="radio" name="saleChan" value="外贸" />外贸</label>
+						<label><input class="saleChan" type="radio" name="saleChan" value="内销" />内销</label>
 					</td>
 					<td class="attr">产品型号</td>
 					<td><span class="prodNo">显示读取信息</span></td>
 				</tr>
-				<tr class="role2">
+				<tr class="role1">
 					<td class="attr">变更种类</td>
 					<td colspan="3">
 						<div class="types">
 							<div>
-								<label><input type="radio" name="chgType" value="尺寸规格变更" />尺寸规格变更</label>
-								<label><input type="radio" name="chgType" value="结构变更" />结构变更</label>
-								<label><input type="radio" name="chgType" value="材料变更" />材料变更</label>
-								<label><input type="radio" name="chgType" value="供应商变更" />供应商变更</label>
-								<label><input type="radio" name="chgType" value="电控变更" />电控变更</label>
+								<label><input type="radio" class="chgType" name="chgType" value="尺寸规格变更" />尺寸规格变更</label>
+								<label><input type="radio" class="chgType" name="chgType" value="结构变更" />结构变更</label>
+								<label><input type="radio" class="chgType" name="chgType" value="材料变更" />材料变更</label>
+								<label><input type="radio" class="chgType" name="chgType" value="供应商变更" />供应商变更</label>
+								<label><input type="radio" class="chgType" name="chgType" value="电控变更" />电控变更</label>
 							</div>
 							<div>
-								<label><input type="radio" name="chgType" value="业务模式变更" />业务模式变更</label>
-								<label><input type="radio" name="chgType" value="图物不符" />图物不符</label>
-								<label><input type="radio" name="chgType" value="BOM变更" />BOM变更</label>
-								<label><input type="radio" name="chgType" value="TS变更" />TS变更</label>
-								<label><input type="radio" name="chgType" value="认证标准变更" />认证标准变更</label>
+								<label><input type="radio" class="chgType" name="chgType" value="业务模式变更" />业务模式变更</label>
+								<label><input type="radio" class="chgType" name="chgType" value="图物不符" />图物不符</label>
+								<label><input type="radio" class="chgType" name="chgType" value="BOM变更" />BOM变更</label>
+								<label><input type="radio" class="chgType" name="chgType" value="TS变更" />TS变更</label>
+								<label><input type="radio" class="chgType" name="chgType" value="认证标准变更" />认证标准变更</label>
 							</div>
 						</div>
 						<div class="types line-top">
-							<label><input type="radio" name="chgType" value="制程工艺" />制程工艺</label>
-							<label><input type="radio" name="chgType" value="再生材料" />再生材料</label>
-							<label><input type="radio" name="chgType" value="工装、设备" />工装、设备</label>
+							<label><input type="radio" class="chgType" name="chgType" value="制程工艺" />制程工艺</label>
+							<label><input type="radio" class="chgType" name="chgType" value="再生材料" />再生材料</label>
+							<label><input type="radio" class="chgType" name="chgType" value="工装、设备" />工装、设备</label>
 						</div>
 					</td>
 				</tr>
-				<tr class="role2">
+				<tr class="role1">
 					<td colspan="4" style="padding: 0;">
 						变更描述:
 						<div class="right">
@@ -88,7 +88,7 @@
 						</div>
 					</td>
 				</tr>
-				<tr class="role3">
+				<tr class="role2">
 					<td colspan="4">
 						<p><span>变更行动计划:</span><span class="ns">质量经理确认</span></p>
 						<div class="">
@@ -174,7 +174,7 @@
 						</div>
 					</td>
 				</tr>
-				<tr class="role4">
+				<tr class="role3">
 					<td colspan="4">
 						<p>验证结果（此表单后须随附验证报告）:</p>
 						<div>
@@ -189,7 +189,7 @@
 						<div class="clear">
 							<div class="attr left" style="width: 200px;">会签意见</div>
 							<div class="right-content" style="margin-left: 200px;">
-								<div class="item role4">
+								<div class="item role3">
 									<div class="title">研发部</div>
 									<div class="box">
 										<div class="mr-10">
@@ -209,7 +209,7 @@
 											<textarea class="hqyfbqt" name="hqyfbqt"></textarea>
 										</div>
 									</div>
-									<div class="role5">
+									<div class="role4">
 										<div class="w200 right">
 											<span class="w200 right">签字:</span>
 											<span class="hqyfbqz"></span>
@@ -217,7 +217,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="item role6">
+								<div class="item role5">
 									<div class="title">工艺部</div>
 									<div class="box">
 										<div class="mr-10 hqgyb">
@@ -245,7 +245,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="item role7 hqwkb">
+								<div class="item role6 hqwkb">
 									<div class="title">物控部</div>
 									<div class="box">
 										<div class="mr-10 cell">
@@ -277,7 +277,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="item role8 hqpgb">
+								<div class="item role7 hqpgb">
 									<div class="title">品管部</div>
 									<div class="box">
 										<div class="mr-10">
@@ -300,7 +300,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="item role9">
+								<div class="item role8">
 									<div class="title">采购部</div>
 									<div class="">
 										<div class="textarea">
@@ -315,7 +315,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="item acc-dep role10">
+								<div class="item acc-dep role9">
 									<div class="title">财务部</div>
 									<div class="">
 										<div class="textarea">
@@ -369,7 +369,7 @@
 <script type="text/javascript">
 	$(function(){
 		$(".sd-rc").show();
-		var flows=["新建","变更分类","变更验证’","接收部门审核","工艺会签","物控会签","质量确认","采购会签","财务会签","质量批准","接收部门批准"];
+		var flows=["编制","变更分类","变更验证’","接收部门审核","工艺会签","物控会签","质量确认","采购会签","财务会签","质量批准","接收部门批准"];
 		var role=0;
 		var constant_obj={};
 		var flowLlist=[
@@ -535,12 +535,13 @@
 		 * @param    {[type]}   data [description]
 		 */
 		function setEcr(data){
+			$(".ecr").setText(data.ecr);
 			$(".tcbm").setSpan(data.tcbm);
-			$(".tcry").setSpan(data.tcry);
-			$(".djbm").setSpan(data.djbm);
-			$(".djry").setSpan(data.djry);
+			$(".tcry").setSpan(data.tcr);
+			$(".djbm").setSpan(data.jsbm);
+			$(".djry").setSpan(data.jsr);
 			$(".prodNo").setSpan(data.prodNo);
-			$(".ssqd").setRadio(data.ssqd);
+			$(".saleChan").setRadio(data.ssqd);
 		}
 		/**
 		 * 设置变更种类和变更描述的值
@@ -549,7 +550,7 @@
 		 * @param    {[type]}   data [description]
 		 */
 		function setChangeDesp(data){
-			$().setRadio(data.chgType);
+			$(".chgType").setRadio(data.chgType);
 			setRows(data.chgeDescs);
 		}
 		// 部门签字对象
@@ -631,7 +632,7 @@
 		}
 
 		function setData(data){
-			var flow=flows.indexOf(data.role);
+			var flow=flows.indexOf(data.flow);
 			role=flow+1;
 			app.showRole(role);
 			setEcr(data);//设置ecr申请单值
@@ -666,6 +667,7 @@
 					break;
 			}
 		}
+		window.setData=setData;
 	});
 </script>
 </html>
