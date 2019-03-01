@@ -514,7 +514,6 @@ $(function() {
                     this.checked = true;
                 }
             });
-            ("是否可编辑："+isEdit);
             $(this).prop("disabled",!isEdit);
         },
         setSelect: function(value) {
