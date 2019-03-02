@@ -378,7 +378,7 @@
 					obj=getApplyData();
 					break;
 			}
-			obj=$.extend(obj,constant_obj);
+			obj=$.extend(constant_obj,obj);
 			//解决IE8 内置JSON.stringify,中文变unicode的问题
 			eval("var str='"+JSON.stringify(obj)+"';");
 			return str;
