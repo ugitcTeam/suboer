@@ -272,7 +272,7 @@ $(function() {
                 var $textareas = $(this).find("textarea");
                 if ($inputs.length) {
                     $inputs.each(function() {
-                        obj[this.name] = this.value;
+                        obj[this.name] = this.value ||"";
                     });
                 }
                 if ($textareas.length) {
