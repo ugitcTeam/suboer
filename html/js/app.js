@@ -381,7 +381,6 @@ $(function() {
         }
         if(imgSrc&&imgSrc!=""){
             document.body.parentNode.style.overflow="hidden";
-            alert(imgSrc);
             $pop.addClass("show");
             $(".preview",$pop).find("img").attr("src",imgSrc).click(function(){
                 this.src="";
@@ -507,8 +506,8 @@ $(function() {
         setRadio: function(value) {
             var isEdit=this.closest("[class*='role']").hasClass("edit");
             $(this).each(function() {
-                if (this.nextElementSibling&&this.nextElementSibling.nodeName=="SELECT") {
-                    $(this.nextElementSibling).setSelect(value,!isEdit);
+                if($(this).next()[0]&&$(this).next()[0].nodeName=="SELECT"){
+                    $(this).next().setSelect(value);
                 }
                 if (this.value == value) {
                     this.checked = true;
