@@ -523,7 +523,7 @@
 					obj=getChangeDesp();
 					break;
 			};
-			$.extend(obj,constant_obj);
+			obj=$.extend(constant_obj,obj);
 			eval("var str='"+JSON.stringify(obj)+"';");
 			return str;
 		}
@@ -638,7 +638,7 @@
 			app.showRole(role);
 			setEcr(data);//设置ecr申请单值
 			//常量存储，提交数据时用
-			$.extend(constant_obj,{ecrId:data.ecrId,itemId:data.itemId});
+			$.extend(constant_obj,data);
 			switch (role) {
 				case 11:
 					setSign(data,"hqjsb");
