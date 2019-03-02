@@ -378,7 +378,7 @@
 					obj=getApplyData();
 					break;
 			}
-			$.extend(obj,constant_obj);
+			obj=$.extend(obj,constant_obj);
 			//解决IE8 内置JSON.stringify,中文变unicode的问题
 			eval("var str='"+JSON.stringify(obj)+"';");
 			return str;
@@ -386,7 +386,7 @@
 		function setData(data){
 			role=flows.indexOf(data.flow)+1;
 			app.showRole(role);
-			$.extend(constant_obj,{jsbmsftybgsq:data.jsbmsftybgsq,itemId:data.itemId,id:data.id});
+			$.extend(constant_obj,data);
 			switch (role){
 				case 6:
 					setSign(data,signArr[3],true);
