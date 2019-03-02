@@ -536,7 +536,7 @@
 		 * @param    {[type]}   data [description]
 		 */
 		function setEcr(data){
-			$(".ecr").setText(data.ecr);
+			$(".ecr").setText(data.no);
 			$(".tcbm").setSpan(data.tcbm);
 			$(".tcry").setSpan(data.tcr);
 			$(".djbm").setSpan(data.jsbm);
@@ -638,6 +638,7 @@
 			app.showRole(role);
 			setEcr(data);//设置ecr申请单值
 			//常量存储，提交数据时用
+// 			$.extend(constant_obj,{ecrId:data.ecrId,itemId:data.itemId});
 			$.extend(constant_obj,data);
 			switch (role) {
 				case 11:
