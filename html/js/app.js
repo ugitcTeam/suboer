@@ -277,7 +277,7 @@ $(function() {
                 }
                 if ($textareas.length) {
                     $textareas.each(function() {
-                        obj[this.name] = this.value;
+                        obj[this.name] = this.value ||"";
                     });
                 }
             });
