@@ -19,7 +19,7 @@
 			<table class="rc-table" style="table-layout: fixed;">
 				<tr>
 					<td style="width:50px;">ECN号</td>
-					<td style="width:50px;"><div class="ecn"></div></td>
+					<td style="width:50px;"><div class="ecnId"></div></td>
 					<td style="width:70px;">产品型号</td>
 					<td style="width:80px;"><div class="prodNo"></div></td>
 					<td style="width:60px;">渠道</td>
@@ -43,14 +43,14 @@
 				</tr>
 				<tr class="lastRow">
 					<td>编制</td>
-					<td>1</td>
-					<td>1</td>
+					<td colspan="2"><span class="bz"></span></td>
+					<!-- <td></td> -->
 					<td>SAP审核</td>
-					<td colspan="2">1</td>
+					<td colspan="2"><span class="sapsh"></span></td>
 					<td colspan="2">批准</td>
-					<td>1</td>
-					<td>1</td>
-					<td colspan="2">物控</td>
+					<td colspan="2"><span class="pz"></span></td>
+					<!-- <td></td> -->
+					<td colspan="2">物控<span class="wk"></span></td>
 				</tr>
 			</table>
 		</div>
@@ -65,19 +65,28 @@
 		var role=0;
 		var columns=[
 			{field:"rowNo",name:"序号",col:1,fun:"setText"}
-			,{field:"name",name:"名称",col:1,fun:"setText"}
-			,{field:"no",name:"图号",col:1,fun:"setText"}
-			,{field:"sapId",name:"SAP编码",col:1,fun:"setText"}
-			,{field:"changePre",name:"更改前",col:2,flag:"img",img:"ggq",fun:"preAndImg"}
-			,{field:"chgNext",name:"更改后",col:2,flag:"img",img:"ggh",fun:"preAndImg"}
-			,{field:"chgFlag",name:"更改标记",col:1,fun:"roleText"}
-			,{field:"chgNum",name:"更改处数",col:1,fun:"roleText"}
+			,{field:"names",name:"名称",col:1,fun:"setText"}
+			,{field:"phpNo",name:"图号",col:1,fun:"setText"}
+			,{field:"sapNo",name:"SAP编码",col:1,fun:"setText"}
+			,{field:"preChag",name:"更改前",col:2,flag:"img",img:"bgqmsfj",fun:"preAndImg"}
+			,{field:"postChag",name:"更改后",col:2,flag:"img",img:"bghmsfj",fun:"preAndImg"}
+			,{field:"chgTag",name:"更改标记",col:1,fun:"roleText"}
+			,{field:"chgNo",name:"更改处数",col:1,fun:"roleText"}
 			,{field:"dep",name:"物控部门意见",col:2,flag:"html",fun:"bmyj"}
 		];
+
+		function setQz(data){
+			$(".bz").setSpan(data.bz);
+			$(".sapsh").setSpan(data.sapsh);
+			$(".pz").setSpan(data.pz);
+			$(".wk").setSpan(data.wk);
+		}
 		function setData(data){
 			role=flows.indexOf(data.flow);
 			setEco(data);
 			addTr(data);
+			setQz(data);
+			constant_obj=data;
 		}
 		function getData(){
 			var obj=[];
@@ -91,46 +100,48 @@
 				default:
 					break;
 			}
+			obj=$.extend(constant_obj,obj);
 			eval("var str='"+JSON.stringify(obj)+"';");
 			return str;
 		}
 		//测试数据
-		var dataArr=[
+		window.dataArr={chgeDescs:[
 			{
 				rowNo:"1",
-				name:"名称",
-				no:"图号",
-				sapId:"SAP编码",
-				changePre:"更改前",
-				chgNext:"更改后",
+				names:"名称",
+				phpNo:"图号",
+				sapNo:"SAP编码",
+				preChag:"更改前",
+				postChag:"更改后",
 				ggq:"C:/Users/ren90/Desktop/微信截图_20190221161814.png",
 				ggh:"C:/Users/ren90/Desktop/微信截图_20190221161814.png",
 				supInvAmo:12
 			},
 			{
 				rowNo:"2",
-				name:"名称2",
-				no:"图号2",
-				sapId:"SAP编码2",
-				changePre:"更改前2",
-				chgNext:"更改后2",
+				names:"名称2",
+				phpNo:"图号2",
+				sapNo:"SAP编码2",
+				preChag:"更改前2",
+				postChag:"更改后2",
 				ggq:"C:/Users/ren90/Desktop/微信截图_20190221161814.png",
 				ggh:"C:/Users/ren90/Desktop/微信截图_20190221161814.png",
 				supInvAmo:13
 			}
-		];
+		]};
 		function setEco(data){
-			$(".ecnId").text(data.ecoId);
+			$(".ecnId").text(data.ecoNo);
 			$(".prodNo").text(data.prodNo);
 			$(".saleChan").text(data.saleChan);
 			$(".chgType").text(data.chgType);
-			$(".chgType").text(data.chgType);
+			// $(".chgType").text(data.chgType);
 			$(".formVer").text(data.formVer);
 		}
 		function setText(data,obj){
 			var span="<span>"+data[obj.field]+"</span>";
 			return span;
 		}
+		// 变更前描述和变更后描述赋值
 		function preAndImg(data,obj,_i){
 			var pre="<pre>"+data[obj.field]+"</pre>";
 			pre+="<img style='width:100px;height:100px;' src="+data[obj.img]+">";
@@ -178,7 +189,7 @@
 		
 		function addTr(data){
 			var $lastRow=$(".lastRow");
-			$(dataArr).each(function(i){
+			$(data.chgeDescs).each(function(i){
 				$lastRow.before(setRow(this,i));
 			});
 			if(role!=1){
@@ -220,6 +231,13 @@
 			var div2=createNode(data,flag);
 			return div+label+div2;
 		}
+		/**
+		 * 制品处理意见
+		 * @Author   Jackie
+		 * @DateTime 2019-03-07
+		 * @param    {[type]}   flag    [description]
+		 * @param    {[type]}   linenum [description]
+		 */
 		function addLabel(flag,linenum){
 			var $label="";
 			var list=["自然消耗","立即切换","按单消耗"];
@@ -230,7 +248,7 @@
 			});
 			return $label;
 		}
-			var clArr=["orderNo",'other','invAmo','compInvAmo','supInvAmo'];	
+		var clArr=["orderNo",'other','invAmo','compInvAmo','supInvAmo'];	
 		function getDep(){
 			// $("td[field='dep']").siblings();
 			var list=[];
@@ -248,15 +266,14 @@
 			var billAdv=$than.find("[type='radio']").getRadio1();
 			var obj={};
 			$(clArr).each(function(){
-				obj[this]=$than.find("."+this).val()
+				obj[this]=$than.find("."+this).val();
 			});
 			obj.billAdv=billAdv;
-			obj.id=data.id;
-			return obj;
+			return $.extend(data,obj);
 		}
 		function getChg(){
 			var list=[];
-			var rows=$("td[field='chgFlag']").closest("tr");
+			var rows=$("td[field='chgTag']").closest("tr");
 			rows.each(function(){
 				list.push(loopChg(this));
 			});
@@ -265,13 +282,15 @@
 		function loopChg(trNode){
 			var $than=$(trNode);
 			var data=$than.data("oldData");
-			var chgFlag=$than.find("[name^='chgFlag']").val();
-			var chgNum=$than.find("[name^='chgNum']").val();
-			var obj={chgFlag:chgFlag,chgNum:chgNum,id:data.id};
-			return obj;
+			var chgTag=$than.find("[name^='chgTag']").val();
+			var chgNo=$than.find("[name^='chgNo']").val();
+			var obj={chgTag:chgTag,chgNo:chgNo};
+			return $.extend(data,obj);
 		}
 		window.getDep=getDep;
 		window.addTr=addTr;
+		window.setData=setData;
+		window.getData=getData;
 	});
 </script>
 </html>
