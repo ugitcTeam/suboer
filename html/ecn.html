@@ -18,7 +18,8 @@
 		<div>
 			<table class="rc-table" style="table-layout: fixed;">
 				<tr>
-					<td style="width:50px;">ECN号</td>
+					<td style="width:50px;">EC
+					N号</td>
 					<td style="width:50px;"><div class="ecnId"></div></td>
 					<td style="width:70px;">产品型号</td>
 					<td style="width:80px;"><div class="prodNo"></div></td>
@@ -291,6 +292,14 @@
 		window.addTr=addTr;
 		window.setData=setData;
 		window.getData=getData;
+
+		window.getDomStr=function () {  
+		     var tmpNode = document.createElement('div')
+		     tmpNode.appendChild(document.documentElement) 
+		     var str = tmpNode.innerHTML
+		     tmpNode = null; // 解除引用，以便于垃圾回收  
+		     return str;  
+		} 
 	});
 </script>
 </html>
