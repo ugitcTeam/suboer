@@ -190,8 +190,7 @@ $(function() {
             _target.closest("tr").toggleClass("remove");
         }
     });
-    var columnsRow = [{ field: "index", name: "序号" }]
-    var columns=['rowNo','name','sapNo','phoNo','preChag','postChag'];
+    var columns=['rowNo','names','sapNo','phoNo','preChag','postChag'];
     function createTr(index,data) {
         var tr = "<tr>";
          $(columns).each(function(i,value){
@@ -245,8 +244,8 @@ $(function() {
         rowNo:function(index){
             return "<td field='rowNo'>"+index+"</td>";
         },
-        name:function(index,data){
-            return addTd1("name",data);
+        names:function(index,data){
+            return addTd1("names",data);
         },
         sapNo:function(index,data){
             return addTd1("sapNo",data);
