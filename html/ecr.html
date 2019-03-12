@@ -61,8 +61,6 @@
 					<td colspan="3">
 						<div class="textarea bgsqms">
 							<textarea class="bgsqms w560" name="bgsqms" maxlength="300" len=15 ></textarea>
-							<img class="bgsqmstp" alt="" style="width: 200px;height: 200px; vertical-align: middle;">
-							<input type="file" name="bgsqmstp" class="upImg">
 						</div>
 					</td>
 				</tr>
@@ -71,8 +69,6 @@
 					<td colspan="3">
 						<div class="textarea bgpg">
 							<textarea class="w560" name="bgpg" maxlength="20"></textarea>
-							<!-- <img class="bgpgtp" src="" alt="" style="width: 200px;height: 200px; vertical-align: middle;">
-							<input type="file" name="bgpgtp" class="upImg"> -->
 						</div>
 					</td>
 				</tr>
@@ -142,7 +138,7 @@
 						<div class="textarea gmq">
 							<textarea class="w560" name="gmq"></textarea>
 							<img src="" alt="" style="width: 200px;height: 200px; vertical-align: middle;">
-							<input type="file" name="" class="upImg">
+							<input type="file" name="gmqfj" class="upImg">
 						</div>
 					</td>
 				</tr>
@@ -152,7 +148,7 @@
 						<div class="textarea qmh">
 							<textarea class="w560" name="gmh"></textarea>
 							<img src="" alt="" style="width: 200px;height: 200px; vertical-align: middle;">
-							<input type="file" name="" class="upImg">
+							<input type="file" name="gmhfj" class="upImg">
 						</div>
 					</td>
 				</tr>
@@ -218,10 +214,6 @@
 				,{type:"text",name:"prodNo",title:"产品型号"} 
 				,{type:"radio",name:"saleChan",title:"销售渠道"}
 				,{type:"textarea",name:"bgsqms",title:"变更申请描述"}
-				,{type:"file",name:"bgsqmstp",title:"变更申请描述图片"}
-				// ,{type:"textarea",name:"bgpg",title:"变更评估"}
-				// ,{type:"file",name:"bgpgtp",title:"变更评估图片"}
-				// ,{type:"radio",name:"sfxgm",title:"是否改模"}
 			];
 		var EceList=[
 			{type:"textarea",name:"bgpg",title:"变更评估"}
@@ -240,9 +232,6 @@
 		$(jsbmData).each(function(index,element){
 			$jsbmSelect.append("<option value='"+element+"'>"+element+"</option>");
 		});
-		// $jsbmSelect.change(function(){
-		// 	$(this).prev().val(this.value);
-		// });
 		$("input:radio").click(function(){
 			// 如果相邻节点是select下拉框，则去下拉框值
 			if($(this).next()[0]&&$(this).next()[0].nodeName=="SELECT"){
@@ -311,7 +300,9 @@
 				,{type:"text",name:"nbddh",title:"内部订单号"}
 				,{type:"text",name:"cbzx",title:"成本中心"}
 				,{type:"textarea",name:"gmq",title:"改模前描述"}
+				,{type:"file",name:"gmqfj",title:"改模前描述图片"}
 				,{type:"textarea",name:"gmh",title:"改模后描述"}
+				,{type:"file",name:"gmhfj",title:"改模后描述图片"}
 			];
 			return app.getObj(list);
 		}
@@ -414,7 +405,6 @@
 			$(".prodNo").setText(data.prodNo);
 			$(".saleChan").setRadio(data.saleChan);
 			$("[name='bgsqms']").text(data.bgsqms);
-			$(".bgsqmstp").setImg(data.bgsqmstp);
 		}
 		 function setIsmu(data){
 		 	$.setRadio("bm",data.bm);
@@ -428,8 +418,10 @@
 		 	$.setText("mjbh",data.mjbh);
 		 	$.setText("nbddh",data.nbddh);
 		 	$.setText("cbzx",data.cbzx);
-		 	$(".gmq").setPre("value");
-		 	$(".qmh").setPre("value");
+		 	$(".gmq").setPre(data.gmq);
+		 	$(".qmh").setPre(data.gmh);
+		 	$(".gmqfj").setImg(data.gmqfj);
+		 	$(".gmhfj").setImg(data.gmhfj);
 		 }
 		 // 签字数据填充
 		 function setSign(data,key,flog){
