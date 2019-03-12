@@ -67,7 +67,7 @@
 		var columns=[
 			{field:"rowNo",name:"序号",col:1,fun:"setText"}
 			,{field:"names",name:"名称",col:1,fun:"setText"}
-			,{field:"phpNo",name:"图号",col:1,fun:"setText"}
+			,{field:"phoNo",name:"图号",col:1,fun:"setText"}
 			,{field:"sapNo",name:"SAP编码",col:1,fun:"setText"}
 			,{field:"preChag",name:"更改前",col:2,flag:"img",img:"bgqmsfj",fun:"preAndImg"}
 			,{field:"postChag",name:"更改后",col:2,flag:"img",img:"bghmsfj",fun:"preAndImg"}
@@ -139,12 +139,12 @@
 			$(".formVer").text(data.formVer);
 		}
 		function setText(data,obj){
-			var span="<span>"+data[obj.field]+"</span>";
+			var span="<span>"+(data[obj.field]||"")+"</span>";
 			return span;
 		}
 		// 变更前描述和变更后描述赋值
 		function preAndImg(data,obj,_i){
-			var pre="<pre>"+data[obj.field]+"</pre>";
+			var pre="<pre>"+(data[obj.field]||"")+"</pre>";
 			pre+="<img style='width:100px;height:100px;' src="+data[obj.img]+">";
 			return pre;
 		}
