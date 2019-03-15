@@ -93,40 +93,40 @@
 						<p><span>变更行动计划:</span><span class="ns">质量经理确认</span></p>
 						<div class="">
 							<p class="flowClass">
-								<span class="sw150">流程分类</span>
+								<span class="sw150 left">流程分类</span>
 								<label><input type="radio" name="lcfl" value="快速变更" />快速变更</label>
 								<label><input type="radio" name="lcfl" value="重大变更" />重大变更</label>
 							</p>
 							<p>
-								<span class="sw150">是否需要改模</span>
-								<label><input type="radio" name="xygm" value="否" />否</label>
-								<label><input type="radio" name="xygm" value="是" />是</label>
-								<span>改模部件：这里读取申请单中的零件名称</span>
+								<span class="sw150 left">是否需要改模</span>
+								<label><input type="radio" name="sfxygm" value="否" />否</label>
+								<label><input type="radio" name="sfxygm" value="是" />是</label>
+								<span>改模部件：<input class="gmbj" type="text" name="gmbj" /></span>
 							</p>
 							<p>
-								<span class="sw150">是否共模</span>
+								<span class="sw150 left">是否共模</span>
 								<label><input type="radio" name="sfgm" value="否" />否</label>
 								<label><input type="radio" name="sfgm" value="是" />是</label>
 							</p>
 							<p>
-								<span class="sw150">是否共用件</span>
+								<span class="sw150 left">是否共用件</span>
 								<label><input type="radio" name="sfgyj" value="否" />否</label>
 								<label><input type="radio" name="sfgyj" value="是" />是</label>
-								<span>共用件型号/名称</span>
+								<span>共用件型号/名称: <input class="gyjxh" type="text" name="gyjxh" /></span>
 							</p>
 							<p>
-								<span class="sw150">是否影响售后BOM</span>
+								<span class="sw150 left">是否影响售后BOM</span>
 								<label><input type="radio" name="sfyxsh" value="否" />否</label>
 								<label><input type="radio" name="sfyxsh" value="是" />是</label>
 							</p>
 							<p>
-								<span class="sw150">是否需要组装样机</span>
+								<span class="sw150 left">是否需要组装样机</span>
 								<label><input type="radio" name="sfxyzzyj" value="否" />否</label>
 								<label><input type="radio" name="sfxyzzyj" value="是" />是</label>
 								<span>样机数量：<input class="inputNumber" type="text" name="yjsl" /></span>
 							</p>
 							<p>
-								<span class="sw150">是否需要试产</span>
+								<span class="sw150 left">是否需要试产</span>
 								<label><input type="radio" name="sfxysc" value="否" />否</label>
 								<label><input type="radio" name="sfxysc" value="是" />是</label>
 								<span>试产数量：<input class="inputNumber" type="text" name="scsl" /></span>
@@ -374,14 +374,16 @@
 		var constant_obj={};
 		var flowLlist=[
 				{type:"radio",name:"lcfl",title:"流程分类"}
-				,{type:"radio",name:"xygm",title:"是否需要改模"}
+				,{type:"radio",name:"sfxygm",title:"是否需要改模"}
+				,{type:"text",name:"gmbj",title:"改模部件"}
 				,{type:"radio",name:"sfgm",title:"是否共模"}
 				,{type:"radio",name:"sfgyj",title:"是否共用件"}
+				,{type:"text",name:"gyjxh",title:"共用件型号"}
 				,{type:"radio",name:"sfyxsh",title:"是否影响售后BOM"}
 				,{type:"radio",name:"sfxyzzyj",title:"是否需要组装样机"}
-				,{type:"number",name:"yjsl",title:"样机数量"}
+				,{type:"text",name:"yjsl",title:"样机数量"}
 				,{type:"radio",name:"sfxysc",title:"是否需要试产"}
-				,{type:"number",name:"scsl",title:"试产数量"}
+				,{type:"text",name:"scsl",title:"试产数量"}
 				,{type:"radio",name:"sfxyyz",title:"是否需要验证"}
 				,{type:"radio",name:"sfxykhqr",title:"是否需要客户确认"}
 				,{type:"radio",name:"yzjg",title:"验证结果"}
