@@ -105,31 +105,6 @@
 			eval("var str='"+JSON.stringify(obj)+"';");
 			return str;
 		}
-		//测试数据
-		window.dataArr={chgeDescs:[
-			{
-				rowNo:"1",
-				names:"名称",
-				phpNo:"图号",
-				sapNo:"SAP编码",
-				preChag:"更改前",
-				postChag:"更改后",
-				ggq:"C:/Users/ren90/Desktop/微信截图_20190221161814.png",
-				ggh:"C:/Users/ren90/Desktop/微信截图_20190221161814.png",
-				supInvAmo:12
-			},
-			{
-				rowNo:"2",
-				names:"名称2",
-				phpNo:"图号2",
-				sapNo:"SAP编码2",
-				preChag:"更改前2",
-				postChag:"更改后2",
-				ggq:"C:/Users/ren90/Desktop/微信截图_20190221161814.png",
-				ggh:"C:/Users/ren90/Desktop/微信截图_20190221161814.png",
-				supInvAmo:13
-			}
-		]};
 		function setEco(data){
 			$(".ecnId").text(data.ecoNo);
 			$(".prodNo").text(data.prodNo);
