@@ -397,10 +397,11 @@ $(function() {
 $(function() {
     $.extend({
         setText: function(name, value) {
-            $("input[name='" + name + "']").val(value).prop("checked", true);
+            $("input[name='" + name + "']").val(value);
         },
         setRadio: function(name, value) {
             var radio = $("input[name='" + name + "']", this.selector);
+            var isEdit=radio.closest("[class*='role']").hasClass("edit");
             $(radio).each(function() {
                 if (this.value == "") {
                     $("." + name).setSelect(name, value);
@@ -408,12 +409,12 @@ $(function() {
                 if (this.value == value) {
                     this.checked = true;
                 }
-                this.disabled = true;
+                this.disabled = !isEdit;
             });
         },
         setCheckbox: function(name, value) {
             var radio = $("input[name='" + name + "']", this.selector);
-            var isEdit=this.closest("[class*='role']").hasClass("edit");
+            var isEdit=radio.closest("[class*='role']").hasClass("edit");
             $(radio).each(function() {
                 if (this.value == value) {
                     this.checked = true;
@@ -492,6 +493,10 @@ $(function() {
         },
         setText: function(value) {
             var isEdit=this.closest("[class*='role']").hasClass("edit");
+            if(!this[0]){
+                $.setText(this.selector.slice(1),value);
+                return false;
+            }
             if(this.nodeName()=="INPUT"){
                 this.val(value);
                 this.prop("disabled",!isEdit);
