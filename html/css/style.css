@@ -85,8 +85,8 @@ input.number{width: 50px;}
 .table-sub th:first-child{border-left-width: 0px;}
 .table-sub td{border-width: 1px 1px 0 0;}
 .table-sub tr.remove{background-color: #ccc;}
-.table-sub tr.remove [field=number]{background: red;}
-.table-sub tr.remove [field=number]:before{content:"X"; color:green;display: inline-block; }
+.table-sub tr.remove [field=rowNo]{background: red;}
+.table-sub tr.remove [field=rowNo]:before{content:"X"; color:green;display: inline-block; }
 /*快速变更时，会签意见只显示财务部*/
 .isFlow .item{display: none;}
 .isFlow .acc-dep{display: block;}
@@ -116,3 +116,5 @@ input[type='text']:disabled{border:none;}
 .pop.show{display:block;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#19ffffff,endColorstr=#19ffffff);}
 .pop .preview{width: 800px;height: 100%; overflow:hidden;  position: absolute; left: 0;right:0;top:0;bottom: 0;margin: auto; text-align:center}
 .pop .preview img{max-width:800px; width:auto;height:auto; max-height:420px; margin:auto;}
+
+[field=rowNo]{text-align: center;}
