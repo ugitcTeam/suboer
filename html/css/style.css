@@ -72,7 +72,7 @@ textarea{width: 300px;height: 200px; vertical-align: middle; resize: none;box-si
 
 .sw150{width: 150px; display: inline-block;}
 .right-content{border-left: 1px solid}
-.right-content:before{content:"";display: inline-block;vertical-align: middle;}
+/*.right-content:before{content:"";display: inline-block;vertical-align: middle;}*/
 .right-content textarea{height: auto;}
 .item+.item{border-top: 1px solid; box-sizing: border-box;}
 
