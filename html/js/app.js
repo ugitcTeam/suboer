@@ -184,7 +184,7 @@ $(function() {
     });
     // 点击行序号时，选中
     $(".table-sub").on('click', 'tr', function() {
-        var _target = $(event.target).closest("td[field='rowNo']")
+        var _target = $(event.srcElement).closest("td[field='rowNo']")
         var len = _target.length;
         if (len) {
             _target.closest("tr").toggleClass("remove");
@@ -272,6 +272,9 @@ $(function() {
                 if ($inputs.length) {
                     $inputs.each(function() {
                         obj[this.name] = this.value ||"";
+                        if(this.type=="file"&&this.value==""){
+                            obj[this.name]=$(this).prev().attr("src")||"";
+                        }
                     });
                 }
                 if ($textareas.length) {
@@ -374,10 +377,12 @@ $(function() {
     $(".rc-table").on("click",'img',function(){
         var imgSrc=$(this).attr("src");
         var $pop=$("#pop");
+        var top=document.documentElement.scrollTop;
         if(!$pop.length){
             $pop=$("<div class='pop' id='pop'><div class='preview'><img></div></div>");
             $("body").append($pop);
         }
+        $pop.css("top",top);
         if(imgSrc&&imgSrc!=""){
             document.body.parentNode.style.overflow="hidden";
             $pop.addClass("show");
