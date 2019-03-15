@@ -75,7 +75,6 @@
 			,{field:"chgNo",name:"更改处数",col:1,fun:"roleText"}
 			,{field:"dep",name:"物控部门意见",col:2,flag:"html",fun:"bmyj"}
 		];
-
 		function setQz(data){
 			$(".bz").setSpan(data.bz);
 			$(".sapsh").setSpan(data.sapsh);
@@ -106,7 +105,7 @@
 			return str;
 		}
 		function setEco(data){
-			$(".ecnId").text(data.ecoNo);
+			$(".ecnId").text(data.ecnNo);
 			$(".prodNo").text(data.prodNo);
 			$(".saleChan").text(data.saleChan);
 			$(".chgType").text(data.chgType);
@@ -128,7 +127,7 @@
 			var  value=data[obj.field]||"";
 			var str="<span>"+value+"</span>";
 			if(role==0){
-				str="<input type='text' name='"+obj.field+"-"+_i+"'>";
+				str="<input type='text' name='"+obj.field+"-"+_i+"' value='"+value+"'>";
 			}
 			return str;
 		}
