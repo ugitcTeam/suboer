@@ -369,7 +369,7 @@
 <script type="text/javascript">
 	$(function(){
 		$(".sd-rc").show();
-		var flows=["编制","变更分类","变更验证’","接收部门审核","工艺会签","物控会签","质量确认","采购会签","财务会签","质量批准","接收部门批准"];
+		var flows=["编制","变更分类","变更验证","接收部门审核","工艺会签","物控会签","质量确认","采购会签","财务会签","质量批准","接收部门批准"];
 		var role=0;
 		var constant_obj={};
 		var flowLlist=[
@@ -398,10 +398,10 @@
 		function getFlow(){
 			var obj=app.getObj(flowLlist);
 			if(obj.sfxyyz=="是"){
-				obj.yznr=getInputValue({type:"checkbox",name:"yznr"});
+				obj.yznr=$.getInputValue({type:"checkbox",name:"yznr"});
 			}
 			if(obj.sfxykhqr=="是"){
-				obj.khqrnr=getInputValue({type:"checkbox",name:"khqrnr"});
+				obj.khqrnr=$.getInputValue({type:"checkbox",name:"khqrnr"});
 			}
 			return obj;
 		}
