@@ -119,7 +119,7 @@
 		// 变更前描述和变更后描述赋值
 		function preAndImg(data,obj,_i){
 			var pre="<pre>"+(data[obj.field]||"")+"</pre>";
-			pre+="<img style='width:100px;height:100px;' src="+data[obj.img]+">";
+			pre+="<img class='"+obj.img+_i+"' style='width:100px;height:100px;' src='"+data[obj.img]+"'>";
 			return pre;
 		}
 		//流程中输入和显示
