@@ -227,12 +227,18 @@ $(function() {
         content+="</div>";
         return content;
     }
+    $(".table-sub").on('click','.delImg',function(){
+        var $parent=$(this).parent();
+        $parent.find("img").attr("src","");
+        $parent.find("input[type='file']")[0].select(); 
+        document.selection.clear();
+    });
     function createAreaAndImgNode(field,imgName,data){
         var _fieldValue=data&&data[field] || "";
         var imgSrc=data&&data[imgName] || "";
-        var nodeStr="<textarea class='mText' name='"+field+"'>"+_fieldValue+"</textarea>";
-        nodeStr+="<img src='"+imgSrc+"'/>";
-        nodeStr+="<input class='upImg' type='file' name='"+imgName+"' value='"+imgSrc+"'>";
+        var nodeStr="<div style='position:relative'><textarea class='mText' name='"+field+"'>"+_fieldValue+"</textarea>";
+        nodeStr+="<img src='"+imgSrc+"' alt=''/>";
+        nodeStr+="<input class='upImg' type='file' name='"+imgName+"' value='"+imgSrc+"'><span class='delImg'>X</span></div>";
         return nodeStr;
     }
     function addTd2(columns,index,data){
@@ -408,6 +414,7 @@ $(function() {
                 }
                 if (this.value == value) {
                     this.checked = true;
+                    this.click();
                 }
                 this.disabled = !isEdit;
             });
@@ -425,13 +432,24 @@ $(function() {
         setSelect: function(name, value) {
             var $select = $("." + name);
             var $options = $select.find("option");
+            var isEdit=$select.closest("[class*='role']").hasClass("edit");
             $options.each(function() {
                 if (this.value == value) {
                     this.selected = true;
                     $select.change();
                 }
-                this.disabled = true;
+                this.disabled = !isEdit;
             });
+        },
+        setImg:function(name,value){
+            var $img=$("img."+name);
+            $img.attr("src",value);
+        },
+        setFile:function(name,value){
+            //这里input file出于安全，不允许赋值
+            var $file=$("[name='"+name+"']");
+            var isEdit=$file.closest("[class*='role']").hasClass("edit");
+            isEdit?$file.val(value):$file.hide();
         },
         setTime: function(name, value) {
             $('.' + name).text(value);
@@ -467,8 +485,8 @@ $(function() {
             return obj;
         },
         objSetValue: {
-            textArea: function(name, value) {
-                $("." + name).setPre(value);
+            textarea: function(name, value) {
+                $("[name='"+name+"']").val(value)
             },
             text: function(name,value) {
                 $("."+name).setText(value);
@@ -481,6 +499,10 @@ $(function() {
             },
             radio:function(name,value){
                 $.setRadio(name,value);
+            },
+            file:function(name,value){
+                $.setFile(name,value);
+                $.setImg(name,value);
             }
         }
     });
@@ -602,7 +624,11 @@ $(function() {
             return app.getNowFormatDate();
         },
         getFile: function(name) {
-            return $("input[name='" + name + "']").val();
+            var $this=$("input[name='" + name + "']")
+            var str=$this.val();
+            var preImg=$this.prev("img");
+            str=str?preImg.attr("src"):str;
+            return str;
         },
         getInputValue: function(entity) {
             var obj = "";

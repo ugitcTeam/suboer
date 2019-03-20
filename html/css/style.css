@@ -118,3 +118,8 @@ input[type='text']:disabled{border:none;}
 .pop .preview img{max-width:800px; width:auto;height:auto; max-height:420px; margin:auto;}
 
 [field=rowNo]{text-align: center;}
+
+/*删除图片样式*/
+.delImg{display: none;width: 20px;height:20px;color:red; border:5px solid transparent ;position:absolute;right:0;top:0;text-align: center;}
+.edit .delImg{display: block;}
+.edit .delImg:hover{color:#fff;background: red;}

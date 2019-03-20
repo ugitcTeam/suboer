@@ -86,21 +86,21 @@
 						<div class="box clear">
 							<div class="w5 left">
 								<span>是否有备模</span>
-								<label> <input type="radio" name="bm" value="否" />否</label>
-								<label> <input type="radio" name="bm" value="是" />是</label>
+								<label> <input type="radio" name="sfybm" value="否" />否</label>
+								<label> <input type="radio" name="sfybm" value="是" />是</label>
 								<label>备模数量：<input class="number" type="number" name="bmsl" /></label>
 							</div>
 							<div class="w5 right">
 								<span>是否共模</span>
-								<label><input type="radio" name="gom" value="否" />否</label>
-								<label><input type="radio" name="gom" value="是" />是</label>
+								<label><input type="radio" name="sfgm" value="否" />否</label>
+								<label><input type="radio" name="sfgm" value="是" />是</label>
 							</div>
 						</div>
 						<div class="box clear">
 							<div class="w5 left">
 								<span>是否共用件</span>
-								<label><input type="radio" name="gyj" value="否" />否</label>
-								<label><input type="radio" name="gyj" value="是" />是</label>
+								<label><input type="radio" name="sfgyj" value="否" />否</label>
+								<label><input type="radio" name="sfgyj" value="是" />是</label>
 							</div>
 							<div class="w5 right">
 								<label>共用件型号/名称：<input type="text" name="gyjxh" /></label>
@@ -135,20 +135,22 @@
 				<tr class="role2 isMu">
 					<td class="attr">改模前</td>
 					<td colspan="3">
-						<div class="textarea gmq">
+						<div class="textarea gmq" style="position:relative;">
 							<textarea class="w560" name="gmq"></textarea>
-							<img src="" alt="" style="width: 200px;height: 200px; vertical-align: middle;">
+							<img class="gmqfj" src="" alt="" style="width: 200px;height: 200px; vertical-align: middle;">
 							<input type="file" name="gmqfj" class="upImg">
+							<span class="delImg">X</span>
 						</div>
 					</td>
 				</tr>
 				<tr class="role2 isMu">
 					<td class="attr">改模后</td>
 					<td colspan="3">
-						<div class="textarea qmh">
+						<div class="textarea qmh" style="position: relative">
 							<textarea class="w560" name="gmh"></textarea>
-							<img src="" alt="" style="width: 200px;height: 200px; vertical-align: middle;">
+							<img class="gmhfj" src="" alt="" style="width: 200px;height: 200px; vertical-align: middle;">
 							<input type="file" name="gmhfj" class="upImg">
+							<span class="delImg">X</span>
 						</div>
 					</td>
 				</tr>
@@ -217,7 +219,7 @@
 			];
 		var EceList=[
 			{type:"textarea",name:"bgpg",title:"变更评估"}
-			,{type:"file",name:"bgpgtp",title:"变更评估图片"}
+			// ,{type:"file",name:"bgpgtp",title:"变更评估图片"}
 			,{type:"radio",name:"sfxgm",title:"是否改模"}
 		]
 		var $tcbmSelect=$(".tcbm");
@@ -281,17 +283,23 @@
 		}
 		function getEce(){
 			var obj=app.getObj(EceList);
-			if(obj.sfgm=="是"){
+			if(obj.sfxgm=="是"){
 				$.extend(obj,isGm());
 			}
 			return obj;
 		}
-		//如果是改模，调用此方法获取改模数据
-		function isGm(){
-			var list=[
-				{type:"radio",name:"bm",title:"是否有备模"}
-				,{type:"radio",name:"gom",title:"是否共模"}
-				,{type:"radio",name:"gyj",title:"是否共用件"}
+		function setEco(data){
+			$(EceList).each(function(index,obj){
+				$.objSetValue[obj.type](obj.name,data[obj.name]);
+			});
+			if(data.sfxgm=="是"){
+				setIsmu(data);
+			}
+		}
+		var gmList=[
+				{type:"radio",name:"sfybm",title:"是否有备模"}
+				,{type:"radio",name:"sfgm",title:"是否共模"}
+				,{type:"radio",name:"sfgyj",title:"是否共用件"}
 				,{type:"text",name:"gyjxh",title:"共用件型号/名称"}
 				,{type:"radio",name:"mjlb",title:"模具类别"}
 				,{type:"text",name:"ljmc",title:"零件名称"}
@@ -304,7 +312,9 @@
 				,{type:"textarea",name:"gmh",title:"改模后描述"}
 				,{type:"file",name:"gmhfj",title:"改模后描述图片"}
 			];
-			return app.getObj(list);
+		//如果是改模，调用此方法获取改模数据
+		function isGm(){
+			return app.getObj(gmList);
 		}
 		var signArr=['wk','gy','mj','js'];
 		var signList={
@@ -357,13 +367,13 @@
 					obj=getSign(signArr[0]);
 					break;
 				case 4:
-					boj=getSign(signArr[1]);
+					obj=getSign(signArr[1]);
 					break;
 				case 5:
-					boj=getSign(signArr[2]);
+					obj=getSign(signArr[2]);
 					break;
 				case 6:
-					boj=getSign(signArr[3]);
+					obj=getSign(signArr[3]);
 					break;
 				default:
 					// 获取申请单数据
@@ -389,6 +399,7 @@
 				case 3:
 					setSign(data,signArr[0]);
 				case 2:
+					setEco(data);
 				case 1:
 					setRole(data);
 					break;
@@ -407,21 +418,9 @@
 			$("[name='bgsqms']").val(data.bgsqms);
 		}
 		 function setIsmu(data){
-		 	$.setRadio("bm",data.bm);
-		 	$.setText("bmsl",data.bmsl);
-		 	$.setRadio("gom",data.gom);
-		 	$.setRadio("gyj",data.gyj);
-		 	$.setText("gyjxh",data.gyjxh);
-		 	$.setRadio("mjlb",data.mjlb);
-		 	$.setText("ljmc",data.ljmc);
-		 	$.setText("ljth",data.ljth);
-		 	$.setText("mjbh",data.mjbh);
-		 	$.setText("nbddh",data.nbddh);
-		 	$.setText("cbzx",data.cbzx);
-		 	$(".gmq").setPre(data.gmq);
-		 	$(".qmh").setPre(data.gmh);
-		 	$(".gmqfj").setImg(data.gmqfj);
-		 	$(".gmhfj").setImg(data.gmhfj);
+		 	$(gmList).each(function(index,obj){
+		 		$.objSetValue[obj.type](obj.name,data[obj.name])
+		 	});
 		 }
 		 // 签字数据填充
 		 function setSign(data,key,flog){
@@ -432,6 +431,12 @@
 		 	}
 		 }
 		window.setData=setData;
+		$(".delImg").click(function(){
+			var $parent=$(this).parent();
+			$parent.find("img").attr("src","");
+			$parent.find("input[type='file']")[0].select(); 
+	        document.selection.clear();
+		});
 	});
 </script>
 </html>
