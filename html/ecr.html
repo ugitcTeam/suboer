@@ -245,10 +245,13 @@
 			}
 		});
 		function editMu(){
-			$(".isMu").show()
-			$(".isMu").find("input").prop("disabled","");
-			$(".isMu").find("textarea").prop("disabled","");
-			$(".isMu").find("input[type='file']").show();
+			$(".isMu").show();
+			var isEdit=$(".isMu").hasClass("edit");
+			if(isEdit){
+				$(".isMu").find("input").prop("disabled","");
+				$(".isMu").find("textarea").prop("disabled","");
+				$(".isMu").find("input[type='file']").show();
+			}
 		}
 		// 下拉框是改变时，有特殊处理
 		$("select").change(function(){
@@ -391,6 +394,7 @@
 			app.showRole(role);
 			$.extend(constant_obj,data);
 			switch (role){
+				case 0:
 				case 6:
 					setSign(data,signArr[3],true);
 				case 5:
