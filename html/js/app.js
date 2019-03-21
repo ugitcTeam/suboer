@@ -422,8 +422,9 @@ $(function() {
         setCheckbox: function(name, value) {
             var radio = $("input[name='" + name + "']", this.selector);
             var isEdit=radio.closest("[class*='role']").hasClass("edit");
+            var vals=(typeof value=="string")?value.split(","):value;
             $(radio).each(function() {
-                if (this.value == value) {
+                if (vals.indexOf(this.value) != -1) {
                     this.checked = true;
                 }
                 this.disabled = !isEdit;
@@ -627,7 +628,7 @@ $(function() {
             var $this=$("input[name='" + name + "']")
             var str=$this.val();
             var preImg=$this.prev("img");
-            str=str?preImg.attr("src"):str;
+            str=str?str:preImg.attr("src");
             return str;
         },
         getInputValue: function(entity) {
