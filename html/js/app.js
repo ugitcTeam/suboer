@@ -414,7 +414,7 @@ $(function() {
                 }
                 if (this.value == value) {
                     this.checked = true;
-                    this.click();
+                    $(this).click();
                 }
                 this.disabled = !isEdit;
             });
@@ -543,6 +543,7 @@ $(function() {
                 }
                 if (this.value == value) {
                     this.checked = true;
+                    $(this).click();
                 }
             });
             $(this).prop("disabled",!isEdit);
