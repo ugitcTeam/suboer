@@ -627,10 +627,11 @@
 				$.objSetValue[obj.type](obj.name,data[obj.name])
 			});
 			if(data.sfxyyz=="是"){
-				$.setRadio("yznr",data.yznr);
+				// $.setRadio("yznr",data.yznr);
+				$.setCheckbox("yznr",data.yznr);
 			}
 			if(data.sfxykhqr=="是"){
-				$.setRadio("khqrnr",data.khqrnr);
+				$.setCheckbox("khqrnr",data.khqrnr);
 			}
 		}
 
