@@ -124,3 +124,7 @@ input[type='text']:disabled{border:none;}
 .delImg{display: none;width: 20px;height:20px;color:red; border:5px solid transparent ;position:absolute;right:0;top:0;text-align: center;}
 .edit .delImg{display: block;}
 .edit .delImg:hover{color:#fff;background: red;}
+
+.relative{position: relative;}
+.absoulte{position: absolute;height:100%; width: 200px;}
+.absoulte .ab_center{height:20px; text-align: center; position: absolute;top:0;bottom:0;left:0;right:0;margin: auto;}
