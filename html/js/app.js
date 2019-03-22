@@ -495,6 +495,9 @@ $(function() {
             span: function(name,value){
                 $("."+name).setSpan(value);
             },
+            pre:function(name,value){
+                $("."+name).setPre(value);
+            },
             NowDate: function(name, value) {
                 $.setTime(name, value);
             },
