@@ -223,7 +223,7 @@ $(function() {
         var content="<div class='textarea'>";
         content+="<pre>"+(data.field||"")+"</pre>";
 
-        content+="<img src='"+(data.img||"")+"'>";
+        content+="<img src='"+(data[img]||"")+"' style='width:100px;height:100px;'>";
         content+="</div>";
         return content;
     }
