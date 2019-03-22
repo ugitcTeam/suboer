@@ -211,9 +211,9 @@
 									</div>
 									<div class="role4">
 										<div class="w200 right">
-											<span class="w200 right">签字:</span>
+											<span>签字:</span>
 											<span class="hqyfbqz"></span>
-											<span class="hqyfbqzrq"></span>
+											<span class="hqyfbqzrq c_pl10"></span>
 										</div>
 									</div>
 								</div>
@@ -227,8 +227,8 @@
 										</div>
 										<div class="hqgyb">
 											<span>更新工装夹具:</span>
-											<label><input class="hqgybgxgzjj" type="radio" name="gxzzjj" value="需要" />需要</label>
-											<label><input class="hqgybgxgzjj" type="radio" name="gxzzjj" value="不需要" />不需要</label>
+											<label><input class="hqgybgxgzjj" type="radio" name="hqgybgxgzjj" value="需要" />需要</label>
+											<label><input class="hqgybgxgzjj" type="radio" name="hqgybgxgzjj" value="不需要" />不需要</label>
 										</div>
 									</div>
 									<div class="box hqgyb">
@@ -238,10 +238,10 @@
 										</div>
 									</div>
 									<div class="hqgyb">
-										<div>
-											<span class="w200 right">签字:</span>
+										<div class="w200 right">
+											<span>签字:</span>
 											<span class="hqgybqz"></span>
-											<span class="hqgybqzrq"></span>
+											<span class="hqgybqzrq c_pl10"></span>
 										</div>
 									</div>
 								</div>
@@ -270,10 +270,10 @@
 										</div>
 									</div>
 									<div class="">
-										<div>
-											<span class="w200 right">签字:</span>
+										<div class="w200 right">
+											<span>签字:</span>
 											<span class="hqwkbqz"></span>
-											<span class="hqwkbqzrq"></span>
+											<span class="hqwkbqzrq c_pl10"></span>
 										</div>
 									</div>
 								</div>
@@ -282,8 +282,8 @@
 									<div class="box">
 										<div class="mr-10">
 											<span>更新检验指导书:</span>
-											<label><input class="hqpgbgxjyzds" type="radio" name="hqpgbgxjyzds" value="需要" />需要</label>
-											<label><input class="hqpgbgxjyzds" type="radio" name="hqpgbgxjyzds" value="不需要" />不需要</label>
+											<label><input class="hqpgbgxjyz" type="radio" name="hqpgbgxjyz" value="需要" />需要</label>
+											<label><input class="hqpgbgxjyz" type="radio" name="hqpgbgxjyz" value="不需要" />不需要</label>
 										</div>
 										<div class="box flex-1">
 											<span class="cell">其他:</span>
@@ -293,10 +293,10 @@
 										</div>
 									</div>
 									<div class="hqpgb">
-										<div>
-											<span class="w200 right">签字:</span>
+										<div class="w200 right">
+											<span>签字:</span>
 											<span class="hqpgbqz"></span>
-											<span class="hqpgbqzrq"></span>
+											<span class="hqpgbqzrq c_pl10"></span>
 										</div>
 									</div>
 								</div>
@@ -308,8 +308,8 @@
 										</div>
 									</div>
 									<div class="">
-										<div>
-											<span class="w200 right">签字:</span>
+										<div class="w200 right">
+											<span>签字:</span>
 											<span class="hqcgbqz"></span>
 											<span class="hqcgbqzrq"></span>
 										</div>
@@ -322,8 +322,8 @@
 											<textarea class="hqcwbyj w560" name="hqcwbyj"></textarea></div>
 									</div>
 									<div class="">
-										<div>
-											<span class="w200 right">签字:</span>
+										<div class="w200 right">
+											<span>签字:</span>
 											<span class="hqcwbqz"></span>
 											<span class="hqcwbqzrq"></span>
 										</div>
@@ -345,7 +345,7 @@
 									<p class="pos-last">
 										<span class="">签字:</span>
 										<span class="zlbqz"></span>
-										<span class="zlbqzrq"></span>
+										<span class="zlbqzrq c_pl10"></span>
 									</p>
 							</div>
 							<div class="divToCell yfb">
@@ -356,7 +356,7 @@
 								<p class="pos-last">
 									<span class="">签字:</span>
 									<span class="yfbyjqz"></span>
-									<span class="yfbyjqzrq"></span>
+									<span class="yfbyjqzrq c_pl10"></span>
 								</p>
 							</div>
 						</div>
@@ -434,12 +434,13 @@
 					,{type:"textarea",name:"hqwkbqt2",title:"物控部其他2"}
 				],
 				"hqpgb":[
-					{type:"radio",name:"hqpgbgxjyzds",title:"品管部更新检验指导书"}
+					{type:"radio",name:"hqpgbgxjyz",title:"品管部更新检验指导书"}
 					,{type:"textarea",name:"hqpgbqt",title:"品管部其他"}
 				]
 			};
 			return app.getObj(list[key]);
 		}
+		window.getSign=getSign;
 		// 获取签字
 		function getSign2(key){
 			var list={
@@ -477,7 +478,7 @@
 			,{type:"text",name:"csbgbm"}
 			,{type:"radio",name:"hqyfbgxcpt"}
 			,{type:"radio",name:"hqyfbgxbom"}
-			,{type:"text",name:"hqyfbqt"}
+			,{type:"textarea",name:"hqyfbqt"}
 		];
 		/**
 		 * 变更验证数据获取
@@ -522,7 +523,7 @@
 					obj = getSign("hqpgb");
 					break;
 				default:
-					obj=getChangeDesp();
+					// obj=getChangeDesp();
 					break;
 			};
 			obj=$.extend(constant_obj,obj);
@@ -616,7 +617,7 @@
 		 * @param    {[type]}   flag [description] 快速变更时，值为true标识当前部门需要签字
 		 */
 		function setSign(data,key,flag){
-			if(data.lcfl=="重大变更" || flog){
+			if(data.lcfl=="重大变更" || flag){
 			 	$(signList[key]).each(function(){
 			 		$.objSetValue[this.type](this.name,data[this.name]);
 			 	});
