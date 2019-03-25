@@ -19,6 +19,7 @@ input:disabled{border:none;}
 .sd-rc h2.title {text-align: center;}
 .attr {width: 200px;height: 30px;text-align: center;}
 .attr>div {padding-right: 10px;}
+.odd{width:200px;}
 .flags:after {content: " : ";}
 .tzw {}
 table{border-collapse: collapse; margin: auto; width: 100%;}
