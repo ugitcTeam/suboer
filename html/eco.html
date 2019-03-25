@@ -514,13 +514,13 @@
 				case 3:
 					obj = getBgyz();
 					break;
-				case 4:
+				case 5:
 					obj = getSign("hqgyb");
 					break;
-				case 5:
+				case 6:
 					obj = getSign("hqwkb");
 					break;
-				case 6:
+				case 7:
 					obj = getSign("hqpgb");
 					break;
 				default:
@@ -583,7 +583,7 @@
 					,{type:"NowDate",name:"hqwkbqzrq",title:"日期"}
 				],
 				"hqpgb":[
-					{type:"radio",name:"hqpgbgxjyzds",title:"品管部更新检验指导书"}
+					{type:"radio",name:"hqpgbgxjyz",title:"品管部更新检验指导书"}
 					,{type:"textarea",name:"hqpgbqt",title:"品管部其他"}
 					,{type:"span",name:"hqpgbqz",title:"签字"}
 					,{type:"NowDate",name:"hqpgbqzrq",title:"日期"}
@@ -594,17 +594,17 @@
 					,{type:"NowDate",name:"hqcgbqzrq"}
 				],
 				"hqcwb":[
-					{type:"textArea",name:"hqcwbyj"}
+					{type:"textarea",name:"hqcwbyj"}
 					,{type:"span",name:"hqcwbqz"}
 					,{type:"NowDate",name:"hqcwbqzrq"}
 				],
 				"hqzlb":[
-					{type:"textArea",name:"zlbyj"}
+					{type:"pre",name:"zlbyj"}
 					,{type:"span",name:"zlbqz"}
 					,{type:"NowDate",name:"zlbqzrq"}
 				],
 				"hqjsb":[
-					{type:"textArea",name:"yfbyj"}
+					{type:"pre",name:"yfbyj"}
 					,{type:"span",name:"yfbyjqz"}
 					,{type:"NowDate",name:"yfbyjqzrq"}
 				]
@@ -648,22 +648,22 @@
 			switch (role) {
 				case 0:
 				case 11:
-					setSign(data,"hqjsb");
 				case 10:
-					setSign(data,"hqzlb");
 				case 9:
-					setSign(data,"hqcwb");
 				case 8:
-					setSign(data,"hqcgb");
 				case 7:
-					setSign(data,"hqpgb");
 				case 6:
-					setSign(data,"hqwkb");
 				case 5:
-					setSign(data,"hqgyb");
 				case 4:
-					$("hqyfbqz").setSpan(data.hqyfbqz);
-					$("hqyfbqzrq").setSpan(data.hqyfbqzrq);
+					setSign(data,"hqjsb");
+					setSign(data,"hqzlb");
+					setSign(data,"hqcwb");
+					setSign(data,"hqcgb");
+					setSign(data,"hqwkb");
+					setSign(data,"hqgyb");
+					setSign(data,"hqpgb");
+					$(".hqyfbqz").setSpan(data.hqyfbqz);
+					$(".hqyfbqzrq").setSpan(data.hqyfbqzrq);
 				case 3:
 					setBgyz(data);
 				case 2:
