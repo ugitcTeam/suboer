@@ -79,7 +79,7 @@ var ecn_table={
 		});
 		return $tr;
 	},
-	addTr(data){
+	addTr:function(data){
 		var $lastRow=$(".d-body");
 		$(data.chgeDescs).each(function(i){
 			$lastRow.append(ecn_table.setRow(this,i));
@@ -110,7 +110,7 @@ var ecn_table={
 	createSpan:function(className,text){
 		return "<span class='"+className+"'>"+(text || "")+"</span>"
 	},
-	bmyj(data,obj,_i){
+	bmyj:function(data,obj,_i){
 		var div="<div>制品处理意见</div>";
 		var label=this.addLabel(data["billAdv"],_i);
 		var flag = this.role == 1;
