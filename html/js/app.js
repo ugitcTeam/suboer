@@ -68,6 +68,9 @@
             app.getObj(list)
         },
         showRole: function(flat) {
+            if(flat==0){
+                return false;
+            }
             var $role=$(".role" + flat);
             $role.find("input").prop("disabled", "");
             $role.find("select").prop("disabled", "");
@@ -221,7 +224,7 @@ $(function() {
     }
     function setPreAndImg(field,data,img){
         var content="<div class='textarea'>";
-        content+="<pre>"+(data.field||"")+"</pre>";
+        content+="<pre>"+(data[field]||"")+"</pre>";
 
         content+="<img src='"+(data[img]||"")+"' style='width:100px;height:100px;'>";
         content+="</div>";
