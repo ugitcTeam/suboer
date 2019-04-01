@@ -395,7 +395,15 @@ $(function() {
         if(imgSrc&&imgSrc!=""){
             document.body.parentNode.style.overflow="hidden";
             $pop.addClass("show");
-            $(".preview",$pop).find("img").attr("src",imgSrc).click(function(){
+            var $img=$('.preview',$pop).find("img").attr("src",imgSrc);
+            var w=$img.width()
+            var h=$img.height();
+            if(w/h>2){
+                $img.css("width",800);
+            }else{
+                $img.css("height",420);
+            }
+            $img.click(function(){
                 this.src="";
                 $pop.removeClass("show");
                 document.body.parentNode.style.overflow="auto";
