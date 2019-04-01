@@ -2,276 +2,680 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
-	<title>技术文件更改通知</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css" />
-	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8" ></script>
-	<script type="text/javascript" src="js/app.js" charset="utf-8"></script>
-	<style type="text/css" media="screen">
-		.inputNumber{width:60px; border:1px;}
-		td{overflow:hidden;}
-		.orderNo{width: 100px;}
-	</style>
+	<title>工程变更确认单</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
 </head>
 <body>
 	<div class="sd-rc">
-		<h2 class="title">技术文件更改通知</h2>
+		<h2 class="title">工程变更确认单</h2>
+		<div class="content">
+			<div class="header box">
+				<div>ECO:<input class="ecr" type="text" name="ecr"></div>
+				<div class="right-block">编号:SPE R02-037</div>
+			</div>
+		</div>
 		<div>
-			<table class="rc-table" style="table-layout: fixed;">
-				<tr>
-					<td style="width:50px;">ECN号</td>
-					<td style="width:120px;" colspan="2"><div class="ecnId"></div></td>
-					<td style="width:70px;">产品型号</td>
-					<td style="width:140px;" colspan="2"><div class="prodNo"></div></td>
-					<td style="width:50px;">渠道</td>
-					<td style="width:90px;"><div class="saleChan" style="min-width: 50px;"></div></td>
-					<td style="width:70px;">变更种类</td>
-					<td style="width:70px;"><div class="chgType" style="width: 50px;"></div></td>
-					<!-- <td style="width:150px;"></td> -->
-					<td style="width:120px;">表单版本：<span class="formVer"></span></td>
-					<td style="">编号：SPE R02-014</td>
+			<table class="rc-table">
+				<tr class="role0">
+					<td class="attr">提出部门</td>
+					<td class="odd"><span class="tcbm">显示读取文本</span></td>
+					<td class="attr">提出人员</td>
+					<td class="odd"><span class="tcry">显示读取文本</span></td>
+				</tr>
+				<tr class="role0">
+					<td class="attr">对接部门</td>
+					<td><span class="djbm">显示读取文本</span></td>
+					<td class="attr">对接人员</td>
+					<td><span class="djry">显示读取文本</span></td>
+				</tr>
+				<tr class="role0">
+					<td class="attr">销售渠道</td>
+					<td>
+						<label><input class="saleChan" type="radio" name="saleChan" value="SEB" />SEB</label>
+						<label><input class="saleChan" type="radio" name="saleChan" value="外贸" />外贸</label>
+						<label><input class="saleChan" type="radio" name="saleChan" value="内销" />内销</label>
+					</td>
+					<td class="attr">产品型号</td>
+					<td><span class="prodNo">显示读取信息</span></td>
+				</tr>
+				<tr class="role1">
+					<td class="attr">变更种类</td>
+					<td colspan="3">
+						<div class="types">
+							<div>
+								<label><input type="radio" class="chgType" name="chgType" value="尺寸规格变更" />尺寸规格变更</label>
+								<label><input type="radio" class="chgType" name="chgType" value="结构变更" />结构变更</label>
+								<label><input type="radio" class="chgType" name="chgType" value="材料变更" />材料变更</label>
+								<label><input type="radio" class="chgType" name="chgType" value="供应商变更" />供应商变更</label>
+								<label><input type="radio" class="chgType" name="chgType" value="电控变更" />电控变更</label>
+							</div>
+							<div>
+								<label><input type="radio" class="chgType" name="chgType" value="业务模式变更" />业务模式变更</label>
+								<label><input type="radio" class="chgType" name="chgType" value="图物不符" />图物不符</label>
+								<label><input type="radio" class="chgType" name="chgType" value="BOM变更" />BOM变更</label>
+								<label><input type="radio" class="chgType" name="chgType" value="TS变更" />TS变更</label>
+								<label><input type="radio" class="chgType" name="chgType" value="认证标准变更" />认证标准变更</label>
+							</div>
+						</div>
+						<div class="types line-top">
+							<label><input type="radio" class="chgType" name="chgType" value="制程工艺" />制程工艺</label>
+							<label><input type="radio" class="chgType" name="chgType" value="再生材料" />再生材料</label>
+							<label><input type="radio" class="chgType" name="chgType" value="工装、设备" />工装、设备</label>
+						</div>
+					</td>
+				</tr>
+				<tr class="role1">
+					<td colspan="4" style="padding: 0;">
+						变更描述:
+						<div class="right">
+							<span class="addRowTr p5c">添加</span>
+							<span class="removeRowTr p5c" title='点击行序号，添加删除状态'>删除</span>
+						</div>
+						<div class="table" >
+							<table class="table-sub">
+								<tr class="header">
+									<th style="width: 40px;">序号</th>
+									<th style="width: 60px;">名称</th>
+									<th style="width: 50px;">SAP编码</th>
+									<th style="width: 50px;">图号</th>
+									<th>变更前描述</th>
+									<th>变更后描述</th>
+								</tr>
+								
+							</table>
+						</div>
+					</td>
+				</tr>
+				<tr class="role2">
+					<td colspan="4">
+						<p><span>变更行动计划:</span><span class="ns">质量经理确认</span></p>
+						<div class="">
+							<p class="flowClass">
+								<span class="sw150 left">流程分类</span>
+								<label><input type="radio" name="lcfl" value="快速变更" />快速变更</label>
+								<label><input type="radio" name="lcfl" value="重大变更" />重大变更</label>
+							</p>
+							<p>
+								<span class="sw150 left">是否需要改模</span>
+								<label><input type="radio" name="sfxygm" value="否" />否</label>
+								<label><input type="radio" name="sfxygm" value="是" />是</label>
+								<span>改模部件：<input class="gmbj" type="text" name="gmbj" /></span>
+							</p>
+							<p>
+								<span class="sw150 left">是否共模</span>
+								<label><input type="radio" name="sfgm" value="否" />否</label>
+								<label><input type="radio" name="sfgm" value="是" />是</label>
+							</p>
+							<p>
+								<span class="sw150 left">是否共用件</span>
+								<label><input type="radio" name="sfgyj" value="否" />否</label>
+								<label><input type="radio" name="sfgyj" value="是" />是</label>
+								<span>共用件型号/名称: <input class="gyjxh" type="text" name="gyjxh" /></span>
+							</p>
+							<p>
+								<span class="sw150 left">是否影响售后BOM</span>
+								<label><input type="radio" name="sfyxsh" value="否" />否</label>
+								<label><input type="radio" name="sfyxsh" value="是" />是</label>
+							</p>
+							<p>
+								<span class="sw150 left">是否需要组装样机</span>
+								<label><input type="radio" name="sfxyzzyj" value="否" />否</label>
+								<label><input type="radio" name="sfxyzzyj" value="是" />是</label>
+								<span>样机数量：<input class="inputNumber" type="text" name="yjsl" /></span>
+							</p>
+							<p>
+								<span class="sw150 left">是否需要试产</span>
+								<label><input type="radio" name="sfxysc" value="否" />否</label>
+								<label><input type="radio" name="sfxysc" value="是" />是</label>
+								<span>试产数量：<input class="inputNumber" type="text" name="scsl" /></span>
+							</p>
+							<div class="box">
+								<div class="left">
+									<span class="sw150">是否需要验证</span>
+								</div>
+								<div class="left reld">
+									<label><input type="radio" name="sfxyyz" value="否" />否</label>
+									<label><input type="radio" name="sfxyyz" value="是" />是</label>
+								</div>
+								<div class="left isdisabled" style="padding-left: 10px; width: 600px;">
+									<span class="ns">
+										<label><input type="checkbox" name="yznr" value="HSF检测" />HSF检测</label>
+										<label><input type="checkbox" name="yznr" value="食品卫生检测" />食品卫生检测</label>
+										<label><input type="checkbox" name="yznr" value="功能检测" />功能检测</label>
+										<label><input type="checkbox" name="yznr" value="性能检测" />性能检测</label>
+										<label><input type="checkbox" name="yznr" value="安规检测" />安规检测</label>
+										<label><input type="checkbox" name="yznr" value="尺寸检测" />尺寸检测</label>
+										<label><input type="checkbox" name="yznr" value="表面处理检测" />表面处理检测</label>
+										<label><input type="checkbox" name="yznr" value="其它" />其它</label>
+									</span>
+								</div>
+							</div>
+							<p>
+								<div class="left">
+									<span class="sw150">是否需要客户确认:</span>
+								</div>
+								<div class="left reld">
+									<label><input type="radio" name="sfxykhqr" value="否" />否</label>
+									<label><input type="radio" name="sfxykhqr" value="是" />是</label>
+								</div>
+								<div class="left isdisabled">
+									<span class="ns">
+										<label><input type="checkbox" name="khqrnr" value="返工方案" />返工方案</label>
+										<label><input type="checkbox" name="khqrnr" value="控制计划" />控制计划</label>
+										<label><input type="checkbox" name="khqrnr" value="控制标准" />控制标准</label>
+										<label><input type="checkbox" name="khqrnr" value="关键元器件清单" />关键元器件清单</label>
+										<label><input type="checkbox" name="khqrnr" value="认证证书" />认证证书</label>
+										<label><input type="checkbox" name="khqrnr" value="" />其它</label>
+									</span>
+								</div>
+							</p>
+						</div>
+					</td>
+				</tr>
+				<tr class="role3">
+					<td colspan="4">
+						<p>验证结果（此表单后须随附验证报告）:</p>
+						<div>
+							<label style="margin-left: 50px;"><input class="yzjg" type="radio" name="yzjg" value="合格" />合格</label>
+							<label style="margin-left: 50px;"><input class="yzjg" type="radio" name="yzjg" value="不合格" />不合格</label>
+							<span style="margin-left: 150px;">测试报告编码:<input class="csbgbm" type="text" name="csbgbm" /></span>
+						</div>
+					</td>
 				</tr>
 				<tr>
-					<td>序号</td>
-					<td>名称</td>
-					<td>图号</td>
-					<td>SAP编码</td>
-					<td colspan="2">更改前</td>
-					<td colspan="2">更改后</td>
-					<td>更改标记</td>
-					<td>更改处数</td>
-					<td colspan="2">物控部门意见</td>
+					<td colspan="4">
+						<div class="clear relative">
+							<div class="absoulte"><div class="ab_center">会签意见</div></div>
+							<div class="right-content" style="margin-left: 200px;">
+								<div class="item role3">
+									<div class="title">研发部</div>
+									<div class="box">
+										<div class="mr-10">
+											<span>更新产品图:</span>
+											<label><input class="hqyfbgxcpt" type="radio" name="hqyfbgxcpt" value="需要" />需要</label>
+											<label><input class="hqyfbgxcpt" type="radio" name="hqyfbgxcpt" value="不需要" />不需要</label>
+										</div>
+										<div>
+											<span>更新BOM:</span>
+											<label><input type="radio" name="hqyfbgxbom" value="需要" />需要</label>
+											<label><input type="radio" name="hqyfbgxbom" value="不需要" />不需要</label>
+										</div>
+									</div>
+									<div class="box">
+										<div class="cell" style="display: table-cell;"><span>其他:</span></div>
+										<div class="textarea cell flex-1">
+											<textarea class="hqyfbqt" name="hqyfbqt"></textarea>
+										</div>
+									</div>
+									<div class="role4">
+										<div class="w200 right">
+											<span>签字:</span>
+											<span class="hqyfbqz"></span>
+											<span class="hqyfbqzrq c_pl10"></span>
+										</div>
+									</div>
+								</div>
+								<div class="item role5">
+									<div class="title">工艺部</div>
+									<div class="box">
+										<div class="mr-10 hqgyb">
+											<span>更新作业指导书:</span>
+											<label><input class="hqgybgxzyzds" type="radio" name="hqgybgxzyzds" value="需要" />需要</label>
+											<label><input class="hqgybgxzyzds" type="radio" name="hqgybgxzyzds" value="不需要" />不需要</label>
+										</div>
+										<div class="hqgyb">
+											<span>更新工装夹具:</span>
+											<label><input class="hqgybgxgzjj" type="radio" name="hqgybgxgzjj" value="需要" />需要</label>
+											<label><input class="hqgybgxgzjj" type="radio" name="hqgybgxgzjj" value="不需要" />不需要</label>
+										</div>
+									</div>
+									<div class="box hqgyb">
+										<div class="cell"><span>其他:</span></div>
+										<div class="textarea cell flex-1">
+											<textarea class="hqgybqt" name="hqgybqt"></textarea>
+										</div>
+									</div>
+									<div class="hqgyb">
+										<div class="w200 right">
+											<span>签字:</span>
+											<span class="hqgybqz"></span>
+											<span class="hqgybqzrq c_pl10"></span>
+										</div>
+									</div>
+								</div>
+								<div class="item role6 hqwkb">
+									<div class="title">物控部</div>
+									<div class="box">
+										<div class="mr-10 cell">
+											<span class="sw150">更新物料计划:</span>
+											<label><input class="hqwkbgxwljh" type="radio" name="hqwkbgxwljh" value="需要" />需要</label>
+											<label><input class="hqwkbgxwljh" type="radio" name="hqwkbgxwljh" value="不需要" />不需要</label>
+										</div>
+										<div class="cell">
+											<span class="cell">其他:</span>
+											<div class="textarea cell flex-1"><textarea class="hqwkbqt1" name="hqwkbqt1"></textarea></div>
+										</div>
+									</div>
+									<div class="box">
+										<div class="mr-10 cell">
+											<span class="sw150">库存确认:</span>
+											<label><input class="hqwkbkcqr" type="radio" name="hqwkbkcqr" value="需要" />需要</label>
+											<label><input class="hqwkbkcqr" type="radio" name="hqwkbkcqr" value="不需要" />不需要</label>
+										</div>
+										<div class="cell mr-10">
+											<span class="cell">其他:</span>
+											<div class="textarea cell flex-1"><textarea class="hqwkbqt2" name="hqwkbqt2"></textarea></div>
+										</div>
+									</div>
+									<div class="">
+										<div class="w200 right">
+											<span>签字:</span>
+											<span class="hqwkbqz"></span>
+											<span class="hqwkbqzrq c_pl10"></span>
+										</div>
+									</div>
+								</div>
+								<div class="item role7 hqpgb">
+									<div class="title">品管部</div>
+									<div class="box">
+										<div class="mr-10">
+											<span>更新检验指导书:</span>
+											<label><input class="hqpgbgxjyzds" type="radio" name="hqpgbgxjyzds" value="需要" />需要</label>
+											<label><input class="hqpgbgxjyzds" type="radio" name="hqpgbgxjyzds" value="不需要" />不需要</label>
+										</div>
+										<div class="box flex-1">
+											<span class="cell">其他:</span>
+											<div class="textarea cell flex-1">
+												<textarea class="hqpgbqt w560" name="hqpgbqt"></textarea>
+											</div>
+										</div>
+									</div>
+									<div class="hqpgb">
+										<div class="w200 right">
+											<span>签字:</span>
+											<span class="hqpgbqz"></span>
+											<span class="hqpgbqzrq c_pl10"></span>
+										</div>
+									</div>
+								</div>
+								<div class="item role8">
+									<div class="title">采购部</div>
+									<div class="">
+										<div class="textarea">
+											<pre class="hqcgbyj"></pre>
+										</div>
+									</div>
+									<div class="">
+										<div class="w200 right">
+											<span>签字:</span>
+											<span class="hqcgbqz"></span>
+											<span class="hqcgbqzrq"></span>
+										</div>
+									</div>
+								</div>
+								<div class="item acc-dep role9">
+									<div class="title">财务部</div>
+									<div class="">
+										<div class="textarea">
+											<pre class="hqcwbyj"></pre>
+										</div>
+									</div>
+									<div class="">
+										<div class="w200 right">
+											<span>签字:</span>
+											<span class="hqcwbqz"></span>
+											<span class="hqcwbqzrq"></span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</td>
 				</tr>
-				<tr class="lastRow">
-					<td colspan="3">编制:<span class="bz"></span></td>
-					<!-- <td colspan="2"><span class="bz"></span></td> -->
-					<!-- <td></td> -->
-					<td colspan="3">SAP审核:<span class="sapsh"></span></td>
-					<!-- <td colspan="2"><span class="sapsh"></span></td> -->
-					<td colspan="4">批准:<span class="pz"></span></td>
-					<!-- <td colspan="2"><span class="pz"></span></td> -->
-					<!-- <td></td> -->
-					<td colspan="2">物控<span class="wk"></span></td>
+				<tr>
+					<td colspan="4" class=" v-line">
+						<div class="parent-fix">
+							<div class="divToCell zlb">
+									<p>质量意见:</p>
+									<div class="opinion">
+										<pre class="zlbyj">
+										</pre>
+									</div>
+									<p class="pos-last">
+										<span class="">签字:</span>
+										<span class="zlbqz"></span>
+										<span class="zlbqzrq c_pl10"></span>
+									</p>
+							</div>
+							<div class="divToCell yfb">
+								<p>接收部门意见</p>
+								<div class="opinion">
+									<pre class="yfbyj"></pre>
+								</div>
+								<p class="pos-last">
+									<span class="">签字:</span>
+									<span class="yfbqz"></span>
+									<span class="yfbqzrq c_pl10"></span>
+								</p>
+							</div>
+						</div>
+					</td>
 				</tr>
 			</table>
 		</div>
 	</div>
-
 </body>
 <script type="text/javascript">
 	$(function(){
 		$(".sd-rc").show();
-		var flows=["编制","物控确认"];
-		var constant_obj={seNo:"SPE R02-014"};
+		var flows=["编制","变更分类","变更验证","接收部门审核","工艺会签","物控会签","质量确认","采购会签","财务会签","质量批准","接收部门批准"];
 		var role=0;
-		var columns=[
-			{field:"rowNo",name:"序号",col:1,fun:"setText"}
-			,{field:"names",name:"名称",col:1,fun:"setText"}
-			,{field:"phoNo",name:"图号",col:1,fun:"setText"}
-			,{field:"sapNo",name:"SAP编码",col:1,fun:"setText"}
-			,{field:"preChag",name:"更改前",col:2,flag:"img",img:"bgqmsfj",fun:"preAndImg"}
-			,{field:"postChag",name:"更改后",col:2,flag:"img",img:"bghmsfj",fun:"preAndImg"}
-			,{field:"chgTag",name:"更改标记",col:1,fun:"roleText"}
-			,{field:"chgNo",name:"更改处数",col:1,fun:"roleText"}
-			,{field:"dep",name:"物控部门意见",col:2,flag:"html",fun:"bmyj"}
+		var constant_obj={};
+		var flowLlist=[
+				{type:"radio",name:"lcfl",title:"流程分类"}
+				,{type:"radio",name:"sfxygm",title:"是否需要改模"}
+				,{type:"text",name:"gmbj",title:"改模部件"}
+				,{type:"radio",name:"sfgm",title:"是否共模"}
+				,{type:"radio",name:"sfgyj",title:"是否共用件"}
+				,{type:"text",name:"gyjxh",title:"共用件型号"}
+				,{type:"radio",name:"sfyxsh",title:"是否影响售后BOM"}
+				,{type:"radio",name:"sfxyzzyj",title:"是否需要组装样机"}
+				,{type:"text",name:"yjsl",title:"样机数量"}
+				,{type:"radio",name:"sfxysc",title:"是否需要试产"}
+				,{type:"text",name:"scsl",title:"试产数量"}
+				,{type:"radio",name:"sfxyyz",title:"是否需要验证"}
+				,{type:"radio",name:"sfxykhqr",title:"是否需要客户确认"}
+				,{type:"radio",name:"yzjg",title:"验证结果"}
+				,{type:"radio",name:"csbgbm",title:"测试报告编码"}
+			];
+		/**
+		 * 获取变更行动计划
+		 * @Author   Jackie
+		 * @DateTime 2019-01-28
+		 * @return   {[type]}   [description]
+		 */
+		function getFlow(){
+			var obj=app.getObj(flowLlist);
+			if(obj.sfxyyz=="是"){
+				obj.yznr=$.getInputValue({type:"checkbox",name:"yznr"});
+			}
+			if(obj.sfxykhqr=="是"){
+				obj.khqrnr=$.getInputValue({type:"checkbox",name:"khqrnr"});
+			}
+			return obj;
+		}
+		/**
+		 * 获取签字模块信息
+		 * @Author    Jackie
+		 * @DateTime  2019-01-28
+		 * @copyright [copyright]
+		 * @license   [license]
+		 * @version   [version]
+		 * @param     {[type]}    key [description] 部门标识
+		 * @return    {[type]}        [description] 返回部门信息数据对象
+		 */
+		function getSign(key){
+			var list={
+				"hqyfb":[
+					{type:"radio",name:"hqyfbgxcpt",title:"更新产品图"}
+					,{type:"radio",name:"hqyfbgxbom",title:"更新BOM"}
+					,{type:"textarea",name:"hqyfbqt",title:"其他"}
+				],
+				"hqgyb":[
+					{type:"radio",name:"hqgybgxzyzds",title:"工艺部更新作业指导书"}
+					,{type:"radio",name:"hqgybgxgzjj",title:"工艺部更新工装夹具"}
+					,{type:"textarea",name:"hqgybqt",title:"工艺部其他"}
+				],
+				"hqwkb":[
+					{type:"radio",name:"hqwkbgxwljh",title:"物控部更新物料计划"}
+					,{type:"textarea",name:"hqwkbqt1",title:"物控部其他1"}
+					,{type:"radio",name:"hqwkbkcqr",title:"物控部库存确认"}
+					,{type:"textarea",name:"hqwkbqt2",title:"物控部其他2"}
+				],
+				"hqpgb":[
+					{type:"radio",name:"hqpgbgxjyzds",title:"品管部更新检验指导书"}
+					,{type:"textarea",name:"hqpgbqt",title:"品管部其他"}
+				]
+			};
+			return app.getObj(list[key]);
+		}
+		window.getSign=getSign;
+		// 获取签字
+		function getSign2(key){
+			var list={
+				"yf":[
+					{type:"textarea",name:"yfbyj",title:"研发部意见"}
+					,{type:"text",name:"yfbqz",title:"研发部签字"}
+					,{type:"NowDate",name:"yfbqzrq",title:"研发部签字日期"}
+				],
+				"zl":[
+					{type:"textarea",name:"zlbyj",title:"质量部意见"}
+					,{type:"text",name:"zlbqz",title:"质量部签字"}
+					,{type:"NowDate",name:"zlbqzrq",title:"质量部签字日期"}
+					],
+				"gy":[
+					{type:"textarea",name:"gybyj",title:"工艺部意见"}
+					,{type:"text",name:"gybqz",title:"工艺部签字"}
+					,{type:"NowDate",name:"gybqzrq",title:"工艺部签字日期"}
+				]
+			};
+			return app.getObj(list[key]);
+		}
+		/**
+		 * 获取变更描述和变更种类的值
+		 * @Author   Jackie
+		 * @DateTime 2019-02-25
+		 * @return   {[type]}   [description]
+		 */
+		function getChangeDesp(){
+			var rows=getRows();
+			var chgType=$().getRadio("chgType");
+			return {chgeDescs:rows,chgType:chgType};
+		}
+		var bgyzList=[
+			{type:"radio",name:"yzjg"}
+			,{type:"text",name:"csbgbm"}
+			,{type:"radio",name:"hqyfbgxcpt"}
+			,{type:"radio",name:"hqyfbgxbom"}
+			,{type:"textarea",name:"hqyfbqt"}
 		];
-		function setQz(data){
-			$(".bz").setSpan(data.bz);
-			$(".sapsh").setSpan(data.sapsh);
-			$(".pz").setSpan(data.pz);
-			$(".wk").setSpan(data.wk);
+		/**
+		 * 变更验证数据获取
+		 * @Author   Jackie
+		 * @DateTime 2019-02-26
+		 * @return   {[type]}   [description]
+		 */
+		function getBgyz(){
+			return app.getObj(bgyzList);
 		}
-		function setData(data){
-			role=flows.indexOf(data.flow);
-			setEco(data);
-			addTr(data);
-			setQz(data);
-			constant_obj=data;
+		/**
+		 * 变更验证赋值
+		 * @Author   Jackie
+		 * @DateTime 2019-02-26
+		 * @param    {[type]}   data [description]
+		 */
+		function setBgyz(data){
+			$(bgyzList).each(function(index,obj){
+				$.objSetValue[obj.type](obj.name,data[obj.name]);
+			});
 		}
+		// 后台获取数据方法
 		function getData(){
-			var obj=[];
+			var obj={};
 			switch (role) {
-				case 0:
-					obj=getChg();
-					break;
 				case 1:
-					obj=getDep();
+					obj = getChangeDesp();
+					break;
+				case 2:
+					obj = getFlow();
+					break;
+				case 3:
+					obj = getBgyz();
+					break;
+				case 5:
+					obj = getSign("hqgyb");
+					break;
+				case 6:
+					obj = getSign("hqwkb");
+					break;
+				case 7:
+					obj = getSign("hqpgb");
 					break;
 				default:
+					// obj=getChangeDesp();
 					break;
-			}
+			};
 			obj=$.extend(constant_obj,obj);
 			eval("var str='"+JSON.stringify(obj)+"';");
 			return str;
 		}
-		function setEco(data){
-			$(".ecnId").text(data.ecnNo);
-			$(".prodNo").text(data.prodNo);
-			$(".saleChan").text(data.saleChan);
-			$(".chgType").text(data.chgType);
-			// $(".chgType").text(data.chgType);
-			$(".formVer").text(data.formVer);
-		}
-		function setText(data,obj){
-			var span="<span>"+(data[obj.field]||"")+"</span>";
-			return span;
-		}
-		// 变更前描述和变更后描述赋值
-		function preAndImg(data,obj,_i){
-			var pre="<pre>"+(data[obj.field]||"")+"</pre>";
-			pre+="<img class='"+obj.img+_i+"' style='width:100px;height:100px;' src='"+data[obj.img]+"'>";
-			return pre;
-		}
-		//流程中输入和显示
-		function roleText(data,obj,_i,role){
-			var  value=data[obj.field]||"";
-			var str="<span>"+value+"</span>";
-			if(role==0){
-				str="<input type='text' name='"+obj.field+"-"+_i+"' value='"+value+"'>";
-			}
-			return str;
-		}
-		var funs={
-			setText:function(data,obj){
-				return setText(data,obj);
-			},
-			preAndImg:function(data,obj,_i){
-				return preAndImg(data,obj,_i);
-			},
-			roleText:function(data,obj,_i){
-				return roleText(data,obj,_i,role);
-			},
-			bmyj:function(data,obj,_i){
-				return bmyj(data,obj,_i);
-			}
-		}
-		//创建时需要存放当前数据id，和后面提交时匹配
-		function setRow(data,_i){
-			var $tr=$("<tr></tr>");
-			$tr.attr("id",data.rowNo);
-			$tr.data("oldData",data);//把数据放到当前行
-			$(columns).each(function(index,value){
-				var colspan=this.col;
-				var $td=$("<td></td>").attr({"colspan":colspan,field:this.field});
-				var $div=$("<div></div>");
-				var subHtml=funs[this.fun](data,this,_i);
-				$div.append(subHtml);
-				$td.append($div);
-				$tr.append($td);
-			});
-			return $tr;
-		}
+		window.getData=getData;
 		
-		function addTr(data){
-			var $lastRow=$(".lastRow");
-			$(data.chgeDescs).each(function(i){
-				$lastRow.before(setRow(this,i));
-			});
-			if(role!=1){
-				$("input[type='radio']").prop("disabled","disabled");
-			}
-		}
-		var bmyjArr=[
-			{type:"text",name:"orderNo",text:"订单号："}
-			,{type:"text",name:"other",text:"其他："}
-			,{type:"title",name:"invAmo",text:"库存数量"}
-			,{type:"number",name:"compInvAmo",text:"公司库存数量："}
-			,{type:"number",name:"supInvAmo",text:"供应商库存数量："}
-		];
-
-		function createNode(data,flog){
-			var str="";
-			$(bmyjArr).each(function(index,value){
-				var className=this.name;
-				var content=this.type=="title"?"":flog?createInput(this,data[this.name]):createSpan(this.name,data[this.name]);
-				str+="<div>"+this.text+content+"</div>";
-			});
-			return str;
-		}
-		function createInput(obj,value){
-			var className=obj.name;
-			if(obj.type=="number"){
-				className+=" inputNumber";
-			}
-			return "<input class='"+className+"' type='"+obj.type+"' name='"+this.name+"' value='"+value+"'>";
-		}
-		function createSpan(className,text){
-			return "<span class='"+className+"'>"+(text || "")+"</span>"
-		}
-		function bmyj(data,obj,_i){
-			var div="<div>制品处理意见</div>";
-			var $div=$("<div></div>");
-			var label=addLabel(data["billAdv"],_i);
-			var flag = role == 1;
-			var div2=createNode(data,flag);
-			return div+label+div2;
+		/**
+		 * 设置申请单的值
+		 * @Author   Jackie
+		 * @DateTime 2019-02-25
+		 * @param    {[type]}   data [description]
+		 */
+		function setEcr(data){
+			$(".ecr").setText(data.no);
+			$(".tcbm").setSpan(data.tcbm);
+			$(".tcry").setSpan(data.tcr);
+			$(".djbm").setSpan(data.jsbm);
+			$(".djry").setSpan(data.jsr);
+			$(".prodNo").setSpan(data.prodNo);
+			$(".saleChan").setRadio(data.saleChan);
 		}
 		/**
-		 * 制品处理意见
+		 * 设置变更种类和变更描述的值
 		 * @Author   Jackie
-		 * @DateTime 2019-03-07
-		 * @param    {[type]}   flag    [description]
-		 * @param    {[type]}   linenum [description]
+		 * @DateTime 2019-02-25
+		 * @param    {[type]}   data [description]
 		 */
-		function addLabel(flag,linenum){
-			var $label="";
-			var list=["自然消耗","立即切换","按单消耗"];
-			$(list).each(function(index,value){
-				$label+="<label><input type='radio'";
-				$label+=flag==value?"checked":"";
-				$label+=" name='billAdv-"+linenum+"' value='"+value+"'>"+value+"</label>";
+		function setChangeDesp(data){
+			$(".chgType").setRadio(data.chgType);
+			setRows(data.chgeDescs);
+		}
+		// 部门签字对象
+		var signList={
+				"hqyfb":[
+					{type:"radio",name:"hqyfbgxcpt",title:"更新产品图"}
+					,{type:"radio",name:"hqyfbgxbom",title:"更新BOM"}
+					,{type:"textarea",name:"hqyfbqt",title:"其他"},
+					,{type:"span",name:"hqyfbqz",title:"签字"}
+					,{type:"NowDate",name:"hqyfbqzrq",title:"日期"}
+				],
+				"hqgyb":[
+					{type:"radio",name:"hqgybgxzyzds",title:"工艺部更新作业指导书"}
+					,{type:"radio",name:"hqgybgxgzjj",title:"工艺部更新工装夹具"}
+					,{type:"textarea",name:"hqgybqt",title:"工艺部其他"}
+					,{type:"span",name:"hqgybqz",title:"签字"}
+					,{type:"NowDate",name:"hqgybqzrq",title:"日期"}
+				],
+				"hqwkb":[
+					{type:"radio",name:"hqwkbgxwljh",title:"物控部更新物料计划"}
+					,{type:"textarea",name:"hqwkbqt1",title:"物控部其他1"}
+					,{type:"radio",name:"hqwkbkcqr",title:"物控部库存确认"}
+					,{type:"textarea",name:"hqwkbqt2",title:"物控部其他2"}
+					,{type:"span",name:"hqwkbqz",title:"签字"}
+					,{type:"NowDate",name:"hqwkbqzrq",title:"日期"}
+				],
+				"hqpgb":[
+					{type:"radio",name:"hqpgbgxjyzds",title:"品管部更新检验指导书"}
+					,{type:"textarea",name:"hqpgbqt",title:"品管部其他"}
+					,{type:"span",name:"hqpgbqz",title:"签字"}
+					,{type:"NowDate",name:"hqpgbqzrq",title:"日期"}
+				],
+				"hqcgb":[
+					{type:"pre",name:"hqcgbyj"}
+					,{type:"span",name:"hqcgbqz"}
+					,{type:"NowDate",name:"hqcgbqzrq"}
+				],
+				"hqcwb":[
+					{type:"pre",name:"hqcwbyj"}
+					,{type:"span",name:"hqcwbqz"}
+					,{type:"NowDate",name:"hqcwbqzrq"}
+				],
+				"hqzlb":[
+					{type:"pre",name:"zlbyj"}
+					,{type:"span",name:"zlbqz"}
+					,{type:"NowDate",name:"zlbqzrq"}
+				],
+				"hqjsb":[
+					{type:"pre",name:"yfbyj"}
+					,{type:"span",name:"yfbqz"}
+					,{type:"NowDate",name:"yfbqzrq"}
+				]
+			};
+		/**
+		 * 签字部分方法封装
+		 * @Author   Jackie
+		 * @DateTime 2019-02-26
+		 * @param    {[type]}   data [description] 数据对象
+		 * @param    {[type]}   key  [description] 签字部门标识
+		 * @param    {[type]}   flag [description] 快速变更时，值为true标识当前部门需要签字
+		 */
+		function setSign(data,key,flag){
+			if(data.lcfl=="重大变更" || flag){
+			 	$(signList[key]).each(function(){
+			 		$.objSetValue[this.type](this.name,data[this.name]);
+			 	});
+		 	}
+		}
+		function setFlow(data){
+			$(flowLlist).each(function(index,obj){
+				$.objSetValue[obj.type](obj.name,data[obj.name])
 			});
-			return $label;
+			if(data.sfxyyz=="是"){
+				// $.setRadio("yznr",data.yznr);
+				$.setCheckbox("yznr",data.yznr);
+			}
+			if(data.sfxykhqr=="是"){
+				$.setCheckbox("khqrnr",data.khqrnr);
+			}
 		}
-		var clArr=["orderNo",'other','compInvAmo','supInvAmo'];	
-		function getDep(){
-			// $("td[field='dep']").siblings();
-			var list=[];
-			var _this=$("td[field='dep']");
-			var $radios=$("td[field='dep']").find("[type='radio']");
-			$(_this).each(function(){
-				list.push(loop(this))
-			});
-			return list;
+
+		function setData(data){
+			var flow=flows.indexOf(data.flow);
+			role=flow+1;
+			app.showRole(role);
+			setEcr(data);//设置ecr申请单值
+			//常量存储，提交数据时用
+// 			$.extend(constant_obj,{ecrId:data.ecrId,itemId:data.itemId});
+			$.extend(constant_obj,data);
+			switch (role) {
+				case 0:
+				case 11:
+				case 10:
+				case 9:
+				case 8:
+				case 7:
+				case 6:
+				case 5:
+				case 4:
+					setSign(data,"hqjsb");
+					setSign(data,"hqzlb");
+					setSign(data,"hqcwb");
+					setSign(data,"hqcgb");
+					setSign(data,"hqwkb");
+					setSign(data,"hqgyb");
+					setSign(data,"hqpgb");
+					$(".hqyfbqz").setSpan(data.hqyfbqz);
+					$(".hqyfbqzrq").setSpan(data.hqyfbqzrq);
+				case 3:
+					setBgyz(data);
+				case 2:
+					setFlow(data);
+				case 1:
+					setChangeDesp(data);
+					break;
+				default:
+					break;
+			}
 		}
-		function loop(than){
-			var $than=$(than);
-			var $tr=$than.closest("tr");
-			var data=$tr.data("oldData");
-			var billAdv=$than.find("[type='radio']").getRadio1();
-			var obj={};
-			$(clArr).each(function(){
-				obj[this]=$than.find("."+this).val();
-			});
-			obj.billAdv=billAdv;
-			return $.extend(data,obj);
-		}
-		function getChg(){
-			var list=[];
-			var rows=$("td[field='chgTag']").closest("tr");
-			rows.each(function(){
-				list.push(loopChg(this));
-			});
-			return list;
-		}
-		function loopChg(trNode){
-			var $than=$(trNode);
-			var data=$than.data("oldData");
-			var chgTag=$than.find("[name^='chgTag']").val();
-			var chgNo=$than.find("[name^='chgNo']").val();
-			var obj={chgTag:chgTag,chgNo:chgNo};
-			return $.extend(data,obj);
-		}
-		window.getDep=getDep;
-		window.addTr=addTr;
 		window.setData=setData;
-		window.getData=getData;
-		window.getDomStr=function () {  
-		     var tmpNode = document.createElement('div')
-		     tmpNode.appendChild(document.documentElement) 
-		     var str = tmpNode.innerHTML
-		     tmpNode = null; // 解除引用，以便于垃圾回收  
-		     return str;  
-		} 
 	});
 </script>
 </html>
