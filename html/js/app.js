@@ -302,7 +302,7 @@ $(function() {
             this.isEdit=isEdit;
             addTr($(".table-sub"),this);
         });
-        if(data.length==0){
+        if(!data||data.length==0){
             addTr($(".table-sub"));
         }
     }
