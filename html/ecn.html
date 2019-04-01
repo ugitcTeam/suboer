@@ -182,17 +182,17 @@
 			var str="";
 			$(bmyjArr).each(function(index,value){
 				var className=this.name;
-				var content=flog?createInput(this):createSpan(this.name,data[this.name]);
+				var content=flog?createInput(this,data[this.name]):createSpan(this.name,data[this.name]);
 				str+="<div>"+this.text+content+"</div>";
 			});
 			return str;
 		}
-		function createInput(obj){
+		function createInput(obj,value){
 			var className=obj.name;
 			if(obj.type=="number"){
 				className+=" inputNumber";
 			}
-			return "<input class='"+className+"' type='"+obj.type+"' name='"+this.name+"'>";
+			return "<input class='"+className+"' type='"+obj.type+"' name='"+this.name+"' value='"+value+"'>";
 		}
 		function createSpan(className,text){
 			return "<span class='"+className+"'>"+(text || "")+"</span>"
@@ -200,7 +200,7 @@
 		function bmyj(data,obj,_i){
 			var div="<div>制品处理意见</div>";
 			var $div=$("<div></div>");
-			var label=addLabel("立即切换",_i);
+			var label=addLabel(data["billAdv"],_i);
 			var flag = role == 1;
 			var div2=createNode(data,flag);
 			return div+label+div2;
