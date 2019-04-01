@@ -241,7 +241,7 @@ $(function() {
         var imgSrc=data&&data[imgName] || "";
         var nodeStr="<div style='position:relative'><textarea class='mText' name='"+field+"'>"+_fieldValue+"</textarea>";
         nodeStr+="<img src='"+imgSrc+"' alt=''/>";
-        nodeStr+="<input class='upImg' type='file' name='"+imgName+"' value='"+imgSrc+"'><span class='delImg'>X</span></div>";
+        nodeStr+="<label class='upImgSty'><input class='upImg' type='file' name='"+imgName+"' value='"+imgSrc+"'></label><span class='delImg'>X</span></div>";
         return nodeStr;
     }
     function addTd2(columns,index,data){
@@ -302,6 +302,9 @@ $(function() {
             this.isEdit=isEdit;
             addTr($(".table-sub"),this);
         });
+        if(data.length==0){
+            addTr($(".table-sub"));
+        }
     }
 
     // textarea 高度随内容自适应
@@ -370,14 +373,15 @@ $(function() {
         upImgChange(this);
     });
     function upImgChange(than){
-        if ($(than).prev()[0].nodeName == "IMG" && than.value) {
+        var prev=$(than).parent().prev()[0];
+        if (prev.nodeName == "IMG" && than.value) {
             if (window.URL) {
-                $(than).prev()[0].src = window.URL.createObjectURL(than.files.item(0));
+                prev.src = window.URL.createObjectURL(than.files.item(0));
             } else {
-                $(than).prev()[0].src = than.value; //ie8可以显示图片
+                prev.src = than.value; //ie8可以显示图片
             }
         } else {
-            $(than).prev()[0].src = "";
+            prev.src = "";
         }
     }
     $(".upImg").change(function() {
