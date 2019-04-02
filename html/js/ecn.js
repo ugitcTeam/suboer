@@ -105,7 +105,7 @@ var ecn_table={
 		if(obj.type=="textarea"){
 			return "<textarea class='"+className+"'>"+value+"</textarea>";
 		}
-		return "<input class='"+className+"' type='"+obj.type+"' name='"+this.name+"' value='"+value+"'>";
+		return "<input class='"+className+"' type='"+obj.type+"' name='"+obj.name+"' value='"+value+"'>";
 	},
 	createSpan:function(className,text){
 		return "<span class='"+className+"'>"+(text || "")+"</span>"
