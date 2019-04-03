@@ -262,7 +262,7 @@
 		// 下拉框点击时，有特殊处理
 		$("select").click(function(){
 			if($(this).prev()[0]&&$(this).prev()[0].nodeName=="INPUT"){
-				$($(this).prev()).click();
+				$(this).prev().prop("checked",true);
 			}
 		});
 		$("div[contenteditable]").keyup(function(){
