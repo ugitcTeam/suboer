@@ -102,7 +102,7 @@ input[type='text']:disabled{border:none;}
 .p5c{display: none;}
 .edit .p5c{display: inline;}
 
-.mText{min-height: 60px; max-height: 120px; width: 200px;overflow: hidden;}
+.mText{min-height: 60px; max-height: 120px; width: 200px;overflow-y: auto;}
 .mText+img{width:120px;height:120px;vertical-align: middle;}
 
 .parent-fix{display: table;width:100%;table-layout: fixed;}
