@@ -93,11 +93,12 @@ var ecn_table={
 		$(this.bmyjArr).each(function(index,value){
 			var className=this.name;
 			var content=this.type=="title"?"":flog?ecn_table.createInput(this,data[this.name]):ecn_table.createSpan(this.name,data[this.name]);
-			str+="<div>"+this.text+content+"</div>";
+			str+="<div class='"+className+"'>"+this.text+content+"</div>";
 		});
 		return str;
 	},
 	createInput:function(obj,value){
+		value=value||"";
 		var className=obj.name;
 		if(obj.type=="number"){
 			className+=" inputNumber";
@@ -111,7 +112,7 @@ var ecn_table={
 		return "<span class='"+className+"'>"+(text || "")+"</span>"
 	},
 	bmyj:function(data,obj,_i){
-		var div="<div>制品处理意见</div>";
+		var div="<div><b>制品处理意见</b></div>";
 		var label=this.addLabel(data["billAdv"],_i);
 		var flag = this.role == 1;
 		var div2=this.createNode(data,flag);
