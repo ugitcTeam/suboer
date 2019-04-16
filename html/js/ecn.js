@@ -18,8 +18,8 @@ var ecn_table={
 		{type:"text",name:"orderNo",text:"订单号："}
 		,{type:"textarea",name:"other",text:"其他："}
 		,{type:"title",name:"invAmo",text:"库存数量"}
-		,{type:"number",name:"compInvAmo",text:"公司库存数量："}
-		,{type:"number",name:"supInvAmo",text:"供应商库存数量："}
+		,{type:"text",name:"compInvAmo",text:"公司库存数量："}
+		,{type:"text",name:"supInvAmo",text:"供应商库存数量："}
 	],
 	clArr:["orderNo",'other','compInvAmo','supInvAmo'],
 	funs:{
@@ -93,7 +93,7 @@ var ecn_table={
 		$(this.bmyjArr).each(function(index,value){
 			var className=this.name;
 			var content=this.type=="title"?"":flog?ecn_table.createInput(this,data[this.name]):ecn_table.createSpan(this.name,data[this.name]);
-			str+="<div class='"+className+"'>"+this.text+content+"</div>";
+			str+="<div>"+this.text+content+"</div>";
 		});
 		return str;
 	},
