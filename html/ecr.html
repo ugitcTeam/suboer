@@ -246,12 +246,11 @@
 		});
 		function editMu(){
 			$(".isMu").show();
-			var isEdit=$(".isMu").hasClass("edit");
-			if(isEdit){
-				$(".isMu").find("input").prop("disabled","");
-				$(".isMu").find("textarea").prop("disabled","");
-				$(".isMu").find("input[type='file']").show();
-			}
+			var $edit=$(".isMu.edit");
+			$edit.find('find').prop("disabled","");
+			$edit.find('textarea').prop("disabled","");
+			$edit.find("input[type='file']").prop("disabled","");
+			
 		}
 		// 下拉框是改变时，有特殊处理
 		$("select").change(function(){
