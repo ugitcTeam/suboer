@@ -647,7 +647,7 @@ $(function() {
         getFile: function(name) {
             var $this=$("input[name='" + name + "']")
             var str=$this.val();
-            var preImg=$this.prev("img");
+            var preImg=$this.closest("div").find("img");
             str=str?str:preImg.attr("src");
             return str;
         },
