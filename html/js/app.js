@@ -283,7 +283,7 @@ $(function() {
                     $inputs.each(function() {
                         obj[this.name] = this.value ||"";
                         if(this.type=="file"&&this.value==""){
-                            obj[this.name]=$(this).prev().attr("src")||"";
+                            obj[this.name]=$(this).closest("div").find("img").attr("src")||"";
                         }
                     });
                 }
