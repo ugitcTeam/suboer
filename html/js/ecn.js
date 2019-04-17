@@ -81,6 +81,10 @@ var ecn_table={
 	},
 	addTr:function(data){
 		var $lastRow=$(".d-body");
+		function sortRowNo(a,b){
+			return a.rowNo-b.rowNo;
+		}
+		data.chgeDescs.sort(sortRowNo)
 		$(data.chgeDescs).each(function(i){
 			$lastRow.append(ecn_table.setRow(this,i));
 		});
