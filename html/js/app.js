@@ -340,29 +340,6 @@ $(function() {
         }
         // console.log(len-$this.val().length);
     });
-    $("input[type='text']").on("input propertychange", function() {
-        var $this = $(this),
-            _val = $this.val(),
-            count = "";
-        var maxLength = 30
-        if (_val.length > maxLength) {
-            $this.val(_val.substring(0, maxLength));
-            // console.log("超出长度限制")
-        }
-    });
-    //div可编辑，值改变时触发时间
-    $("div[contenteditable]").on("input propertychange", function() {
-        var $this = $(this),
-            _val = this.innerText,
-            count = "";
-        var len = this.getAttribute("maxLength") || 300;
-        len = parseInt(len);
-        if (_val.length > len) {
-            $this.text(_val.substring(0, len));
-            // this.innerHtml=this.innerText.substring(0,len);
-        }
-        // console.log(len-this.innerText.length);
-    });
     window.disabled = function() {
         $("input").prop("disabled", "disabled");
         $("select").prop("disabled", "disabled");
@@ -542,9 +519,11 @@ $(function() {
             if(this.nodeName()=="INPUT"){
                 this.val(value);
                 this.prop("disabled",!isEdit);
-                // var span = $("<span class='" + this.className() + "'></span>").text(value);
-                // this.after(span);
-                // this.remove();
+                if(!isEdit){
+                    var span = $("<span class='" + this.className() + "'></span>").text(value);
+                    this.after(span);
+                    this.remove();
+                }
             }else{
                 this.text(value);
             }
