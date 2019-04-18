@@ -12,10 +12,11 @@
 		.rc-table{width:auto;}
 		.inputNumber{width:60px; border:1px;}
 		table{cellpadding:0;}
-		td{border-top:1px solid green;}
+		td{border-top:1px solid #000;}
 		.orderNo{width: 100px;}
 		
 		.rc-table-head td{border-bottom: 0;}
+		.tr_head{height:40px;}
 		.rc-table-head,.d-body{text-align: center;}
 		.d-body{margin:auto;}
 		.ta-c{text-align: center;}
@@ -36,20 +37,22 @@
 		.td8{width: 50px;}
 		.td9{width: 100px;}
 
-		.ecnId{width: 140px;}
-		.prodNo{width: 140px;}
-		.saleChan{width: 140px;}
-		.chgType{width: 140px;}
+		/*头部表格*/
+		.prodNo{padding:1px 5px;line-height:20px;white-space: normal;word-wrap: break-word; text-align: left;}
+		
+		/*尾部表格*/
+		.table3{table-layout: fixed;}
+		.table3 td{text-align: center;border:1px solid #000; border-top:0;}
+		.table3 td>div{width: auto; line-height: 20px;white-space: normal;word-wrap: break-word;text-align: left; padding: 1px 5px;}
 
 		.remark{width: 100%;height:auto;vertical-align: middle; overflow: hidden;}
 		.remark pre{width: 90%;height:auto;vertical-align: middle;white-space: normal;}
 		.remark textarea{width: 90%;height:auto;vertical-align: middle;}
 
 		.invAmo{font-weight: bold;}
-		.table3{}
-		.table3 td{border:1px solid green; border-top:0;}
 
-		pre{white-space: normal;}
+		pre{white-space: normal; font-size: 16px;font-weight: 600;}
+		input{font-size: 16px;}
 	</style>
 </head>
 <body>
@@ -57,16 +60,16 @@
 		<h2 class="title">技术文件更改通知</h2>
 		<div>
 			<div style="text-align: right;"><span style="padding-right: 10px;">表单版本：C</span><span>编号：SPE R02-014</span></div>
-			<table class="rc-table-head">
+			<table class="rc-table-head" style="table-layout: fixed;">
 				<tbody>
-					<tr>
-						<td style="width: 60px;">ECN</td>
-						<td><div class="ecnId"></div></td>
-						<td>产品型号</td>
-						<td><div class="prodNo"></div></td>
-						<td>渠道</td>
-						<td><div class="saleChan"></div></td>
-						<td>变更种类</td>
+					<tr class="tr_head">
+						<td style="width: 90px;">ECN</td>
+						<td style="width: 200px;"><div class="ecnId"></div></td>
+						<td style="width:100px;">产品型号</td>
+						<td style="width: 300px;"><div class="prodNo"></div></td>
+						<td style="width: 80px;">渠道</td>
+						<td style="width: 100px;"><div class="saleChan"></div></td>
+						<td style="width: 100px;">变更种类</td>
 						<td><div class="chgType"></div></td>
 					</tr>
 				</tbody>
@@ -88,17 +91,17 @@
 				</tr>
 			</table>
 			
-			<table class="table3" style="">
+			<table class="table3">
 				<tbody>
-					<tr>
-						<td><div class="ta-c" style="width: 80px;">编制</div></td>
-						<td><div class="bz" style="width: 150px;"></div></td>
-						<td><div class="ta-c" style="width: 100px;">SAP审核</div></td>
-						<td><div class="sapsh" style="width: 150px;"></div></td>
-						<td><div class="ta-c" style="width: 100px;">物控</div></td>
-						<td><div class="wk" style="width: 150px;"></div></td>
-						<td><div class="ta-c" style="width: 100px;">批准</div></td>
-						<td><div class="pz" style="width: 150px;"></div></td>
+					<tr class="tr_head">
+						<td style="width: 90px;">编制</td>
+						<td style="width: 200px;"><div class="bz"></div></td>
+						<td style="width: 120px;">SAP审核</td>
+						<td style="width: 180px;"><div class="sapsh"></div></td>
+						<td style="width: 100px;">物控</td>
+						<td style="width: 180px;"><div class="wk"></div></td>
+						<td style="width: 100px;">批准</td>
+						<td><div class="pz"></div></td>
 					</tr>
 				</tbody>
 			</table>
