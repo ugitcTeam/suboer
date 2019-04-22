@@ -83,13 +83,14 @@ input.number{width: 100px;}
 .isMu{display: none;}
 
 /*表格中嵌套表格，左，右，下，td不要边框*/
-
+.table-sub{table-layout: fixed;}
 .table-sub th{font-weight:400; border-width: 1px 0 0 1px; border-style: solid;border-color: #000;}
 .table-sub th:first-child{border-left-width: 0px;}
 .table-sub td{border-width: 1px 1px 0 0;}
 .table-sub tr.remove{background-color: #ccc;}
 .table-sub tr.remove [field=rowNo]{background: red;}
 .table-sub tr.remove [field=rowNo]:before{content:"X"; color:green;display: inline-block; }
+.table-sub pre{width: 300px;}
 /*快速变更时，会签意见只显示财务部*/
 .isFlow .item{display: none;}
 .isFlow .acc-dep{display: block;}
@@ -119,7 +120,7 @@ input[type='text']:disabled{border:none;}
 .pop{width: 100%;height: 100%;display: none;background:#cccccc; position: absolute; left:0;top:0;}
 .pop.show{display:block;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#19ffffff,endColorstr=#19ffffff);}
 .pop .preview{width: 800px;height: 100%; overflow:hidden;  position: absolute; left: 0;right:0;top:0;bottom: 0;margin: auto; text-align:center}
-.pop .preview img{max-width:800px; width:auto;height:auto; max-height:420px; margin:auto; position: absolute;left:0;right:0;top:0;bottom: 0;}
+.pop .preview img{ width:auto;height:auto; margin:auto; position: absolute;left:0;right:0;top:0;bottom: 0;}
 
 [field=rowNo]{text-align: center;}
 
