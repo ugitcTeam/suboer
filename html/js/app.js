@@ -425,7 +425,7 @@ $(function() {
             var isEdit=radio.closest("[class*='role']").hasClass("edit");
             var vals=(typeof value=="string")?value.split(","):value;
             $(radio).each(function() {
-                if (vals.indexOf(this.value) != -1) {
+                if (vals&&vals.indexOf(this.value) != -1) {
                     this.checked = true;
                 }
                 this.disabled = !isEdit;
