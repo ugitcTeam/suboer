@@ -385,7 +385,15 @@ $(function() {
             }else{
                 $img.css("height",420);
             }
-            $img.click(function(){
+            dragZoom.init($img);
+            $pop.click(function(){
+                if(event.srcElement.nodeName!="IMG"){
+                    $pop.removeClass("show");
+                    $pop.find("img").attr({"src":"",style:""});
+                    document.body.parentNode.style.overflow="auto";
+                }
+            });
+            $img.dblclick(function(){
                 this.src="";
                 $pop.removeClass("show");
                 document.body.parentNode.style.overflow="auto";
