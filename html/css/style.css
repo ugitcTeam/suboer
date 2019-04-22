@@ -2,7 +2,7 @@ input {border-width: 0px;outline: none;background: none;border-bottom: 0px;borde
 label {white-space: nowrap;cursor: pointer;}
 td {border: 1px solid #000;padding: 0;}
 input,textarea{font-size: 16px;}
-pre{font-weight: 600;}
+pre{font-weight: 600; white-space: normal;word-wrap: break-word;}
 textarea:disabled{background:#fff; border:none;}
 input:disabled{border:none;}
 body{font-family: 'Microsoft YaHei',sans-serif}
